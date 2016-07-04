@@ -1,0 +1,67 @@
+{
+  "name": "corrode",
+  "version": "0.1.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "babel src --out-dir dist --source-maps",
+    "watch": "npm run build -- --watch",
+    "test": "mocha test --compilers js:babel-register ./test/_tests.js",
+    "lint": "eslint src",
+    "coverage": "nyc --require babel-core/register --reporter=lcov mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/screeny05/corrode.git"
+  },
+  "author": "Sebastian Langer <sl@scn.cx>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/screeny05/corrode/issues"
+  },
+  "homepage": "https://github.com/screeny05/corrode#readme",
+  "devDependencies": {
+    "babel-cli": "^6.10.1",
+    "babel-eslint": "^6.1.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.9.0",
+    "chai": "^3.5.0",
+    "coveralls": "^2.11.9",
+    "eslint": "^3.0.0",
+    "eslint-config-xo": "^0.15.2",
+    "eslint-plugin-babel": "^3.3.0",
+    "istanbul": "^0.4.4",
+    "mocha": "^2.5.3",
+    "nyc": "^6.6.1"
+  },
+  "dependencies": {
+    "bl": "^1.1.2",
+    "function-name": "^1.0.0",
+    "lazy.js": "^0.4.2",
+    "lodash": "^4.13.1",
+    "readable-stream": "^2.1.4"
+  },
+  "eslintConfig": {
+    "extends": "xo/esnext",
+    "env": {
+      "browser": true,
+      "jquery": true
+    },
+    "rules": {
+      "indent": [
+        "error",
+        4
+      ],
+      "keyword-spacing": 0,
+      "space-before-function-paren": [
+        2,
+        "never"
+      ],
+      "space-before-blocks": [
+        2,
+        "never"
+      ]
+    }
+  }
+}
