@@ -2,7 +2,6 @@
 
 var _ = require('lazy.js');
 var lodash = require('lodash');
-var utils = require('./utils');
 
 module.exports = {
 
@@ -14,7 +13,9 @@ module.exports = {
      */
 
     equal: function equal(name, value) {
-        if (this.vars[name] !== value) throw new TypeError('Expected ' + value + ', found ' + this.vars[name] + ' at ' + name);
+        if (this.vars[name] !== value) {
+            throw new TypeError('Expected ' + value + ', found ' + this.vars[name] + ' at ' + name);
+        }
     },
 
 
@@ -31,7 +32,9 @@ module.exports = {
             return _this.vars[name][subkey] !== value;
         }).value();
 
-        if (notEqualObjects.length !== 0) throw new TypeError('Expected values in ' + JSON.stringify(this.vars[name]) + ' to all be ' + value);
+        if (notEqualObjects.length !== 0) {
+            throw new TypeError('Expected values in ' + JSON.stringify(this.vars[name]) + ' to all be ' + value);
+        }
     },
 
 
@@ -43,7 +46,9 @@ module.exports = {
      */
     deepEqualObject: function deepEqualObject(name, value) {
         var binaryValue = this.vars[name];
-        if (!lodash.isEqual(binaryValue, value)) throw new TypeError('Expected ' + JSON.stringify(value) + ', found ' + JSON.stringify(binaryValue));
+        if (!lodash.isEqual(binaryValue, value)) {
+            throw new TypeError('Expected ' + JSON.stringify(value) + ', found ' + JSON.stringify(binaryValue));
+        }
     },
 
 
@@ -54,7 +59,9 @@ module.exports = {
      * @throws TypeError assertion-error
      */
     inArray: function inArray(name, arr) {
-        if (!lodash.includes(arr, this.vars[name])) throw new TypeError('Expected one of ' + JSON.stringify(arr) + ', found ' + this.vars[name]);
+        if (!lodash.includes(arr, this.vars[name])) {
+            throw new TypeError('Expected one of ' + JSON.stringify(arr) + ', found ' + this.vars[name]);
+        }
     },
 
 
@@ -67,7 +74,9 @@ module.exports = {
     inArrayBounds: function inArrayBounds(name, value) {
         var index = this.vars[name];
 
-        if (index < 0 || index >= value.length) throw new TypeError('Expected Array of ' + value.length + ' items to be at least ' + this.vars[name] + ' long');
+        if (index < 0 || index >= value.length) {
+            throw new TypeError('Expected Array of ' + value.length + ' items to be at least ' + this.vars[name] + ' long');
+        }
     },
 
 
@@ -81,7 +90,9 @@ module.exports = {
     callback: function callback(name, fn) {
         var fnName = arguments.length <= 2 || arguments[2] === undefined ? fn.name : arguments[2];
 
-        if (!fn(this.vars[name])) throw new TypeError('Callback failed at ' + fnName + '(' + this.vars[name] + ')');
+        if (!fn(this.vars[name])) {
+            throw new TypeError('Callback failed at ' + fnName + '(' + this.vars[name] + ')');
+        }
     },
 
 
@@ -92,7 +103,9 @@ module.exports = {
      * @throws TypeError assertion-error
      */
     arrayLength: function arrayLength(name, length) {
-        if (typeof this.vars[name] === 'undefined' || this.vars[name].length !== length) throw new TypeError('Expected array to have a length of ' + length + ', has ' + this.vars[name].length);
+        if (typeof this.vars[name] === 'undefined' || this.vars[name].length !== length) {
+            throw new TypeError('Expected array to have a length of ' + length + ', has ' + this.vars[name].length);
+        }
     },
 
 
@@ -102,7 +115,9 @@ module.exports = {
      * @throws TypeError assertion-error
      */
     exists: function exists(name) {
-        if (typeof this.vars[name] === 'undefined') throw new TypeError('Expected var ' + name + ' to exist');
+        if (typeof this.vars[name] === 'undefined') {
+            throw new TypeError('Expected var ' + name + ' to exist');
+        }
     }
 };
 //# sourceMappingURL=assert.js.map

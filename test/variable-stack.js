@@ -151,7 +151,7 @@ it('should prevent invalid popping', function(){
 
     this.stack.push('child');
     expect(this.stack.pop.bind(this.stack)).to.not.throw(Error);
-})
+});
 
 it('should prevent invalid peeking', function(){
     expect(this.stack.peek.bind(this.stack)).to.throw(Error);

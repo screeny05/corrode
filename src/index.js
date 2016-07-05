@@ -1,4 +1,4 @@
-const CorrodeBase = require('./corrode-base');
+const CorrodeBase = require('./base');
 const utils = require('./utils');
 
 const lodash = require('lodash');

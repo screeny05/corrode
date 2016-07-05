@@ -581,4 +581,4 @@ module.exports = (_temp = _class = function (_Transform) {
     wrapOnEOC: false,
     finishJobsOnEOF: true
 }, _temp);
-//# sourceMappingURL=corrode-base.js.map
+//# sourceMappingURL=base.js.map
