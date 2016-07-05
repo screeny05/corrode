@@ -3,5 +3,5 @@ const map = require('../src/map');
 
 
 it('should', function(){
-    
+
 });

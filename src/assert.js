@@ -1,4 +1,3 @@
-const _ = require('lazy.js');
 const lodash = require('lodash');
 
 module.exports = {
@@ -22,11 +21,7 @@ module.exports = {
      * @throws TypeError assertion-error
      */
     allEqualObject(name, value){
-        const notEqualObjects = _(this.vars[name])
-            .keys()
-            .filter(subkey => this.vars[name][subkey] !== value)
-            .value();
-
+        const notEqualObjects = lodash.values(this.vars[name]).filter(varValue => varValue !== value);
         if(notEqualObjects.length !== 0){
             throw new TypeError(`Expected values in ${JSON.stringify(this.vars[name])} to all be ${value}`);
         }
@@ -53,7 +48,7 @@ module.exports = {
      */
     inArray(name, arr){
         if(!lodash.includes(arr, this.vars[name])){
-            throw new TypeError(`Expected one of ${JSON.stringify(arr)}, found ${this.vars[name]}`);
+            throw new TypeError(`Expected ${JSON.stringify(arr)} to include ${this.vars[name]}`);
         }
     },
 

@@ -1,9 +1,6 @@
 const CorrodeBase = require('./base');
 const utils = require('./utils');
 
-const lodash = require('lodash');
-const fnName = require('function-name');
-
 const EXTENSIONS = {};
 const MAPPERS = require('./map');
 const ASSERTIONS = require('./assert');
@@ -124,8 +121,6 @@ module.exports = function(){
 };
 
 module.exports.addExtension = function(name, fn, extension){
-    fnName(fn, name);
-
     EXTENSIONS[name] = function(name = 'values', ...args){
         this.tap(name, function(){
             fn.apply(this, args);
@@ -133,7 +128,10 @@ module.exports.addExtension = function(name, fn, extension){
 
         if(typeof extension !== 'undefined'){
             this.tap(function(){
-                lodash.extend(this.vars[name], extension);
+                this.vars[name] = {
+                    ...this.vars[name],
+                    extension
+                };
             });
         }
 

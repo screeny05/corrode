@@ -1,5 +1,7 @@
 'use strict';
 
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -10,9 +12,6 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 var CorrodeBase = require('./base');
 var utils = require('./utils');
-
-var lodash = require('lodash');
-var fnName = require('function-name');
 
 var EXTENSIONS = {};
 var MAPPERS = require('./map');
@@ -150,8 +149,6 @@ module.exports = function () {
 };
 
 module.exports.addExtension = function (name, fn, extension) {
-    fnName(fn, name);
-
     EXTENSIONS[name] = function () {
         for (var _len = arguments.length, args = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
             args[_key - 1] = arguments[_key];
@@ -165,7 +162,9 @@ module.exports.addExtension = function (name, fn, extension) {
 
         if (typeof extension !== 'undefined') {
             this.tap(function () {
-                lodash.extend(this.vars[name], extension);
+                this.vars[name] = _extends({}, this.vars[name], {
+                    extension: extension
+                });
             });
         }
 

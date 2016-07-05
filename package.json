@@ -8,7 +8,8 @@
     "watch": "npm run build -- --watch",
     "test": "mocha test --compilers js:babel-register ./test/_tests.js",
     "lint": "eslint src",
-    "coverage": "nyc --require babel-core/register --reporter=lcov mocha"
+    "coverage": "nyc --require babel-core/register --reporter=lcov mocha",
+    "coverall": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -32,14 +33,13 @@
     "eslint-config-xo": "^0.15.2",
     "eslint-plugin-babel": "^3.3.0",
     "istanbul": "^0.4.4",
+    "lodash": "^4.13.1",
     "mocha": "^2.5.3",
     "nyc": "^6.6.1"
   },
   "dependencies": {
     "bl": "^1.1.2",
-    "function-name": "^1.0.0",
-    "lazy.js": "^0.4.2",
-    "lodash": "^4.13.1",
+    "lodash": "^4.6.1",
     "readable-stream": "^2.1.4"
   },
   "eslintConfig": {

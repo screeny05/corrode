@@ -1,6 +1,5 @@
 'use strict';
 
-var _ = require('lazy.js');
 var lodash = require('lodash');
 
 module.exports = {
@@ -26,12 +25,9 @@ module.exports = {
      * @throws TypeError assertion-error
      */
     allEqualObject: function allEqualObject(name, value) {
-        var _this = this;
-
-        var notEqualObjects = _(this.vars[name]).keys().filter(function (subkey) {
-            return _this.vars[name][subkey] !== value;
-        }).value();
-
+        var notEqualObjects = lodash.values(this.vars[name]).filter(function (varValue) {
+            return varValue !== value;
+        });
         if (notEqualObjects.length !== 0) {
             throw new TypeError('Expected values in ' + JSON.stringify(this.vars[name]) + ' to all be ' + value);
         }
@@ -60,7 +56,7 @@ module.exports = {
      */
     inArray: function inArray(name, arr) {
         if (!lodash.includes(arr, this.vars[name])) {
-            throw new TypeError('Expected one of ' + JSON.stringify(arr) + ', found ' + this.vars[name]);
+            throw new TypeError('Expected ' + JSON.stringify(arr) + ' to include ' + this.vars[name]);
         }
     },
 
