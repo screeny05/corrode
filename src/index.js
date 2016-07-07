@@ -14,7 +14,13 @@ class Corrode extends CorrodeBase {
         this.assert = utils.tapBindObject(ASSERTIONS, this);
     }
 
-    loopMax(name, length, fn){
+    repeat(name, length, fn){
+        if(typeof name === 'number'){
+            fn = length;
+            length = name;
+            name = undefined;
+        }
+
         if(length === 0){
             this.vars[name] = [];
             return this;
@@ -31,12 +37,6 @@ class Corrode extends CorrodeBase {
             }
         };
 
-        if(typeof name === 'number'){
-            fn = length;
-            length = name;
-            name = undefined;
-        }
-
         if(!name){
             return this.loop(loopGuard);
         }
@@ -44,7 +44,7 @@ class Corrode extends CorrodeBase {
         return this.loop(name, loopGuard);
     }
 
-    array(name, terminator = 0, type = 'uint8'){
+    terminatedBuffer(name, terminator = 0, type = 'uint8', discardTerminator = true){
         terminator = typeof terminator === 'string' ? terminator.charCodeAt(0) : terminator;
 
         return this
@@ -53,7 +53,7 @@ class Corrode extends CorrodeBase {
                     [type]('__value')
                     .tap(function(){
                         if(this.vars.__value === terminator){
-                            end(true);
+                            end(discardTerminator);
                         }
                     });
             })
@@ -62,11 +62,9 @@ class Corrode extends CorrodeBase {
             });
     }
 
-    terminatedString(name, terminator = 0, encoding = 'ascii'){
-        terminator = typeof terminator === 'string' ? terminator.charCodeAt(0) : terminator;
-
+    terminatedString(name, terminator = 0, encoding = 'ascii', discardTerminator = true){
         return this
-            .array(name, terminator)
+            .terminatedBuffer(name, terminator, 'uint8', discardTerminator)
             .tap(function(){
                 if(!this.vars[name] || this.vars[name].length === 0){
                     this.vars[name] = '';

@@ -1,29 +1,10 @@
 const expect = require('chai').expect;
+const fixture = require('./fixtures/vars');
 const assert = require('../src/assert');
 const utils = require('../src/utils');
 
 beforeEach(function(){
-    this.fixture = {
-        string: 'fixture',
-        number: 1337,
-        object: {
-            has: 'to',
-            deep: ['equal', 'this', 1337],
-            me: 1337
-        },
-        objectWithSameValues: {
-            val1: 'fixture',
-            val2: 'fixture',
-            val3: 'fixture',
-            val4: 'fixture',
-        },
-        array: ['fixture', 'string', 1337],
-        negative: -1,
-        zero: 0,
-        one: 1,
-        two: 2,
-        three: 3
-    };
+    this.fixture = fixture.clone();
 
     this.assert = function(name, ...args){
         let assertFn = utils.bindObject(assert, { vars: this.fixture });

@@ -9,7 +9,7 @@ module.exports = {
         this.vars[name] = fn(this.vars[name]);
     },
 
-    fromArray(name, array, src = name){
+    get(name, array, src = name){
         this.vars[name] = array[this.vars[src]];
     },
 

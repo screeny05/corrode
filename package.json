@@ -9,7 +9,8 @@
     "test": "mocha test --compilers js:babel-register ./test/_tests.js",
     "lint": "eslint src",
     "coverage": "nyc --require babel-core/register --reporter=lcov mocha",
-    "coverall": "nyc npm test && nyc report --reporter=text-lcov | coveralls"
+    "coverall": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",

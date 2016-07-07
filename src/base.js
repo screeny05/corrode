@@ -131,13 +131,12 @@ module.exports = class CorrodeBase extends Transform {
 
             // break on end of buffer (wait if we're not unwinding yet)
             if(this.buffer.length - this.chunkOffset < length){
-
                 if(this.isUnwinding && this.jobs.length > 0){
-                    console.log('isUnwinding & bufferend');
                     // unwind loop, by removing the loop job
                     this.filterNonReadJobs();
                     continue;
                 }
+
                 break;
             }
 
@@ -224,6 +223,7 @@ module.exports = class CorrodeBase extends Transform {
 
     queueJobs(){
         let queuedJobs = this.jobs.slice();
+
         // empty jobs
         this.jobs.splice(0);
 
