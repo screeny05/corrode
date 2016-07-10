@@ -7,7 +7,7 @@ beforeEach(function(){
     };
 });
 
-it('should tapBindObject', function(){
+it('binds object with tap', function(){
     let boundFixture = utils.tapBindObject({
         fnFixture: function(argOne, argTwo){
             expect(argOne).to.equal('foo');
@@ -23,7 +23,7 @@ it('should tapBindObject', function(){
     boundFixture.fnFixture('foo', 'bar')();
 });
 
-it('should bind object with data', function(){
+it('binds object with data', function(){
     let obj = {
         fnFixture: function(){
             expect(this).to.not.be.empty;

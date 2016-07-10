@@ -94,14 +94,6 @@ class Corrode extends CorrodeBase {
             });
     }
 
-    pushVars(name = 'values'){
-        return this
-            .assert.exists(name)
-            .tap(function(){
-                this.vars = this.vars[name];
-            });
-    }
-
     debug(){
         return this.tap(function(){
             console.log(this.vars);
@@ -110,7 +102,7 @@ class Corrode extends CorrodeBase {
 
     fromBuffer(buffer){
         this.write(buffer);
-        return this.vars_list.length > 0 ? this.vars_list[0] : this.vars;
+        return this.vars;
     }
 }
 

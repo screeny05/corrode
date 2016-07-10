@@ -15,25 +15,34 @@ module.exports = {
     },
 
     /**
-     * assert deep equal each value in Object
-     * @param {string} name  key of the object to test
-     * @param {mixed} value comparision
+     * assert deep equality each value in Object|Array
+     * @param {string} name  key of the object|array to test
+     * @param {mixed} value comparision, undefined for auto-detect
      * @throws TypeError assertion-error
      */
-    allEqualObject(name, value){
-        const notEqualObjects = lodash.values(this.vars[name]).filter(varValue => varValue !== value);
+    allEqual(name, testValue){
+        let values = this.vars[name];
+        if(!Array.isArray(values)){
+            values = lodash.values(values);
+        }
+
+        if(typeof testValue === 'undefined'){
+            testValue = values[0];
+        }
+
+        const notEqualObjects = values.filter(varValue => varValue !== testValue);
         if(notEqualObjects.length !== 0){
-            throw new TypeError(`Expected values in ${JSON.stringify(this.vars[name])} to all be ${value}`);
+            throw new TypeError(`Expected values in ${JSON.stringify(this.vars[name])} to all be ${testValue}`);
         }
     },
 
     /**
-     * assert equal objects
+     * assert equality objects
      * @param {string} name  key of the object to test
      * @param {object} value comparision
      * @throws TypeError assertion-error
      */
-    deepEqualObject(name, value){
+    deepEqual(name, value){
         const binaryValue = this.vars[name];
         if(!lodash.isEqual(binaryValue, value)){
             throw new TypeError(`Expected ${JSON.stringify(value)}, found ${JSON.stringify(binaryValue)}`);
@@ -46,7 +55,7 @@ module.exports = {
      * @param {array} arr   comparision
      * @throws TypeError assertion-error
      */
-    inArray(name, arr){
+    includes(name, arr){
         if(!lodash.includes(arr, this.vars[name])){
             throw new TypeError(`Expected ${JSON.stringify(arr)} to include ${this.vars[name]}`);
         }
@@ -58,7 +67,7 @@ module.exports = {
      * @param {array} value comparision
      * @throws TypeError assertion-error
      */
-    inArrayBounds(name, value){
+    inBounds(name, value){
         const index = this.vars[name];
 
         if(index < 0 || index >= value.length){

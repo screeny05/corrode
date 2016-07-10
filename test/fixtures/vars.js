@@ -14,12 +14,17 @@ const getFixture = () => ({
         val3: 'fixture',
         val4: 'fixture',
     },
+    arrayWithSameValues: ['fixture', 'fixture', 'fixture', 'fixture'],
     array: ['fixture', { object: 'foo' }, 1337],
+    objectArray: [{ id: 1, name: 'foobar' }, { id: 2, name: 'lorem' }, { id: 2, name: 'ipsum' }, { id: 4, name: 'quxbaz' }],
     negative: -1,
     zero: 0,
     one: 1,
     two: 2,
-    three: 3
+    three: 3,
+    id: 4,
+    untrimmed: '\r\nfoobar  ',
+    trimmed: 'foobar'
 });
 
 module.exports = getFixture();

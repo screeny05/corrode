@@ -133,7 +133,7 @@ module.exports = class CorrodeBase extends Transform {
             if(this.buffer.length - this.chunkOffset < length){
                 if(this.isUnwinding && this.jobs.length > 0){
                     // unwind loop, by removing the loop job
-                    this.filterNonReadJobs();
+                    this.removeReadJobs();
                     continue;
                 }
 
@@ -195,14 +195,14 @@ module.exports = class CorrodeBase extends Transform {
 
     finishRemainingJobs(){
         this.isUnwinding = true;
-        this.filterNonReadJobs();
+        this.removeReadJobs();
         this.jobLoop();
     }
 
     /**
      * purges all jobs from the job-queue, which need to read from the stream
      */
-    filterNonReadJobs(){
+    removeReadJobs(){
         let filteredJobs = this.jobs
             .slice()
             .filter(job => job.type === 'pop' || (job.type === 'tap' && !job.name));
@@ -264,11 +264,11 @@ module.exports = class CorrodeBase extends Transform {
         loopJob.finish = function(discard){
             loopJob.finished = true;
             loopJob.discarded = !!discard;
-        }
+        };
 
         loopJob.discard = function(){
             loopJob.discarded = true;
-        }
+        };
 
         this.jobs.push(loopJob);
         return this;
