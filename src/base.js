@@ -174,8 +174,8 @@ module.exports = class CorrodeBase extends Transform {
                     case "uint32le": { this.vars[job.name] = this.buffer.readUInt32LE(this.chunkOffset); break; }
                     case "uint32be": { this.vars[job.name] = this.buffer.readUInt32BE(this.chunkOffset); break; }
 
-                    case "int64le":  { this.vars[job.name] = (Math.pow(2, 32) * this.buffer.readInt32LE(this.chunkOffset + 4)) + ((this.buffer[this.chunkOffset + 4] & 0x80 === 0x80 ? 1 : -1) * this.buffer.readUInt32LE(this.chunkOffset)); break; }
-                    case "int64be":  { this.vars[job.name] = (Math.pow(2, 32) * this.buffer.readInt32BE(this.chunkOffset)) + ((this.buffer[this.chunkOffset] & 0x80 === 0x80 ? 1 : -1) * this.buffer.readUInt32BE(this.chunkOffset + 4)); break; }
+                    case "int64le":  { this.vars[job.name] = (Math.pow(2, 32) * this.buffer.readInt32LE(this.chunkOffset + 4)) + ((this.buffer[this.chunkOffset + 4] & 0x80 === 0x80 ? -1 : 1) * this.buffer.readUInt32LE(this.chunkOffset)); break; }
+                    case "int64be":  { this.vars[job.name] = (Math.pow(2, 32) * this.buffer.readInt32BE(this.chunkOffset)) + ((this.buffer[this.chunkOffset] & 0x80 === 0x80 ? -1 : 1) * this.buffer.readUInt32BE(this.chunkOffset + 4)); break; }
                     case "uint64le": { this.vars[job.name] = (Math.pow(2, 32) * this.buffer.readUInt32LE(this.chunkOffset + 4)) + this.buffer.readUInt32LE(this.chunkOffset); break; }
                     case "uint64be": { this.vars[job.name] = (Math.pow(2, 32) * this.buffer.readUInt32BE(this.chunkOffset)) + this.buffer.readUInt32BE(this.chunkOffset + 4); break; }
 

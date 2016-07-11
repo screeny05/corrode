@@ -15,7 +15,11 @@ beforeEach(function(){
         fs.createReadStream(__dirname + '/fixtures/' + file)
             .pipe(this.base)
             .on('finish', () => {
-                expect(this.base.vars).to.deep.equal(obj);
+                if(typeof obj === 'function'){
+                    obj.call(this, this.base.vars);
+                } else {
+                    expect(this.base.vars).to.deep.equal(obj);
+                }
                 done();
             });
     };
@@ -97,8 +101,8 @@ it('reads int32', function(done){
     });
 });
 
-/* int64 currently disabled */
-/*it('reads int64', function(done){
+// http://www.ecma-international.org/ecma-262/5.1/#sec-8.5
+it('reads int64', function(done){
     this.base
         .int64('int64')
         .int64le('int64le')
@@ -110,7 +114,7 @@ it('reads int32', function(done){
         .int64le('int64len')
         .int64be('int64ben');
 
-    this.eqFile('int32-seq.bin', done, {
+    this.eqFile('int64-seq.bin', done, {
         int64: 100000,
         int64le: 110000,
         int64be: 120000,
@@ -121,7 +125,34 @@ it('reads int32', function(done){
         int64len: -1100000000,
         int64ben: -1200000000
     });
-});*/
+});
+
+it('reads float', function(done){
+    this.base
+        .float('float')
+        .floatle('floatle')
+        .floatbe('floatbe');
+
+    // floats are pretty unprecise
+    this.eqFile('float-seq.bin', done, vars => {
+        expect(vars.float).to.be.within(1.233, 1.235);
+        expect(vars.floatle).to.be.within(5.677, 5.679);
+        expect(vars.floatbe).to.be.within(9.1010, 9.1012);
+    });
+});
+
+it('reads double', function(done){
+    this.base
+        .double('double')
+        .doublele('doublele')
+        .doublebe('doublebe');
+
+    this.eqFile('double-seq.bin', done, {
+        double: 1.234,
+        doublele: 5.678,
+        doublebe: 9.1011
+    });
+});
 
 it('reads utf8-strings', function(done){
     this.base.string('string', 16, 'utf8');
