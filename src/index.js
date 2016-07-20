@@ -26,13 +26,10 @@ class Corrode extends CorrodeBase {
             return this;
         }
 
-        let currentPosition = 0;
+        let loopGuard = function(end, discard, i){
+            fn.call(this, end, discard, i);
 
-        let loopGuard = function(end, discard){
-            fn.call(this, currentPosition, end, discard);
-
-            if(++currentPosition > length - 1){
-                currentPosition = 0;
+            if(i >= length - 1){
                 end();
             }
         };

@@ -18,3 +18,5 @@ $ npm install --save corrode
 **Testing and Docs are WIP**
 
 **API guaranteed to change until v1.0.0**
+
+**Not guaranteed to work synchronously**

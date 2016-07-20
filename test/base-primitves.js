@@ -1,15 +1,9 @@
 const expect = require('chai').expect;
 const Base = require('../src/base');
-const fixture = require('./fixtures/vars');
 const fs = require('fs');
 
 beforeEach(function(){
     this.base = new Base();
-
-    this.buffer = buffer => {
-        this.base.write(buffer);
-        return this.base.vars;
-    };
 
     this.eqFile = (file, done, obj) => {
         fs.createReadStream(__dirname + '/fixtures/' + file)
@@ -131,13 +125,17 @@ it('reads float', function(done){
     this.base
         .float('float')
         .floatle('floatle')
-        .floatbe('floatbe');
+        .floatbe('floatbe')
+        .floatle('floatlen')
+        .floatbe('floatben');
 
     // floats are pretty unprecise
     this.eqFile('float-seq.bin', done, vars => {
         expect(vars.float).to.be.within(1.233, 1.235);
         expect(vars.floatle).to.be.within(5.677, 5.679);
         expect(vars.floatbe).to.be.within(9.1010, 9.1012);
+        expect(vars.floatlen).to.be.within(-12.1315, -12.1313);
+        expect(vars.floatben).to.be.within(-15.1618, -15.1616);
     });
 });
 
@@ -145,12 +143,16 @@ it('reads double', function(done){
     this.base
         .double('double')
         .doublele('doublele')
-        .doublebe('doublebe');
+        .doublebe('doublebe')
+        .doublele('doublelen')
+        .doublebe('doubleben');
 
     this.eqFile('double-seq.bin', done, {
         double: 1.234,
         doublele: 5.678,
-        doublebe: 9.1011
+        doublebe: 9.1011,
+        doublelen: -12.1314,
+        doubleben: -15.1617
     });
 });
 

@@ -108,7 +108,7 @@ it('pushes double jobs', function(){
     ]);
 });
 
-it('pushes be jobs', function(){
+it('pushes options.endianness correct jobs', function(){
     let base = new Base({ endianness: 'be' });
 
     base
@@ -206,9 +206,9 @@ it('pushes loop jobs', function(){
         .loop('name2', noop);
 
     expect(this.base.jobs).to.deep.equal([
-        { type: 'loop', name: undefined, callback: noop, finished: false, discarded: false, finish: this.base.jobs[0].finish, discard: this.base.jobs[0].discard },
-        { type: 'loop', name: 'name', callback: noop, finished: false, discarded: false, finish: this.base.jobs[1].finish, discard: this.base.jobs[1].discard },
-        { type: 'loop', name: 'name2', callback: noop, finished: false, discarded: false, finish: this.base.jobs[2].finish, discard: this.base.jobs[2].discard },
+        { type: 'loop', name: undefined, callback: noop, finished: false, discarded: false, iteration: 0, finish: this.base.jobs[0].finish, discard: this.base.jobs[0].discard },
+        { type: 'loop', name: 'name', callback: noop, finished: false, discarded: false, iteration: 0, finish: this.base.jobs[1].finish, discard: this.base.jobs[1].discard },
+        { type: 'loop', name: 'name2', callback: noop, finished: false, discarded: false, iteration: 0, finish: this.base.jobs[2].finish, discard: this.base.jobs[2].discard },
     ]);
 
     this.base.jobs[0].finish();

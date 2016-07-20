@@ -1,6 +1,7 @@
 const VariableStack = require('./variable-stack');
 const BufferList = require('bl');
 const { Transform } = require('readable-stream');
+const lodash = require('lodash');
 
 module.exports = class CorrodeBase extends Transform {
     jobs = [];
@@ -14,8 +15,8 @@ module.exports = class CorrodeBase extends Transform {
         endianness: 'le',
         loopVarName: '__loop_tmp',
         encoding: 'utf8',
-        wrapOnEOC: false,
-        finishJobsOnEOF: true
+        finishJobsOnEOF: true,
+        anonymousLoopDiscardDeep: false,
     };
 
     get vars(){
@@ -54,6 +55,7 @@ module.exports = class CorrodeBase extends Transform {
     jobLoop(){
         while(this.jobs.length > 0){
             let job = this.jobs[0];
+            let remainingBuffer = this.buffer.length - this.chunkOffset;
 
             if(job.type === 'push'){
                 this.jobs.shift();
@@ -90,7 +92,9 @@ module.exports = class CorrodeBase extends Transform {
                     continue;
                 }
 
+                let loopVar = this.options.loopVarName;
                 let unqueue = this.queueJobs();
+
 
                 if(job.name){
                     if(!this.vars[job.name]){
@@ -98,17 +102,32 @@ module.exports = class CorrodeBase extends Transform {
                     }
 
                     this
-                        .tap(this.options.loopVarName, job.callback, [job.finish, job.discard])
+                        .tap(loopVar, job.callback, [job.finish, job.discard, job.iteration++])
                         .tap(function(){
                             if(!job.discarded){
-                                this.vars[job.name].push(this.vars[this.options.loopVarName]);
+                                this.vars[job.name].push(this.vars[loopVar]);
                             }
                             job.discarded = false;
-                            delete this.vars[this.options.loopVarName];
+                            delete this.vars[loopVar];
                         });
 
                 } else {
-                    this.tap(job.callback, [job.finish, job.discard]);
+                    // make copy, in case the user discards the result
+                    if(this.options.anonymousLoopDiscardDeep){
+                        job[loopVar] = lodash.cloneDeep(this.vars);
+                    } else {
+                        job[loopVar] = { ...this.vars };
+                    }
+
+                    this
+                        .tap(job.callback, [job.finish, job.discard, job.iteration++])
+                        .tap(function(){
+                            if(job.discarded && job[loopVar]){
+                                this.vars = job[loopVar];
+                            }
+                            job.discarded = false;
+                            delete job[loopVar];
+                        });
                 }
 
                 unqueue();
@@ -121,12 +140,6 @@ module.exports = class CorrodeBase extends Transform {
                 length = this.vars[job.length];
             } else {
                 length = job.length;
-            }
-
-            let remainingBuffer = this.buffer.length - this.chunkOffset;
-
-            if(this.options.wrapOnEOC && remainingBuffer > 0 && remainingBuffer <= length && (job.type === 'blob' || job.type === 'string')){
-                length = remainingBuffer;
             }
 
             // break on end of buffer (wait if we're not unwinding yet)
@@ -258,7 +271,8 @@ module.exports = class CorrodeBase extends Transform {
             type: 'loop',
             callback,
             finished: false,
-            discarded: false
+            discarded: false,
+            iteration: 0
         };
 
         loopJob.finish = function(discard){
