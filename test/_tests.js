@@ -1,3 +1,4 @@
+require('buffer-safe');
 const fs = require('fs');
 const path = require('path');
 
