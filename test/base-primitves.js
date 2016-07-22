@@ -1,22 +1,9 @@
-const expect = require('chai').expect;
+const { expect } = require('chai');
 const Base = require('../src/base');
-const fs = require('fs');
 
 beforeEach(function(){
     this.base = new Base();
-
-    this.eqFile = (file, done, obj) => {
-        fs.createReadStream(__dirname + '/fixtures/' + file)
-            .pipe(this.base)
-            .on('finish', () => {
-                if(typeof obj === 'function'){
-                    obj.call(this, this.base.vars);
-                } else {
-                    expect(this.base.vars).to.deep.equal(obj);
-                }
-                done();
-            });
-    };
+    this.eqFile = require('./helpers/asserts').eqFile.bind(this);
 });
 
 

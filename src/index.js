@@ -97,9 +97,9 @@ module.exports = class Corrode extends CorrodeBase {
         });
     }
 
-    fromBuffer(buffer done){
+    fromBuffer(buffer, done){
         this.end(buffer);
-        this.on('finish', ::done);
+        this.on('finish', done.bind(this));
         return this;
     }
 }

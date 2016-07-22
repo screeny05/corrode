@@ -1,9 +1,11 @@
 const expect = require('chai').expect;
 const Base = require('../src/base');
 const fixture = require('./fixtures/vars');
+const { LITTLE_ENDIAN, BIG_ENDIAN } = Base;
 
 beforeEach(function(){
     this.base = new Base();
+    this.eqArray = require('./helpers/asserts').eqArray.bind(this);
 });
 
 it('pushes int8 jobs', function(){
@@ -16,12 +18,12 @@ it('pushes int8 jobs', function(){
         .uint8be('uint8be');
 
     expect(this.base.jobs).to.deep.equal([
-        { name: 'int8', type: 'int8le', length: 1 },
-        { name: 'int8le', type: 'int8le', length: 1 },
-        { name: 'int8be', type: 'int8be', length: 1 },
-        { name: 'uint8', type: 'uint8le', length: 1 },
-        { name: 'uint8le', type: 'uint8le', length: 1 },
-        { name: 'uint8be', type: 'uint8be', length: 1 },
+        { name: 'int8', type: 'int8', endianness: LITTLE_ENDIAN, length: 1 },
+        { name: 'int8le', type: 'int8', endianness: LITTLE_ENDIAN, length: 1 },
+        { name: 'int8be', type: 'int8', endianness: BIG_ENDIAN, length: 1 },
+        { name: 'uint8', type: 'uint8', endianness: LITTLE_ENDIAN, length: 1 },
+        { name: 'uint8le', type: 'uint8', endianness: LITTLE_ENDIAN, length: 1 },
+        { name: 'uint8be', type: 'uint8', endianness: BIG_ENDIAN, length: 1 },
     ]);
 });
 
@@ -35,12 +37,12 @@ it('pushes int16 jobs', function(){
         .uint16be('uint16be');
 
     expect(this.base.jobs).to.deep.equal([
-        { name: 'int16', type: 'int16le', length: 2 },
-        { name: 'int16le', type: 'int16le', length: 2 },
-        { name: 'int16be', type: 'int16be', length: 2 },
-        { name: 'uint16', type: 'uint16le', length: 2 },
-        { name: 'uint16le', type: 'uint16le', length: 2 },
-        { name: 'uint16be', type: 'uint16be', length: 2 },
+        { name: 'int16', type: 'int16', endianness: LITTLE_ENDIAN, length: 2 },
+        { name: 'int16le', type: 'int16', endianness: LITTLE_ENDIAN, length: 2 },
+        { name: 'int16be', type: 'int16', endianness: BIG_ENDIAN, length: 2 },
+        { name: 'uint16', type: 'uint16', endianness: LITTLE_ENDIAN, length: 2 },
+        { name: 'uint16le', type: 'uint16', endianness: LITTLE_ENDIAN, length: 2 },
+        { name: 'uint16be', type: 'uint16', endianness: BIG_ENDIAN, length: 2 },
     ]);
 });
 
@@ -54,12 +56,12 @@ it('pushes int32 jobs', function(){
         .uint32be('uint32be');
 
     expect(this.base.jobs).to.deep.equal([
-        { name: 'int32', type: 'int32le', length: 4 },
-        { name: 'int32le', type: 'int32le', length: 4 },
-        { name: 'int32be', type: 'int32be', length: 4 },
-        { name: 'uint32', type: 'uint32le', length: 4 },
-        { name: 'uint32le', type: 'uint32le', length: 4 },
-        { name: 'uint32be', type: 'uint32be', length: 4 },
+        { name: 'int32', type: 'int32', endianness: LITTLE_ENDIAN, length: 4 },
+        { name: 'int32le', type: 'int32', endianness: LITTLE_ENDIAN, length: 4 },
+        { name: 'int32be', type: 'int32', endianness: BIG_ENDIAN, length: 4 },
+        { name: 'uint32', type: 'uint32', endianness: LITTLE_ENDIAN, length: 4 },
+        { name: 'uint32le', type: 'uint32', endianness: LITTLE_ENDIAN, length: 4 },
+        { name: 'uint32be', type: 'uint32', endianness: BIG_ENDIAN, length: 4 },
     ]);
 });
 
@@ -73,12 +75,12 @@ it('pushes int64 jobs', function(){
         .uint64be('uint64be');
 
     expect(this.base.jobs).to.deep.equal([
-        { name: 'int64', type: 'int64le', length: 8 },
-        { name: 'int64le', type: 'int64le', length: 8 },
-        { name: 'int64be', type: 'int64be', length: 8 },
-        { name: 'uint64', type: 'uint64le', length: 8 },
-        { name: 'uint64le', type: 'uint64le', length: 8 },
-        { name: 'uint64be', type: 'uint64be', length: 8 },
+        { name: 'int64', type: 'int64', endianness: LITTLE_ENDIAN, length: 8 },
+        { name: 'int64le', type: 'int64', endianness: LITTLE_ENDIAN, length: 8 },
+        { name: 'int64be', type: 'int64', endianness: BIG_ENDIAN, length: 8 },
+        { name: 'uint64', type: 'uint64', endianness: LITTLE_ENDIAN, length: 8 },
+        { name: 'uint64le', type: 'uint64', endianness: LITTLE_ENDIAN, length: 8 },
+        { name: 'uint64be', type: 'uint64', endianness: BIG_ENDIAN, length: 8 },
     ]);
 });
 
@@ -89,9 +91,9 @@ it('pushes float jobs', function(){
         .floatbe('floatbe');
 
     expect(this.base.jobs).to.deep.equal([
-        { name: 'float', type: 'floatle', length: 4 },
-        { name: 'floatle', type: 'floatle', length: 4 },
-        { name: 'floatbe', type: 'floatbe', length: 4 }
+        { name: 'float', type: 'float', endianness: LITTLE_ENDIAN, length: 4 },
+        { name: 'floatle', type: 'float', endianness: LITTLE_ENDIAN, length: 4 },
+        { name: 'floatbe', type: 'float', endianness: BIG_ENDIAN, length: 4 }
     ]);
 });
 
@@ -102,14 +104,14 @@ it('pushes double jobs', function(){
         .doublebe('doublebe');
 
     expect(this.base.jobs).to.deep.equal([
-        { name: 'double', type: 'doublele', length: 8 },
-        { name: 'doublele', type: 'doublele', length: 8 },
-        { name: 'doublebe', type: 'doublebe', length: 8 }
+        { name: 'double', type: 'double', endianness: LITTLE_ENDIAN, length: 8 },
+        { name: 'doublele', type: 'double', endianness: LITTLE_ENDIAN, length: 8 },
+        { name: 'doublebe', type: 'double', endianness: BIG_ENDIAN, length: 8 }
     ]);
 });
 
 it('pushes options.endianness correct jobs', function(){
-    let base = new Base({ endianness: 'be' });
+    let base = new Base({ endianness: BIG_ENDIAN });
 
     base
         .int8('int8')
@@ -124,16 +126,16 @@ it('pushes options.endianness correct jobs', function(){
         .double('double');
 
     expect(base.jobs).to.deep.equal([
-        { name: 'int8', type: 'int8be', length: 1 },
-        { name: 'uint8', type: 'uint8be', length: 1 },
-        { name: 'int16', type: 'int16be', length: 2 },
-        { name: 'uint16', type: 'uint16be', length: 2 },
-        { name: 'int32', type: 'int32be', length: 4 },
-        { name: 'uint32', type: 'uint32be', length: 4 },
-        { name: 'int64', type: 'int64be', length: 8 },
-        { name: 'uint64', type: 'uint64be', length: 8 },
-        { name: 'float', type: 'floatbe', length: 4 },
-        { name: 'double', type: 'doublebe', length: 8 },
+        { name: 'int8', type: 'int8', endianness: BIG_ENDIAN, length: 1 },
+        { name: 'uint8', type: 'uint8', endianness: BIG_ENDIAN, length: 1 },
+        { name: 'int16', type: 'int16', endianness: BIG_ENDIAN, length: 2 },
+        { name: 'uint16', type: 'uint16', endianness: BIG_ENDIAN, length: 2 },
+        { name: 'int32', type: 'int32', endianness: BIG_ENDIAN, length: 4 },
+        { name: 'uint32', type: 'uint32', endianness: BIG_ENDIAN, length: 4 },
+        { name: 'int64', type: 'int64', endianness: BIG_ENDIAN, length: 8 },
+        { name: 'uint64', type: 'uint64', endianness: BIG_ENDIAN, length: 8 },
+        { name: 'float', type: 'float', endianness: BIG_ENDIAN, length: 4 },
+        { name: 'double', type: 'double', endianness: BIG_ENDIAN, length: 8 },
     ]);
 });
 
@@ -240,14 +242,6 @@ it('pushes tap jobs', function(){
     ]);
 });
 
-it('pushes custom jobs', function(){
-    this.base.pushJob('name', 'custom', 16, { key: 'value' });
-
-    expect(this.base.jobs).to.deep.equal([
-        { type: 'custom', name: 'name', length: 16, key: 'value' }
-    ]);
-});
-
 it('queues and unqueues jobs', function(){
     this.base
         .uint8le('uint8le')
@@ -264,8 +258,8 @@ it('queues and unqueues jobs', function(){
     expect(this.base.jobs).to.deep.equal([
         { type: 'string', name: 'string', length: 16, encoding: this.base.options.encoding },
         { type: 'blob', name: 'blob', length: 16 },
-        { type: 'uint8le', name: 'uint8le', length: 1 },
-        { type: 'int64le', name: 'int64le', length: 8 }
+        { name: 'uint8le', type: 'uint8', endianness: LITTLE_ENDIAN, length: 1 },
+        { name: 'int64le', type: 'int64', endianness: LITTLE_ENDIAN, length: 8 }
     ]);
 });
 
@@ -290,4 +284,9 @@ it('removes read jobs', function(){
         { type: 'tap', name: undefined, args: undefined, callback: noop },
         { type: 'pop' }
     ]);
+});
+
+it('throws error on unknown job', function(){
+    this.base.jobs.push({ type: 'invalid-job-type', length: 1 });
+    expect(this.eqArray.bind(this, [1, 2, 3], {foo: 'bar'})).to.throw(Error);
 });

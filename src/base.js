@@ -3,7 +3,23 @@ const BufferList = require('bl');
 const { Transform } = require('readable-stream');
 const lodash = require('lodash');
 
+const LITTLE_ENDIAN = 'LE';
+const BIG_ENDIAN = 'BE';
+const POW_32 = Math.pow(2, 32);
+
 module.exports = class CorrodeBase extends Transform {
+    static defaults = {
+        endianness: LITTLE_ENDIAN,
+        loopVarName: '__loop_tmp',
+        encoding: 'utf8',
+        finishJobsOnEOF: true,
+        anonymousLoopDiscardDeep: false,
+    };
+
+    static LITTLE_ENDIAN = LITTLE_ENDIAN;
+    static BIG_ENDIAN = BIG_ENDIAN;
+
+
     jobs = [];
     varStack = new VariableStack();
     buffer = new BufferList();
@@ -11,12 +27,26 @@ module.exports = class CorrodeBase extends Transform {
     chunkOffset = 0;
     isUnwinding = false;
 
-    static defaults = {
-        endianness: 'le',
-        loopVarName: '__loop_tmp',
-        encoding: 'utf8',
-        finishJobsOnEOF: true,
-        anonymousLoopDiscardDeep: false,
+    primitveMap = {
+        int8: job => this.buffer.readInt8(this.chunkOffset),
+        uint8: job => this.buffer.readUInt8(this.chunkOffset),
+
+        int16: job => this.buffer['readInt16' + job.endianness](this.chunkOffset),
+        uint16: job => this.buffer['readUInt16' + job.endianness](this.chunkOffset),
+
+        int32: job => this.buffer['readInt32' + job.endianness](this.chunkOffset),
+        uint32: job => this.buffer['readUInt32' + job.endianness](this.chunkOffset),
+
+        float: job => this.buffer['readFloat' + job.endianness](this.chunkOffset),
+        double: job => this.buffer['readDouble' + job.endianness](this.chunkOffset),
+
+        int64: job => {
+            const lo = this.buffer['readUInt32' + job.endianness](this.chunkOffset + (job.endianness === LITTLE_ENDIAN ? 0 : 4));
+            const hi = this.buffer['readInt32' + job.endianness](this.chunkOffset + (job.endianness === LITTLE_ENDIAN ? 4 : 0));
+            const sign = job.type === 'uint64' ? 1 : (this.buffer[this.chunkOffset + LITTLE_ENDIAN ? 4 : 0] & 0x80 === 0x80 ? -1 : 1);
+            return POW_32 * hi + sign * lo;
+        },
+        uint64: job => this.primitveMap.int64(job)
     };
 
     get vars(){
@@ -54,8 +84,8 @@ module.exports = class CorrodeBase extends Transform {
 
     jobLoop(){
         while(this.jobs.length > 0){
-            let job = this.jobs[0];
-            let remainingBuffer = this.buffer.length - this.chunkOffset;
+            const job = this.jobs[0];
+            const remainingBuffer = this.buffer.length - this.chunkOffset;
 
             if(job.type === 'push'){
                 this.jobs.shift();
@@ -70,7 +100,7 @@ module.exports = class CorrodeBase extends Transform {
             } else if(job.type === 'tap'){
                 this.jobs.shift();
 
-                let unqueue = this.queueJobs();
+                const unqueue = this.queueJobs();
 
                 // if the tap has a name, we push a new var-layer
                 if(job.name){
@@ -92,8 +122,8 @@ module.exports = class CorrodeBase extends Transform {
                     continue;
                 }
 
-                let loopVar = this.options.loopVarName;
-                let unqueue = this.queueJobs();
+                const loopVar = this.options.loopVarName;
+                const unqueue = this.queueJobs();
 
 
                 if(job.name){
@@ -135,12 +165,7 @@ module.exports = class CorrodeBase extends Transform {
             }
 
             // determine length of next job
-            let length;
-            if(typeof job.length === 'string'){
-                length = this.vars[job.length];
-            } else {
-                length = job.length;
-            }
+            const length = typeof job.length === 'string' ? this.vars[job.length] : job.length;
 
             // break on end of buffer (wait if we're not unwinding yet)
             if(this.buffer.length - this.chunkOffset < length){
@@ -170,38 +195,12 @@ module.exports = class CorrodeBase extends Transform {
                 this.moveOffset(length);
                 continue;
 
-            } else {
-                switch (job.type) {
-                    case "int8le":  { this.vars[job.name] = this.buffer.readInt8(this.chunkOffset);  break; }
-                    case "int8be":  { this.vars[job.name] = this.buffer.readInt8(this.chunkOffset);  break; }
-                    case "uint8le": { this.vars[job.name] = this.buffer.readUInt8(this.chunkOffset); break; }
-                    case "uint8be": { this.vars[job.name] = this.buffer.readUInt8(this.chunkOffset); break; }
-
-                    case "int16le":  { this.vars[job.name] = this.buffer.readInt16LE(this.chunkOffset);  break; }
-                    case "int16be":  { this.vars[job.name] = this.buffer.readInt16BE(this.chunkOffset);  break; }
-                    case "uint16le": { this.vars[job.name] = this.buffer.readUInt16LE(this.chunkOffset); break; }
-                    case "uint16be": { this.vars[job.name] = this.buffer.readUInt16BE(this.chunkOffset); break; }
-
-                    case "int32le":  { this.vars[job.name] = this.buffer.readInt32LE(this.chunkOffset);  break; }
-                    case "int32be":  { this.vars[job.name] = this.buffer.readInt32BE(this.chunkOffset);  break; }
-                    case "uint32le": { this.vars[job.name] = this.buffer.readUInt32LE(this.chunkOffset); break; }
-                    case "uint32be": { this.vars[job.name] = this.buffer.readUInt32BE(this.chunkOffset); break; }
-
-                    case "int64le":  { this.vars[job.name] = (Math.pow(2, 32) * this.buffer.readInt32LE(this.chunkOffset + 4)) + ((this.buffer[this.chunkOffset + 4] & 0x80 === 0x80 ? -1 : 1) * this.buffer.readUInt32LE(this.chunkOffset)); break; }
-                    case "int64be":  { this.vars[job.name] = (Math.pow(2, 32) * this.buffer.readInt32BE(this.chunkOffset)) + ((this.buffer[this.chunkOffset] & 0x80 === 0x80 ? -1 : 1) * this.buffer.readUInt32BE(this.chunkOffset + 4)); break; }
-                    case "uint64le": { this.vars[job.name] = (Math.pow(2, 32) * this.buffer.readUInt32LE(this.chunkOffset + 4)) + this.buffer.readUInt32LE(this.chunkOffset); break; }
-                    case "uint64be": { this.vars[job.name] = (Math.pow(2, 32) * this.buffer.readUInt32BE(this.chunkOffset)) + this.buffer.readUInt32BE(this.chunkOffset + 4); break; }
-
-                    case "floatle":  { this.vars[job.name] = this.buffer.readFloatLE(this.chunkOffset);  break; }
-                    case "floatbe":  { this.vars[job.name] = this.buffer.readFloatBE(this.chunkOffset);  break; }
-
-                    case "doublele": { this.vars[job.name] = this.buffer.readDoubleLE(this.chunkOffset); break; }
-                    case "doublebe": { this.vars[job.name] = this.buffer.readDoubleBE(this.chunkOffset); break; }
-                    default: { return done(new Error(`invalid job type ${job.type}`)); }
-                }
-
+            } else if(typeof this.primitveMap[job.type] === 'function'){
+                this.vars[job.name] = this.primitveMap[job.type](job);
                 this.jobs.shift();
                 this.moveOffset(length);
+            } else {
+                throw new Error(`invalid job type '${job.type}'`);
             }
         }
     }
@@ -216,7 +215,7 @@ module.exports = class CorrodeBase extends Transform {
      * purges all jobs from the job-queue, which need to read from the stream
      */
     removeReadJobs(){
-        let filteredJobs = this.jobs
+        const filteredJobs = this.jobs
             .slice()
             .filter(job => job.type === 'pop' || (job.type === 'tap' && !job.name));
 
@@ -229,19 +228,19 @@ module.exports = class CorrodeBase extends Transform {
         this.streamOffset += by;
     }
 
-    pushJob(name, type, length, options){
-        this.jobs.push({ name, type, length, ...options });
-        return this;
-    }
-
     queueJobs(){
-        let queuedJobs = this.jobs.slice();
+        const queuedJobs = this.jobs.slice();
 
         // empty jobs
         this.jobs.splice(0);
 
         // unqueue-method
         return () => this.jobs.push(...queuedJobs);
+    }
+
+    _pushJob(name, type, length, endianness){
+        this.jobs.push(typeof name === 'object' ? name : { name, type, length, endianness });
+        return this;
     }
 
     tap(name, callback, args){
@@ -251,13 +250,12 @@ module.exports = class CorrodeBase extends Transform {
             name = undefined;
         }
 
-        this.jobs.push({
+        return this._pushJob({
             name,
             type: 'tap',
             args,
             callback
         });
-        return this;
     }
 
     loop(name, callback){
@@ -284,70 +282,80 @@ module.exports = class CorrodeBase extends Transform {
             loopJob.discarded = true;
         };
 
-        this.jobs.push(loopJob);
-        return this;
+        return this._pushJob(loopJob);
     }
 
     skip(length){
-        this.jobs.push({
+        return this._pushJob({
             type: 'skip',
             length
         });
-        return this;
     }
 
     pop(){
-        this.jobs.push({
+        return this._pushJob({
             type: 'pop'
         });
-        return this;
     }
 
     push(name, value){
-        this.jobs.push({
+        return this._pushJob({
             type: 'push',
             name,
             value
         });
-        return this;
     }
 
-    blob(name, length){ return this.pushJob(name, 'blob', length); }
-    string(name, length, encoding = this.options.encoding){ return this.pushJob(name, 'string', length, { encoding }); }
+    blob(name, length){
+        return this._pushJob({
+            name,
+            type: 'blob',
+            length
+        });
+    }
 
-    int8(name){ return this.pushJob(name, 'int8' + this.options.endianness, 1); }
-    int8le(name){ return this.pushJob(name, 'int8le', 1); }
-    int8be(name){ return this.pushJob(name, 'int8be', 1); }
-    uint8(name){ return this.pushJob(name, 'uint8' + this.options.endianness, 1); }
-    uint8le(name){ return this.pushJob(name, 'uint8le', 1); }
-    uint8be(name){ return this.pushJob(name, 'uint8be', 1); }
+    string(name, length, encoding = this.options.encoding){
+        return this._pushJob({
+            name,
+            type: 'string',
+            length,
+            encoding
+        });
+    }
 
-    int16(name){ return this.pushJob(name, 'int16' + this.options.endianness, 2); }
-    int16le(name){ return this.pushJob(name, 'int16le', 2); }
-    int16be(name){ return this.pushJob(name, 'int16be', 2); }
-    uint16(name){ return this.pushJob(name, 'uint16' + this.options.endianness, 2); }
-    uint16le(name){ return this.pushJob(name, 'uint16le', 2); }
-    uint16be(name){ return this.pushJob(name, 'uint16be', 2); }
+    int8(name){ return this._pushJob(name, 'int8', 1, this.options.endianness); }
+    int8le(name){ return this._pushJob(name, 'int8', 1, LITTLE_ENDIAN); }
+    int8be(name){ return this._pushJob(name, 'int8', 1, BIG_ENDIAN); }
+    uint8(name){ return this._pushJob(name, 'uint8', 1, this.options.endianness); }
+    uint8le(name){ return this._pushJob(name, 'uint8', 1, LITTLE_ENDIAN); }
+    uint8be(name){ return this._pushJob(name, 'uint8', 1, BIG_ENDIAN); }
 
-    int32(name){ return this.pushJob(name, 'int32' + this.options.endianness, 4); }
-    int32le(name){ return this.pushJob(name, 'int32le', 4); }
-    int32be(name){ return this.pushJob(name, 'int32be', 4); }
-    uint32(name){ return this.pushJob(name, 'uint32' + this.options.endianness, 4); }
-    uint32le(name){ return this.pushJob(name, 'uint32le', 4); }
-    uint32be(name){ return this.pushJob(name, 'uint32be', 4); }
+    int16(name){ return this._pushJob(name, 'int16', 2, this.options.endianness); }
+    int16le(name){ return this._pushJob(name, 'int16', 2, LITTLE_ENDIAN); }
+    int16be(name){ return this._pushJob(name, 'int16', 2, BIG_ENDIAN); }
+    uint16(name){ return this._pushJob(name, 'uint16', 2, this.options.endianness); }
+    uint16le(name){ return this._pushJob(name, 'uint16', 2, LITTLE_ENDIAN); }
+    uint16be(name){ return this._pushJob(name, 'uint16', 2, BIG_ENDIAN); }
 
-    int64(name){ return this.pushJob(name, 'int64' + this.options.endianness, 8); }
-    int64le(name){ return this.pushJob(name, 'int64le', 8); }
-    int64be(name){ return this.pushJob(name, 'int64be', 8); }
-    uint64(name){ return this.pushJob(name, 'uint64' + this.options.endianness, 8); }
-    uint64le(name){ return this.pushJob(name, 'uint64le', 8); }
-    uint64be(name){ return this.pushJob(name, 'uint64be', 8); }
+    int32(name){ return this._pushJob(name, 'int32', 4, this.options.endianness); }
+    int32le(name){ return this._pushJob(name, 'int32', 4, LITTLE_ENDIAN); }
+    int32be(name){ return this._pushJob(name, 'int32', 4, BIG_ENDIAN); }
+    uint32(name){ return this._pushJob(name, 'uint32', 4, this.options.endianness); }
+    uint32le(name){ return this._pushJob(name, 'uint32', 4, LITTLE_ENDIAN); }
+    uint32be(name){ return this._pushJob(name, 'uint32', 4, BIG_ENDIAN); }
 
-    float(name){ return this.pushJob(name, 'float' + this.options.endianness, 4); }
-    floatle(name){ return this.pushJob(name, 'floatle', 4); }
-    floatbe(name){ return this.pushJob(name, 'floatbe', 4); }
+    int64(name){ return this._pushJob(name, 'int64', 8, this.options.endianness); }
+    int64le(name){ return this._pushJob(name, 'int64', 8, LITTLE_ENDIAN); }
+    int64be(name){ return this._pushJob(name, 'int64', 8, BIG_ENDIAN); }
+    uint64(name){ return this._pushJob(name, 'uint64', 8, this.options.endianness); }
+    uint64le(name){ return this._pushJob(name, 'uint64', 8, LITTLE_ENDIAN); }
+    uint64be(name){ return this._pushJob(name, 'uint64', 8, BIG_ENDIAN); }
 
-    double(name){return this.pushJob(name, 'double' + this.options.endianness, 8); }
-    doublele(name){return this.pushJob(name, 'doublele', 8); }
-    doublebe(name){return this.pushJob(name, 'doublebe', 8); }
+    float(name){ return this._pushJob(name, 'float', 4, this.options.endianness); }
+    floatle(name){ return this._pushJob(name, 'float', 4, LITTLE_ENDIAN); }
+    floatbe(name){ return this._pushJob(name, 'float', 4, BIG_ENDIAN); }
+
+    double(name){return this._pushJob(name, 'double', 8, this.options.endianness); }
+    doublele(name){return this._pushJob(name, 'double', 8, LITTLE_ENDIAN); }
+    doublebe(name){return this._pushJob(name, 'double', 8, BIG_ENDIAN); }
 }
