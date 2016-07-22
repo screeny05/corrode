@@ -5,7 +5,7 @@ const EXTENSIONS = {};
 const MAPPERS = require('./map');
 const ASSERTIONS = require('./assert');
 
-class Corrode extends CorrodeBase {
+module.exports = class Corrode extends CorrodeBase {
     constructor(){
         super(...arguments);
 
@@ -99,13 +99,10 @@ class Corrode extends CorrodeBase {
 
     fromBuffer(buffer done){
         this.end(buffer);
-        return this.on('finish', ::done);
+        this.on('finish', ::done);
+        return this;
     }
 }
-
-module.exports = function(){
-    return new Corrode(...arguments);
-};
 
 module.exports.addExtension = function(name, fn, extension){
     EXTENSIONS[name] = function(name = 'values', ...args){
