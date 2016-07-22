@@ -1,4 +1,4 @@
-const lodash = require('lodash');
+import lodash from 'lodash';
 
 module.exports = {
 

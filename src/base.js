@@ -1,7 +1,7 @@
-const VariableStack = require('./variable-stack');
-const BufferList = require('bl');
-const { Transform } = require('readable-stream');
-const lodash = require('lodash');
+import VariableStack from './variable-stack';
+import BufferList from 'bl';
+import { Transform } from 'readable-stream';
+import { cloneDeep } from 'lodash';
 
 const LITTLE_ENDIAN = 'LE';
 const BIG_ENDIAN = 'BE';
@@ -144,7 +144,7 @@ module.exports = class CorrodeBase extends Transform {
                 } else {
                     // make copy, in case the user discards the result
                     if(this.options.anonymousLoopDiscardDeep){
-                        job[loopVar] = lodash.cloneDeep(this.vars);
+                        job[loopVar] = cloneDeep(this.vars);
                     } else {
                         job[loopVar] = { ...this.vars };
                     }

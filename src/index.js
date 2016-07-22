@@ -1,9 +1,9 @@
-const CorrodeBase = require('./base');
-const utils = require('./utils');
+import CorrodeBase from './base';
+import utils from './utils';
 
+import MAPPERS from './map';
+import ASSERTIONS from './assert';
 const EXTENSIONS = {};
-const MAPPERS = require('./map');
-const ASSERTIONS = require('./assert');
 
 module.exports = class Corrode extends CorrodeBase {
     constructor(){

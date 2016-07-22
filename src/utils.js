@@ -1,7 +1,7 @@
-const lodash = require('lodash');
+import { mapValues } from 'lodash';
 
 exports.tapBindObject = function(obj, ctx){
-    return lodash.mapValues(obj, function(fn){
+    return mapValues(obj, function(fn){
         return function(...args){
             return ctx.tap(fn.bind(ctx, ...args));
         };
@@ -9,5 +9,5 @@ exports.tapBindObject = function(obj, ctx){
 };
 
 exports.bindObject = function(obj, ctx){
-    return lodash.mapValues(obj, fn => fn.bind(ctx));
+    return mapValues(obj, fn => fn.bind(ctx));
 };
