@@ -14,7 +14,7 @@ module.exports.eqFile = function(file, done, obj){
         });
 };
 
-module.exports.eqArray = function(arr, obj){
+module.exports.eqArray = function(arr, done, obj){
     let arrMiddle = Math.floor(arr.length / 2);
     let arrFirst = arr.slice(0, arrMiddle);
     let arrSecond = arr.slice(arrMiddle);
@@ -22,8 +22,10 @@ module.exports.eqArray = function(arr, obj){
     this.base.end(Buffer.from(arrSecond));
     this.base.on('finish', () => {
         if(typeof obj === 'function'){
-            return obj(this.base.vars);
+            obj(this.base.vars);
+            return done();
         }
         expect(this.base.vars).to.deep.equal(obj);
+        done();
     });
 };

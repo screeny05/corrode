@@ -288,5 +288,5 @@ it('removes read jobs', function(){
 
 it('throws error on unknown job', function(){
     this.base.jobs.push({ type: 'invalid-job-type', length: 1 });
-    expect(this.eqArray.bind(this, [1, 2, 3], {foo: 'bar'})).to.throw(Error);
+    expect(this.eqArray.bind(this, () => {}, [1, 2, 3], { foo: 'bar' })).to.throw(Error);
 });

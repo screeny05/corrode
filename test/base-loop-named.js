@@ -7,12 +7,12 @@ beforeEach(function(){
 });
 
 
-it('named loop', function(){
+it('named loop', function(done){
     this.base.loop('fix', function(){
         this.uint8('var');
     });
 
-    this.eqArray([0, 1, 2], {
+    this.eqArray([0, 1, 2], done, {
         fix: [{
             var: 0
         }, {
@@ -23,7 +23,7 @@ it('named loop', function(){
     });
 });
 
-it('named loop (scope)', function(){
+it('named loop (scope)', function(done){
     this.base
         .uint8('rootFix')
         .loop('fix', function(){
@@ -31,11 +31,11 @@ it('named loop (scope)', function(){
                 this.vars.fix = -1;
             }
             this.vars.fix++;
-            this.varStack.peekLayer().rootFix++;
+            this.varStack.peek().rootFix++;
             this.uint8('var');
         });
 
-    this.eqArray([0, 0, 1, 2], {
+    this.eqArray([0, 0, 1, 2], done, {
         rootFix: 3,
         fix: [{
             fix: 0,

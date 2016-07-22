@@ -7,19 +7,19 @@ beforeEach(function(){
 });
 
 
-it('anonymous loop (overriding)', function(){
+it('anonymous loop (overriding)', function(done){
     this.base.loop(function(finish, discard, i){
         this.uint8('var');
         this.vars.iterations = i + 1;
     });
 
-    this.eqArray([1, 2, 3, 4, 5], {
+    this.eqArray([1, 2, 3, 4, 5], done, {
         var: 5,
         iterations: 5
     });
 });
 
-it('anonymous loop (scope)', function(){
+it('anonymous loop (scope)', function(done){
     this.base.loop(function(){
         if(typeof this.vars.iterations === 'undefined'){
             this.vars.iterations = 0;
@@ -29,19 +29,19 @@ it('anonymous loop (scope)', function(){
         this.uint8('var');
     });
 
-    this.eqArray([1, 2, 3], {
+    this.eqArray([1, 2, 3], done, {
         iterations: 3,
         var: 3
     });
 });
 
-it('anonymous loop (no discard, no finish)', function(){
+it('anonymous loop (no discard, no finish)', function(done){
     this.base.loop(function(finish, discard, i){
         this.vars['it_' + i] = i;
         this.uint8('var_' + i);
     });
 
-    this.eqArray([1, 2, 3, 4, 5], {
+    this.eqArray([1, 2, 3, 4, 5], done, {
         var_0: 1,
         var_1: 2,
         var_2: 3,
@@ -55,7 +55,7 @@ it('anonymous loop (no discard, no finish)', function(){
     });
 });
 
-it('anonymous loop (no discard, finish after)', function(){
+it('anonymous loop (no discard, finish after)', function(done){
     this.base.loop(function(finish, discard, i){
         this.uint8('var_' + i);
         if(i >= 2){
@@ -63,14 +63,14 @@ it('anonymous loop (no discard, finish after)', function(){
         }
     });
 
-    this.eqArray([1, 2, 3, 4, 5], {
+    this.eqArray([1, 2, 3, 4, 5], done, {
         var_0: 1,
         var_1: 2,
         var_2: 3
     });
 });
 
-it('anonymous loop (no discard, finish before)', function(){
+it('anonymous loop (no discard, finish before)', function(done){
     this.base.loop(function(finish, discard, i){
         if(i >= 3){
             return finish();
@@ -78,14 +78,14 @@ it('anonymous loop (no discard, finish before)', function(){
         this.uint8('var_' + i);
     });
 
-    this.eqArray([1, 2, 3, 4, 5], {
+    this.eqArray([1, 2, 3, 4, 5], done, {
         var_0: 1,
         var_1: 2,
         var_2: 3
     });
 });
 
-it('anonymous loop (discard before, no finish)', function(){
+it('anonymous loop (discard before, no finish)', function(done){
     this.base.loop(function(finish, discard, i){
         if(i % 2 !== 0){
             discard();
@@ -93,7 +93,7 @@ it('anonymous loop (discard before, no finish)', function(){
         this.uint8('var_' + i);
     });
 
-    this.eqArray([0, 1, 2, 3, 4, 5, 6], {
+    this.eqArray([0, 1, 2, 3, 4, 5, 6], done, {
         var_0: 0,
         var_2: 2,
         var_4: 4,
@@ -101,7 +101,7 @@ it('anonymous loop (discard before, no finish)', function(){
     });
 });
 
-it('anonymous loop (discard after, no finish)', function(){
+it('anonymous loop (discard after, no finish)', function(done){
     this.base.loop(function(finish, discard, i){
         this
             .uint8('var_' + i)
@@ -115,13 +115,13 @@ it('anonymous loop (discard after, no finish)', function(){
         }
     });
 
-    this.eqArray([0, 1, 2, 3, 4, 5, 6], {
+    this.eqArray([0, 1, 2, 3, 4, 5, 6], done, {
         var_2: 2,
         var_4: 4
     });
 });
 
-it('anonymous loop (discard deep, no finish)', function(){
+it('anonymous loop (discard deep, no finish)', function(done){
     this.base = new Base({ anonymousLoopDiscardDeep: true });
 
     this.base.loop(function(finish, discard, i){
@@ -137,7 +137,7 @@ it('anonymous loop (discard deep, no finish)', function(){
         }
     });
 
-    this.eqArray([0, 1, 2, 3, 4, 5, 6, 7], {
+    this.eqArray([0, 1, 2, 3, 4, 5, 6, 7], done, {
         fix: {
             iterations: 4,
             arr: [0, 2, 4, 6]
@@ -149,7 +149,7 @@ it('anonymous loop (discard deep, no finish)', function(){
     });
 });
 
-it('anonymous loop (discard shallow, no finish)', function(){
+it('anonymous loop (discard shallow, no finish)', function(done){
     this.base.loop(function(finish, discard, i){
         if(!this.vars['fix']){
             this.vars['fix'] = { iterations: 0, arr: [] };
@@ -163,7 +163,7 @@ it('anonymous loop (discard shallow, no finish)', function(){
         }
     });
 
-    this.eqArray([0, 1, 2, 3, 4, 5, 6, 7], {
+    this.eqArray([0, 1, 2, 3, 4, 5, 6, 7], done, {
         fix: {
             iterations: 8,
             arr: [0, 1, 2, 3, 4, 5, 6, 7]
@@ -175,7 +175,7 @@ it('anonymous loop (discard shallow, no finish)', function(){
     });
 });
 
-it('anonymous loop (discard, finish before)', function(){
+it('anonymous loop (discard, finish before)', function(done){
     this.base.loop(function(finish, discard, i){
         if(i >= 3){
             finish(true);
@@ -183,14 +183,14 @@ it('anonymous loop (discard, finish before)', function(){
         this.uint8('var_' + i);
     });
 
-    this.eqArray([1, 2, 3, 4, 5], {
+    this.eqArray([1, 2, 3, 4, 5], done, {
         var_0: 1,
         var_1: 2,
         var_2: 3
     });
 });
 
-it('anonymous loop (discard, finish after)', function(){
+it('anonymous loop (discard, finish after)', function(done){
     this.base.loop(function(finish, discard, i){
         this.uint8('var_' + i);
         if(i >= 3){
@@ -198,7 +198,7 @@ it('anonymous loop (discard, finish after)', function(){
         }
     });
 
-    this.eqArray([1, 2, 3, 4, 5], {
+    this.eqArray([1, 2, 3, 4, 5], done, {
         var_0: 1,
         var_1: 2,
         var_2: 3

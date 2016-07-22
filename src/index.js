@@ -21,6 +21,10 @@ module.exports = class Corrode extends CorrodeBase {
             name = undefined;
         }
 
+        if(typeof length === 'string'){
+            length = this.vars[length];
+        }
+
         if(length === 0){
             this.vars[name] = [];
             return this;

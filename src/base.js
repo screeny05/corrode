@@ -13,7 +13,7 @@ module.exports = class CorrodeBase extends Transform {
         loopVarName: '__loop_tmp',
         encoding: 'utf8',
         finishJobsOnEOF: true,
-        anonymousLoopDiscardDeep: false,
+        anonymousLoopDiscardDeep: false
     };
 
     static LITTLE_ENDIAN = LITTLE_ENDIAN;
@@ -42,9 +42,8 @@ module.exports = class CorrodeBase extends Transform {
 
         int64: job => {
             const lo = this.buffer['readUInt32' + job.endianness](this.chunkOffset + (job.endianness === LITTLE_ENDIAN ? 0 : 4));
-            const hi = this.buffer['readInt32' + job.endianness](this.chunkOffset + (job.endianness === LITTLE_ENDIAN ? 4 : 0));
-            const sign = job.type === 'uint64' ? 1 : (this.buffer[this.chunkOffset + LITTLE_ENDIAN ? 4 : 0] & 0x80 === 0x80 ? -1 : 1);
-            return POW_32 * hi + sign * lo;
+            const hi = this.buffer['read' + (job.type === 'uint64' ? 'U' : '') + 'Int32' + job.endianness](this.chunkOffset + (job.endianness === LITTLE_ENDIAN ? 4 : 0));
+            return POW_32 * hi + lo;
         },
         uint64: job => this.primitveMap.int64(job)
     };
@@ -117,6 +116,12 @@ module.exports = class CorrodeBase extends Transform {
                 continue;
 
             } else if(job.type === 'loop'){
+                // we wait for more data before executing a loop on an empty buffer.
+                // this way we prevent empty objects being added, when the stream finishes.
+                if(remainingBuffer === 0){
+                    break;
+                }
+
                 if(job.finished){
                     this.jobs.shift();
                     continue;

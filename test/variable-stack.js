@@ -157,17 +157,17 @@ it('properly supports layer-peeking', function(){
 
     this.stack.push('child3');
     this.stack.value.val = 'val-3';
-    expect(this.stack.peekLayer().value.child1.val).to.equal('val-1');
-    expect(this.stack.peekLayer().value.child2.val).to.equal('val-2');
+    expect(this.stack.peek().child1.val).to.equal('val-1');
+    expect(this.stack.peek().child2.val).to.equal('val-2');
 
     this.stack.push('child31');
     this.stack.value.val = 'val-3-1';
-    expect(this.stack.peekLayer().value.val).to.equal('val-3');
-    expect(this.stack.peekLayer(2).value.child1.val).to.equal('val-1');
-    expect(this.stack.peekLayer(2).value.child2.val).to.equal('val-2');
+    expect(this.stack.peek().val).to.equal('val-3');
+    expect(this.stack.peek(2).child1.val).to.equal('val-1');
+    expect(this.stack.peek(2).child2.val).to.equal('val-2');
 
     this.stack.push('child311');
-    expect(this.stack.peekLayer(3).value.child1.val).to.equal('val-1');
+    expect(this.stack.peek(3).child1.val).to.equal('val-1');
 });
 
 it('prevents invalid popping', function(){
