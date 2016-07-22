@@ -49,7 +49,3 @@ it('named loop (scope)', function(done){
         }]
     });
 });
-
-it('named loop ', function(){
-
-});

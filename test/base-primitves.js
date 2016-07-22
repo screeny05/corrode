@@ -4,6 +4,7 @@ const Base = require('../src/base');
 beforeEach(function(){
     this.base = new Base();
     this.eqFile = require('./helpers/asserts').eqFile.bind(this);
+    this.eqMultiArray = require('./helpers/asserts').eqMultiArray.bind(this);
 });
 
 
@@ -148,5 +149,27 @@ it('reads utf8-strings', function(done){
 
     this.eqFile('string-utf8.bin', done, {
         string: 'asdfghjklyxc𝌆'
+    });
+});
+
+it('reads blobs', function(done){
+    this.base
+        .blob('hi', 4)
+        .blob('lo', 4);
+
+    this.eqFile('int64-seq.bin', done, {
+        hi: Buffer.from([160, 134, 1, 0]),
+        lo: Buffer.from([0, 0, 0, 0])
+    });
+});
+
+it('reads blobs, regardless of the underlying buffer', function(done){
+    this.base
+        .blob('hi', 4)
+        .blob('lo', 4);
+
+    this.eqMultiArray([[1], [2], [3, 4, 5], [6, 7], [8, 9, 10]], done, {
+        hi: Buffer.from([1, 2, 3, 4]),
+        lo: Buffer.from([5, 6, 7, 8])
     });
 });

@@ -1,19 +1,21 @@
 import VariableStack from './variable-stack';
 import BufferList from 'bl';
 import { Transform } from 'readable-stream';
-import { cloneDeep } from 'lodash';
+import { cloneDeep, isPlainObject } from 'lodash';
 
 const LITTLE_ENDIAN = 'LE';
 const BIG_ENDIAN = 'BE';
 const POW_32 = Math.pow(2, 32);
+const LOOP_VAR_SYMBOL = typeof Symbol !== 'undefined' ? Symbol('loop-variable') : '__loop_tmp';
 
 module.exports = class CorrodeBase extends Transform {
     static defaults = {
         endianness: LITTLE_ENDIAN,
-        loopVarName: '__loop_tmp',
+        loopVarName: LOOP_VAR_SYMBOL,
         encoding: 'utf8',
         finishJobsOnEOF: true,
-        anonymousLoopDiscardDeep: false
+        anonymousLoopDiscardDeep: false,
+        strictObjectMode: true
     };
 
     static LITTLE_ENDIAN = LITTLE_ENDIAN;
@@ -87,6 +89,10 @@ module.exports = class CorrodeBase extends Transform {
             const remainingBuffer = this.buffer.length - this.chunkOffset;
 
             if(job.type === 'push'){
+                if(this.options.strictObjectMode && this.vars[job.name] && !isPlainObject(this.vars[job.name])){
+                    throw new TypeError(`Can't push into a non-object value in strictObjectMode`);
+                }
+
                 this.jobs.shift();
                 this.varStack.push(job.name, job.value);
                 continue;
@@ -197,6 +203,9 @@ module.exports = class CorrodeBase extends Transform {
 
             } else if(job.type === 'skip'){
                 this.jobs.shift();
+                if(this.streamOffset + length < 0){
+                    throw new RangeError('cannot skip below 0');
+                }
                 this.moveOffset(length);
                 continue;
 

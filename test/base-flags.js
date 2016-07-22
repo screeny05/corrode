@@ -163,3 +163,21 @@ it('correctly rests in the current state when finishJobsOnEOF is false - loop', 
         expect(this.base.jobs).to.not.be.empty;
     });
 });
+
+it('should not be disturbed, when changing the loopVarName', function(done){
+    this.base = new Base({ loopVarName: '__loop' });
+
+    this.base.loop('loop', function(){
+        this.uint8('var');
+    });
+
+    this.eqArray([1, 2, 3], done, {
+        loop: [{
+            var: 1
+        }, {
+            var: 2
+        }, {
+            var: 3
+        }]
+    });
+});

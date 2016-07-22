@@ -18,8 +18,17 @@ module.exports.eqArray = function(arr, done, obj){
     let arrMiddle = Math.floor(arr.length / 2);
     let arrFirst = arr.slice(0, arrMiddle);
     let arrSecond = arr.slice(arrMiddle);
-    this.base.write(Buffer.from(arrFirst));
-    this.base.end(Buffer.from(arrSecond));
+    module.exports.eqMultiArray.call(this, [arrFirst, arrSecond], done, obj);
+};
+
+module.exports.eqMultiArray = function(arrs, done, obj){
+    // i sometimes forget to do this
+    if(typeof done !== 'function'){
+        throw new Error('done not given');
+    }
+
+    arrs.forEach(arr => this.base.write(Buffer.from(arr)));
+    this.base.end();
     this.base.on('finish', () => {
         if(typeof obj === 'function'){
             obj(this.base.vars);
