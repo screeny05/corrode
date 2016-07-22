@@ -97,9 +97,9 @@ class Corrode extends CorrodeBase {
         });
     }
 
-    fromBuffer(buffer){
-        this.write(buffer);
-        return this.vars;
+    fromBuffer(buffer done){
+        this.end(buffer);
+        return this.on('finish', ::done);
     }
 }
 
