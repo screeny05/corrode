@@ -6,7 +6,7 @@ import { cloneDeep, isPlainObject } from 'lodash';
 const LITTLE_ENDIAN = 'LE';
 const BIG_ENDIAN = 'BE';
 const POW_32 = Math.pow(2, 32);
-const LOOP_VAR_SYMBOL = typeof Symbol !== 'undefined' ? Symbol('loop-variable') : '__loop_tmp';
+const LOOP_VAR_SYMBOL = Symbol('loop-variable');
 
 module.exports = class CorrodeBase extends Transform {
     static defaults = {

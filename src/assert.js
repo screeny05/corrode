@@ -50,9 +50,9 @@ module.exports = {
     },
 
     /**
-     * assert array to contain item
+     * assert array|object to contain item
      * @param {string} name key of the value to test
-     * @param {array} arr   comparision
+     * @param {array|object} arr comparision
      * @throws TypeError assertion-error
      */
     includes(name, arr){
@@ -108,6 +108,21 @@ module.exports = {
     exists(name){
         if(typeof this.vars[name] === 'undefined'){
             throw new TypeError(`Expected var ${name} to exist`);
+        }
+    },
+
+    /**
+     * asserts a variable matches a given bitmask
+     * @param  {string} name         key of the value to test
+     * @param  {number} mask         bitmask to match
+     * @param  {boolean} assertMatch true: should match; false: shouldn't match
+     * @throws TypeError assertion-error
+     */
+    bitmask(name, mask, assertMatch = true){
+        const val = this.vars[name];
+
+        if((val & mask) === mask === !assertMatch){
+            throw new TypeError(`Expected var ${name} to ${!assertMatch ? 'not ' : ''}match bitmask (value: 0b${val.toString(2)} assert: 0b${mask.toString(2)})`);
         }
     }
 };

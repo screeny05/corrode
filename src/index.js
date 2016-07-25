@@ -75,12 +75,16 @@ module.exports = class Corrode extends CorrodeBase {
             });
     }
 
-    pointer(name, array, type = 'int64'){
+    pointer(name, obj, type = 'int64'){
+        if(typeof obj === 'string'){
+            obj = this.vars[obj];
+        }
+
         return this
             [type](name)
             .map.abs(name)
-            .assert.inArrayBounds(name, array)
-            .map.fromArray(name, array);
+            .assert.includes(name, obj)
+            .map.get(name, obj);
     }
 
     position(offset){
@@ -108,22 +112,15 @@ module.exports = class Corrode extends CorrodeBase {
     }
 }
 
-module.exports.addExtension = function(name, fn, extension){
+module.exports.addExtension = function(name, fn){
     EXTENSIONS[name] = function(name = 'values', ...args){
-        this.tap(name, function(){
-            fn.apply(this, args);
+        return this.tap(name, function(){
+            const value = fn.apply(this, args);
+
+            if(typeof value !== 'undefined'){
+                this.vars = value;
+            }
         });
-
-        if(typeof extension !== 'undefined'){
-            this.tap(function(){
-                this.vars[name] = {
-                    ...this.vars[name],
-                    extension
-                };
-            });
-        }
-
-        return this;
     };
 
     EXTENSIONS[name].orgFn = fn;

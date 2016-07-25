@@ -24,7 +24,10 @@ const getFixture = () => ({
     three: 3,
     id: 4,
     untrimmed: '\r\nfoobar  ',
-    trimmed: 'foobar'
+    trimmed: 'foobar',
+    bitmask1: 0b10000000,
+    bitmask2: 0b01000000,
+    bitmaskMatch: 0b10111110
 });
 
 module.exports = getFixture();
