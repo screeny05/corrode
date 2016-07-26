@@ -48,18 +48,27 @@ module.exports = class Corrode extends CorrodeBase {
     terminatedBuffer(name, terminator = 0, type = 'uint8', discardTerminator = true){
         terminator = typeof terminator === 'string' ? terminator.charCodeAt(0) : terminator;
 
+        let bufferLength = 0;
+
         return this
-            .loop(name, function(end){
+            .loop(function(end, discard, i){
                 this
                     [type]('__value')
                     .tap(function(){
                         if(this.vars.__value === terminator){
-                            end(discardTerminator);
+                            bufferLength = i;
+                            end();
                         }
                     });
             })
             .tap(function(){
-                this.vars[name] = this.vars[name].map(val => val.__value);
+                this
+                    .skip(-1 * bufferLength)
+                    .blob(name, bufferLength + (discardTerminator ? -1 : 0));
+
+                if(discardTerminator){
+                    this.skip(1);
+                }
             });
     }
 
@@ -70,7 +79,7 @@ module.exports = class Corrode extends CorrodeBase {
                 if(!this.vars[name] || this.vars[name].length === 0){
                     this.vars[name] = '';
                 } else {
-                    this.vars[name] = new Buffer(this.vars[name]).toString(encoding);
+                    this.vars[name] = this.vars[name].toString(encoding);
                 }
             });
     }
