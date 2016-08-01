@@ -89,8 +89,8 @@ module.exports = class CorrodeBase extends Transform {
             const remainingBuffer = this.streamBuffer.length - this.chunkOffset;
 
             if(job.type === 'push'){
-                if(this.options.strictObjectMode && this.vars[job.name] && !isPlainObject(this.vars[job.name])){
-                    throw new TypeError(`Can't push into a non-object value in strictObjectMode`);
+                if(this.options.strictObjectMode && typeof this.vars[job.name] !== 'undefined' && !isPlainObject(this.vars[job.name])){
+                    throw new TypeError(`Can't push into a non-object value (${JSON.stringify(this.vars[job.name])}) in strictObjectMode`);
                 }
 
                 this.jobs.shift();
@@ -227,6 +227,7 @@ module.exports = class CorrodeBase extends Transform {
         this.isUnwinding = true;
         this.removeReadJobs();
         this.jobLoop();
+        this.varStack.popAll();
     }
 
     /**

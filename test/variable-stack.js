@@ -171,17 +171,17 @@ it('properly supports layer-peeking', function(){
 });
 
 it('prevents invalid popping', function(){
-    expect(this.stack.pop.bind(this.stack)).to.throw(Error);
+    expect(this.stack.pop.bind(this.stack)).to.throw(ReferenceError);
 
     this.stack.push('child');
-    expect(this.stack.pop.bind(this.stack)).to.not.throw(Error);
+    expect(this.stack.pop.bind(this.stack)).to.not.throw(ReferenceError);
 });
 
 it('prevents invalid peeking', function(){
-    expect(this.stack.peek.bind(this.stack)).to.throw(Error);
+    expect(this.stack.peek.bind(this.stack)).to.throw(ReferenceError);
 
     this.stack.push('child');
-    expect(this.stack.peek.bind(this.stack)).to.not.throw(Error);
+    expect(this.stack.peek.bind(this.stack)).to.not.throw(ReferenceError);
 });
 
 it('allows array pushing', function(){

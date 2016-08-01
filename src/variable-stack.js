@@ -16,7 +16,7 @@ module.exports = class VariableStack {
 
     peekLayer(layerCount = 1){
         if(layerCount > this.stack.length - 1){
-            throw new Error(`can't retrieve layer ${layerCount}, stack is ${this.stack.length - 1} layers`);
+            throw new ReferenceError(`can't retrieve layer ${layerCount}, stack is ${this.stack.length - 1} layers`);
         }
         return this.stack[this.stack.length - 1 - layerCount];
     }
@@ -42,7 +42,7 @@ module.exports = class VariableStack {
     pop(){
         let popLayer = this.top;
         if(popLayer.isRoot){
-            throw new Error('can\'t pop root layer');
+            throw new ReferenceError('can\'t pop root layer');
         }
 
         this.stack.pop();
