@@ -139,18 +139,18 @@ it('pushes options.endianness correct jobs', function(){
     ]);
 });
 
-it('pushes blob jobs', function(){
+it('pushes buffer jobs', function(){
     this.base
-        .blob('blob1', 1)
-        .blob('blob8', 8)
-        .blob('blob16', 16)
-        .blob('blob32', 32);
+        .buffer('buffer1', 1)
+        .buffer('buffer8', 8)
+        .buffer('buffer16', 16)
+        .buffer('buffer32', 32);
 
     expect(this.base.jobs).to.deep.equal([
-        { name: 'blob1', type: 'blob', length: 1 },
-        { name: 'blob8', type: 'blob', length: 8 },
-        { name: 'blob16', type: 'blob', length: 16 },
-        { name: 'blob32', type: 'blob', length: 32 }
+        { name: 'buffer1', type: 'buffer', length: 1 },
+        { name: 'buffer8', type: 'buffer', length: 8 },
+        { name: 'buffer16', type: 'buffer', length: 16 },
+        { name: 'buffer32', type: 'buffer', length: 32 }
     ]);
 });
 
@@ -251,13 +251,13 @@ it('queues and unqueues jobs', function(){
 
     this.base
         .string('string', 16)
-        .blob('blob', 16);
+        .buffer('buffer', 16);
 
     unqueue();
 
     expect(this.base.jobs).to.deep.equal([
         { type: 'string', name: 'string', length: 16, encoding: this.base.options.encoding },
-        { type: 'blob', name: 'blob', length: 16 },
+        { type: 'buffer', name: 'buffer', length: 16 },
         { name: 'uint8le', type: 'uint8', endianness: LITTLE_ENDIAN, length: 1 },
         { name: 'int64le', type: 'int64', endianness: LITTLE_ENDIAN, length: 8 }
     ]);
@@ -269,7 +269,7 @@ it('removes read jobs', function(){
     this.base
         .uint8le('uint8le')
         .string('string', 16)
-        .blob('blob', 32)
+        .buffer('buffer', 32)
         .int64le('int64le')
         .tap('tap', noop)
         .tap(noop)

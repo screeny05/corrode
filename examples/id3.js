@@ -62,7 +62,7 @@ Corrode.addExtension('id3frameContent', function id3frameContent(header){
     if(header.id.match(FRAME_TYPE_TEXT)){
         this.string('content', header.size).map.map('content', val => val.replace(/\u0000/g, ''));
     } else {
-        this.blob('content', header.size);
+        this.buffer('content', header.size);
     }
 
     this.map.push('content');

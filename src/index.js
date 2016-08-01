@@ -15,34 +15,38 @@ module.exports = class Corrode extends CorrodeBase {
     }
 
     repeat(name, length, fn){
-        if(typeof name === 'number'){
+        if(typeof name === 'number' || typeof length === 'function'){
             fn = length;
             length = name;
             name = undefined;
         }
 
-        if(typeof length === 'string'){
-            length = this.vars[length];
-        }
-
-        if(length === 0){
-            this.vars[name] = [];
-            return this;
-        }
-
-        let loopGuard = function(end, discard, i){
-            fn.call(this, end, discard, i);
-
-            if(i >= length - 1){
-                end();
+        this.tap(function(){
+            if(typeof length === 'string'){
+                length = this.vars[length];
             }
-        };
 
-        if(!name){
-            return this.loop(loopGuard);
-        }
+            if(length === 0){
+                if(name){
+                    this.vars[name] = [];
+                }
+                return this;
+            }
 
-        return this.loop(name, loopGuard);
+            let loopGuard = function(end, discard, i){
+                fn.call(this, end, discard, i);
+
+                if(i >= length - 1){
+                    end();
+                }
+            };
+
+            if(!name){
+                return this.loop(loopGuard);
+            }
+
+            return this.loop(name, loopGuard);
+        });
     }
 
     terminatedBuffer(name, terminator = 0, type = 'uint8', discardTerminator = true){
@@ -62,13 +66,7 @@ module.exports = class Corrode extends CorrodeBase {
                     });
             })
             .tap(function(){
-                this
-                    .skip(-1 * bufferLength)
-                    .blob(name, bufferLength + (discardTerminator ? -1 : 0));
-
-                if(discardTerminator){
-                    this.skip(1);
-                }
+                this.vars[name] = this.streamBuffer.slice(this.streamOffset - bufferLength, bufferLength + (discardTerminator ? -1 : 0));
             });
     }
 

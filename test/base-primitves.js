@@ -152,10 +152,10 @@ it('reads utf8-strings', function(done){
     });
 });
 
-it('reads blobs', function(done){
+it('reads buffers', function(done){
     this.base
-        .blob('hi', 4)
-        .blob('lo', 4);
+        .buffer('hi', 4)
+        .buffer('lo', 4);
 
     this.eqFile('int64-seq.bin', done, {
         hi: Buffer.from([160, 134, 1, 0]),
@@ -163,10 +163,10 @@ it('reads blobs', function(done){
     });
 });
 
-it('reads blobs, regardless of the underlying buffer', function(done){
+it('reads buffers, regardless of the underlying buffer', function(done){
     this.base
-        .blob('hi', 4)
-        .blob('lo', 4);
+        .buffer('hi', 4)
+        .buffer('lo', 4);
 
     this.eqMultiArray([[1], [2], [3, 4, 5], [6, 7], [8, 9, 10]], done, {
         hi: Buffer.from([1, 2, 3, 4]),

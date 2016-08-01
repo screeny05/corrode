@@ -31,7 +31,7 @@ it('considers strings as length as references to vars - strings', function(done)
 it('considers strings as length as references to vars - buffers', function(done){
     this.base
         .uint8('length')
-        .blob('buffer', 'length');
+        .buffer('buffer', 'length');
 
     this.eqArray([2, 0x21, 0x22], done, {
         length: 2,

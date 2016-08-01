@@ -36,8 +36,8 @@ it('correctly aborts too short string', function(done){
     this.eqArray([1], done, {});
 });
 
-it('correctly aborts too short blob', function(done){
-    this.base.blob('foo', 2);
+it('correctly aborts too short buffer', function(done){
+    this.base.buffer('foo', 2);
     this.eqArray([1], done, {});
 });
 

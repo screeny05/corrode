@@ -24,27 +24,27 @@ module.exports = class CorrodeBase extends Transform {
 
     jobs = [];
     varStack = new VariableStack();
-    buffer = new BufferList();
+    streamBuffer = new BufferList();
     streamOffset = 0;
     chunkOffset = 0;
     isUnwinding = false;
 
     primitveMap = {
-        int8: job => this.buffer.readInt8(this.chunkOffset),
-        uint8: job => this.buffer.readUInt8(this.chunkOffset),
+        int8: job => this.streamBuffer.readInt8(this.chunkOffset),
+        uint8: job => this.streamBuffer.readUInt8(this.chunkOffset),
 
-        int16: job => this.buffer['readInt16' + job.endianness](this.chunkOffset),
-        uint16: job => this.buffer['readUInt16' + job.endianness](this.chunkOffset),
+        int16: job => this.streamBuffer['readInt16' + job.endianness](this.chunkOffset),
+        uint16: job => this.streamBuffer['readUInt16' + job.endianness](this.chunkOffset),
 
-        int32: job => this.buffer['readInt32' + job.endianness](this.chunkOffset),
-        uint32: job => this.buffer['readUInt32' + job.endianness](this.chunkOffset),
+        int32: job => this.streamBuffer['readInt32' + job.endianness](this.chunkOffset),
+        uint32: job => this.streamBuffer['readUInt32' + job.endianness](this.chunkOffset),
 
-        float: job => this.buffer['readFloat' + job.endianness](this.chunkOffset),
-        double: job => this.buffer['readDouble' + job.endianness](this.chunkOffset),
+        float: job => this.streamBuffer['readFloat' + job.endianness](this.chunkOffset),
+        double: job => this.streamBuffer['readDouble' + job.endianness](this.chunkOffset),
 
         int64: job => {
-            const lo = this.buffer['readUInt32' + job.endianness](this.chunkOffset + (job.endianness === LITTLE_ENDIAN ? 0 : 4));
-            const hi = this.buffer['read' + (job.type === 'uint64' ? 'U' : '') + 'Int32' + job.endianness](this.chunkOffset + (job.endianness === LITTLE_ENDIAN ? 4 : 0));
+            const lo = this.streamBuffer['readUInt32' + job.endianness](this.chunkOffset + (job.endianness === LITTLE_ENDIAN ? 0 : 4));
+            const hi = this.streamBuffer['read' + (job.type === 'uint64' ? 'U' : '') + 'Int32' + job.endianness](this.chunkOffset + (job.endianness === LITTLE_ENDIAN ? 4 : 0));
             return POW_32 * hi + lo;
         },
         uint64: job => this.primitveMap.int64(job)
@@ -74,19 +74,19 @@ module.exports = class CorrodeBase extends Transform {
     _transform(chunk, encoding, done){
         this.chunkOffset = 0;
 
-        this.buffer.append(chunk);
+        this.streamBuffer.append(chunk);
 
         this.jobLoop();
 
         super.push(null);
-        this.buffer.consume(this.chunkOffset);
+        this.streamBuffer.consume(this.chunkOffset);
         return done();
     }
 
     jobLoop(){
         while(this.jobs.length > 0){
             const job = this.jobs[0];
-            const remainingBuffer = this.buffer.length - this.chunkOffset;
+            const remainingBuffer = this.streamBuffer.length - this.chunkOffset;
 
             if(job.type === 'push'){
                 if(this.options.strictObjectMode && this.vars[job.name] && !isPlainObject(this.vars[job.name])){
@@ -145,8 +145,12 @@ module.exports = class CorrodeBase extends Transform {
                     this
                         .tap(loopVar, job.callback, [job.finish, job.discard, job.iteration++])
                         .tap(function(){
-                            if(!job.discarded){
-                                this.vars[job.name].push(this.vars[loopVar]);
+                            const loopResult = this.vars[loopVar];
+
+                            // push vars only if job isn't discarded and yielded vars
+                            // (no empty objects this way)
+                            if(!job.discarded && (!isPlainObject(loopResult) || Object.keys(loopResult).length > 0)){
+                                this.vars[job.name].push(loopResult);
                             }
                             job.discarded = false;
                             delete this.vars[loopVar];
@@ -179,7 +183,7 @@ module.exports = class CorrodeBase extends Transform {
             const length = typeof job.length === 'string' ? this.vars[job.length] : job.length;
 
             // break on end of buffer (wait if we're not unwinding yet)
-            if(this.buffer.length - this.chunkOffset < length){
+            if(this.streamBuffer.length - this.chunkOffset < length){
                 if(this.isUnwinding && this.jobs.length > 0){
                     // unwind loop, by removing the loop job
                     this.removeReadJobs();
@@ -189,15 +193,15 @@ module.exports = class CorrodeBase extends Transform {
                 break;
             }
 
-            if(job.type === 'blob'){
+            if(job.type === 'buffer'){
                 this.jobs.shift();
-                this.vars[job.name] = this.buffer.slice(this.chunkOffset, this.chunkOffset + length);
+                this.vars[job.name] = this.streamBuffer.slice(this.chunkOffset, this.chunkOffset + length);
                 this.moveOffset(length);
                 continue;
 
             } else if(job.type === 'string'){
                 this.jobs.shift();
-                this.vars[job.name] = this.buffer.toString(job.encoding, this.chunkOffset, this.chunkOffset + length);
+                this.vars[job.name] = this.streamBuffer.toString(job.encoding, this.chunkOffset, this.chunkOffset + length);
                 this.moveOffset(length);
                 continue;
 
@@ -320,10 +324,10 @@ module.exports = class CorrodeBase extends Transform {
         });
     }
 
-    blob(name, length){
+    buffer(name, length){
         return this._pushJob({
             name,
-            type: 'blob',
+            type: 'buffer',
             length
         });
     }
