@@ -161,7 +161,7 @@ it('repeats named with a string as length', function(done){
     });
 });
 
-it('shortcuts anonymously loops', function(done){
+it('shortcuts anonymous repeats', function(done){
     this.base.repeat(0, function(end, discard, i){
         this.uint8('var_' + i);
     });
@@ -169,10 +169,147 @@ it('shortcuts anonymously loops', function(done){
     this.eqArray([0, 1, 2], done, {});
 });
 
-it('shortcuts named loops', function(done){
+it('shortcuts named repeats', function(done){
     this.base.repeat('repeat', 0, function(end, discard, i){
         this.uint8('var_' + i);
     });
 
     this.eqArray([0, 1, 2], done, { repeat: [] });
+});
+
+// finishing & discarding
+it('repeats (no discard, finish after)', function(done){
+    this.base.repeat('repeat', 5, function(finish, discard, i){
+        this.uint8('var_' + i);
+        if(i >= 2){
+            finish();
+        }
+    });
+
+    this.eqArray([0, 1, 2, 3, 4, 5], done, {
+        repeat: [{
+            var_0: 0
+        }, {
+            var_1: 1
+        }, {
+            var_2: 2
+        }]
+    });
+});
+
+it('repeats (no discard, finish before)', function(done){
+    this.base.repeat('repeat', 5, function(finish, discard, i){
+        if(i >= 3){
+            return finish();
+        }
+        this.uint8('var_' + i);
+    });
+
+    this.eqArray([0, 1, 2, 3, 4, 5], done, {
+        repeat: [{
+            var_0: 0
+        }, {
+            var_1: 1
+        }, {
+            var_2: 2
+        }]
+    });
+});
+
+it('repeats (discard before, no finish)', function(done){
+    this.base.repeat('repeat', 5, function(finish, discard, i){
+        if(i % 2 !== 0){
+            discard();
+        }
+        this.uint8('var_' + i);
+    });
+
+    this.eqArray([0, 1, 2, 3, 4, 5, 6], done, {
+        repeat: [{
+            var_0: 0
+        }, {
+            var_2: 2
+        }, {
+            var_4: 4
+        }]
+    });
+});
+
+it('repeat (discard after, no finish)', function(done){
+    this.base
+        .uint8('rootFix')
+        .repeat('repeat', 5, function(finish, discard, i){
+            this
+                .uint8('var_' + i)
+                .tap(function(){
+                    if(this.vars['var_' + i] % 2 !== 0){
+                        discard();
+                    }
+                });
+            this.varStack.peek().rootFix++;
+            if(i % 3 === 0){
+                discard();
+            }
+        });
+
+    this.eqArray([0, 0, 1, 2, 3, 4, 5, 6], done, {
+        rootFix: 5,
+        repeat: [{
+            var_2: 2
+        }, {
+            var_4: 4
+        }]
+    });
+});
+
+it('repeats (discard, finish before)', function(done){
+    this.base.repeat('repeat', 5, function(finish, discard, i){
+        if(i >= 3){
+            finish(true);
+        }
+        this.uint8('var_' + i);
+    });
+
+    this.eqArray([0, 1, 2, 3, 4, 5], done, {
+        repeat: [{
+            var_0: 0
+        }, {
+            var_1: 1
+        }, {
+            var_2: 2
+        }]
+    });
+});
+
+it('repeats (discard, finish after)', function(done){
+    this.base.repeat('repeat', 5, function(finish, discard, i){
+        this.uint8('var_' + i);
+        if(i >= 3){
+            finish(true);
+        }
+    });
+
+    this.eqArray([0, 1, 2, 3, 4, 5], done, {
+        repeat: [{
+            var_0: 0
+        }, {
+            var_1: 1
+        }, {
+            var_2: 2
+        }]
+    });
+});
+
+it('repeats replaced var', function(done){
+    this.base.repeat('repeat', 5, function(){
+        this
+            .uint8('value')
+            .tap(function(){
+                this.vars = this.vars.value;
+            });
+    });
+
+    this.eqArray([0, 1, 2, 3, 4], done, {
+        repeat: [0, 1, 2, 3, 4]
+    });
 });

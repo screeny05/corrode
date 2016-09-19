@@ -51,7 +51,7 @@ it('considers strings as length as references to vars - skip', function(done){
     });
 });
 
-it('should have with the correct offset', function(done){
+it('has the correct offset', function(done){
     this.base
         .uint8('var_1')
         .tap(function(){

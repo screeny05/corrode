@@ -18,7 +18,11 @@ module.exports.eqArray = function(arr, done, obj){
     let arrMiddle = Math.floor(arr.length / 2);
     let arrFirst = arr.slice(0, arrMiddle);
     let arrSecond = arr.slice(arrMiddle);
-    module.exports.eqMultiArray.call(this, [arrFirst, arrSecond], done, obj);
+    let arrData = [arrFirst, arrSecond];
+
+    arrData = arr.map(val => [val]);
+    //module.exports.eqMultiArray.call(this, arrData, done, obj);
+    module.exports.eqMultiArray.call(this, arrData, done, obj);
 };
 
 module.exports.eqMultiArray = function(arrs, done, obj){

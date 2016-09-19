@@ -49,30 +49,35 @@ module.exports = class Corrode extends CorrodeBase {
         });
     }
 
-    terminatedBuffer(name, terminator = 0, type = 'uint8', discardTerminator = true){
-        terminator = typeof terminator === 'string' ? terminator.charCodeAt(0) : terminator;
-
-        let bufferLength = 0;
+    terminatedBuffer(name, terminator = 0, discardTerminator = true){
+        let bufferLength = null;
+        const loopVar = Symbol.for('terminatedBufferTmp');
 
         return this
+            .tap(function(){
+                terminator = typeof terminator === 'string' ? this.vars[terminator] : terminator;
+                this.isSeeking = true;
+            })
             .loop(function(end, discard, i){
                 this
-                    [type]('__value')
+                    .uint8(loopVar)
                     .tap(function(){
-                        if(this.vars.__value === terminator){
-                            bufferLength = i;
+                        if(this.vars[loopVar] === terminator){
+                            bufferLength = i + 1;
                             end();
                         }
                     });
             })
             .tap(function(){
-                this.vars[name] = this.streamBuffer.slice(this.streamOffset - bufferLength, bufferLength + (discardTerminator ? -1 : 0));
+                delete this.vars[loopVar];
+                this.vars[name] = this.streamBuffer.slice(this.chunkOffset - bufferLength, this.chunkOffset + (discardTerminator ? -1 : 0));
+                this.isSeeking = false;
             });
     }
 
-    terminatedString(name, terminator = 0, encoding = 'ascii', discardTerminator = true){
+    terminatedString(name, terminator = 0, discardTerminator = true, encoding = 'utf8'){
         return this
-            .terminatedBuffer(name, terminator, 'uint8', discardTerminator)
+            .terminatedBuffer(name, terminator, discardTerminator)
             .tap(function(){
                 if(!this.vars[name] || this.vars[name].length === 0){
                     this.vars[name] = '';
@@ -83,15 +88,17 @@ module.exports = class Corrode extends CorrodeBase {
     }
 
     pointer(name, obj, type = 'int64'){
-        if(typeof obj === 'string'){
-            obj = this.vars[obj];
-        }
-
         return this
-            [type](name)
-            .map.abs(name)
-            .assert.includes(name, obj)
-            .map.get(name, obj);
+            .tap(function(){
+                if(typeof obj === 'string'){
+                    obj = this.vars[obj];
+                }
+
+                this
+                    [type](name)
+                    .map.abs(name)
+                    .map.get(name, obj);
+            });
     }
 
     position(offset){
@@ -114,7 +121,7 @@ module.exports = class Corrode extends CorrodeBase {
 
     fromBuffer(buffer, done){
         this.end(buffer);
-        this.on('finish', done.bind(this));
+        this.on('finish', () => done(this.vars));
         return this;
     }
 }

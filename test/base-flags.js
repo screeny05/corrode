@@ -4,6 +4,7 @@ const Base = require('../src/base');
 beforeEach(function(){
     this.base = new Base();
     this.eqArray = require('./helpers/asserts').eqArray.bind(this);
+    this.eqMultiArray = require('./helpers/asserts').eqMultiArray.bind(this);
 });
 
 it('correctly finishes primitive jobs on EOF', function(done){
@@ -179,5 +180,41 @@ it('should not be disturbed, when changing the loopVarName', function(done){
         }, {
             var: 3
         }]
+    });
+});
+
+it('flushes when isSeeking = false', function(done){
+    this.base.loop('loop', function(){
+        this.uint8('var');
+    });
+
+    this.eqMultiArray([[1], [2], [3], [4, 5], [6], [7], [8, 9], [0]], done, () => {
+        expect(this.base.streamBuffer.length).to.equal(0);
+    });
+});
+
+it('prevents flushes when isSeeking = true', function(done){
+    this.base.isSeeking = true;
+
+    this.base.loop('loop', function(){
+        this.uint8('var');
+    });
+
+    this.eqMultiArray([[1], [2], [3], [4, 5], [6], [7], [8, 9], [0]], done, () => {
+        expect(this.base.streamBuffer.length).to.equal(10);
+    });
+});
+
+it('allows mixing of isSeeking-modes', function(done){
+    this.base.loop('loop', function(end, discard, i){
+        this.uint8('var');
+
+        if(i >= 8){
+            this.isSeeking = true;
+        }
+    });
+
+    this.eqMultiArray([[1], [2], [3], [4], [5], [6], [7], [8], [9], [0]], done, () => {
+        expect(this.base.streamBuffer.length).to.equal(2);
     });
 });

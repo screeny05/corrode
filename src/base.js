@@ -28,6 +28,7 @@ module.exports = class CorrodeBase extends Transform {
     streamOffset = 0;
     chunkOffset = 0;
     isUnwinding = false;
+    isSeeking = false;
 
     primitveMap = {
         int8: job => this.streamBuffer.readInt8(this.chunkOffset),
@@ -72,14 +73,18 @@ module.exports = class CorrodeBase extends Transform {
     }
 
     _transform(chunk, encoding, done){
-        this.chunkOffset = 0;
 
         this.streamBuffer.append(chunk);
 
         this.jobLoop();
 
         super.push(null);
-        this.streamBuffer.consume(this.chunkOffset);
+
+        if(!this.isSeeking){
+            this.streamBuffer.consume(this.chunkOffset);
+            this.chunkOffset = 0;
+        }
+
         return done();
     }
 
@@ -107,7 +112,7 @@ module.exports = class CorrodeBase extends Transform {
 
                 const unqueue = this.queueJobs();
 
-                // if the tap has a name, we push a new var-layer
+                // if the tap has a name, push a new var-layer
                 if(job.name){
                     this
                         .push(job.name)
@@ -122,8 +127,8 @@ module.exports = class CorrodeBase extends Transform {
                 continue;
 
             } else if(job.type === 'loop'){
-                // we wait for more data before executing a loop on an empty buffer.
-                // this way we prevent empty objects being added, when the stream finishes.
+                // wait for more data before executing a loop on an empty buffer.
+                // this way empty objects are not being added when the stream finishes
                 if(remainingBuffer === 0){
                     break;
                 }
@@ -182,7 +187,7 @@ module.exports = class CorrodeBase extends Transform {
             // determine length of next job
             const length = typeof job.length === 'string' ? this.vars[job.length] : job.length;
 
-            // break on end of buffer (wait if we're not unwinding yet)
+            // break on end of buffer (wait if not unwinding yet)
             if(this.streamBuffer.length - this.chunkOffset < length){
                 if(this.isUnwinding && this.jobs.length > 0){
                     // unwind loop, by removing the loop job

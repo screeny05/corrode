@@ -1,5 +1,9 @@
 /**
  * The most harsh, incomplete and unforgiving ID3v2.3-Parser, ever.
+ *
+ * includes image-extraction!
+ * `npm i temp image-to-asci`
+ * to enable it
  */
 const Corrode = require('../dist');
 const fs = require('fs');
@@ -23,6 +27,7 @@ const FRAME_FLAG_GROUPING_IDENTITY   = 0b0000000000100000;
 const FRAME_FLAG_INVALID             = 0b0001111100011111;
 
 const FRAME_TYPE_TEXT         = /^(T[0-9A-WYZ]{3}|W[0-9A-WYZ]{3}|IPLS)/;
+const FRAME_TYPE_PICTURE      = /^APIC$/;
 const FRAME_TYPE_EXPERIMENTAL = /^[XYZ]/;
 
 Corrode.addExtension('flagField', function flagField(src, flagsInvalidBitmask, flagsMap){
@@ -61,6 +66,18 @@ Corrode.addExtension('id3frameHeader', function id3frameHeader(){
 Corrode.addExtension('id3frameContent', function id3frameContent(header){
     if(header.id.match(FRAME_TYPE_TEXT)){
         this.string('content', header.size).map.map('content', val => val.replace(/\u0000/g, ''));
+    } else if(header.id.match(FRAME_TYPE_PICTURE)){
+        this.tap('content', function(){
+            this
+                .uint8('encoding')
+                .terminatedString('mimeType')
+                .uint8('pictureType')
+                .terminatedString('description')
+                .tap(function(){
+                    var remainingSize = header.size - this.vars.mimeType.length - this.vars.description.length - 4;
+                    this.buffer('data', remainingSize);
+                });
+        });
     } else {
         this.buffer('content', header.size);
     }
@@ -132,4 +149,15 @@ fs.createReadStream(FILE_PATH)
             .join('\n');
 
         console.log(id3info);
+
+        // try printing images
+        id3Parser.vars.frames
+            .filter(frame => typeof frame.content.pictureType !== 'undefined')
+            .forEach(frame => {
+                try {
+                    var path = require('temp').path({ suffix: '.jpg' });
+                    require('fs').writeFileSync(path, frame.content.data);
+                    require('image-to-ascii')(path, { bg: true }, (err, conv) => console.log(err || conv));
+                } catch(e){}
+            });
     });

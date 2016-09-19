@@ -21,7 +21,22 @@ it('allows us to skip content', function(done){
     });
 });
 
-it('should allow us to unskip content', function(done){
+it('prevents us from unskipping content with isSeeking = false', function(done){
+    this.base
+        .uint8('var_1')
+        .skip(2)
+        .uint8('var_2')
+        .skip(-3)
+        .uint8('var_3');
+
+    expect(this.eqArray.bind(this, [1, 3, 0, 2], done, {})).to.throw(RangeError);
+
+    done();
+});
+
+it('allows us to unskip content with isSeeking = true', function(done){
+    this.base.isSeeking = true;
+
     this.base
         .uint8('var_1')
         .skip(2)
