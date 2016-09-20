@@ -6,7 +6,7 @@ import { mapValues } from 'lodash';
  * @param  {object} ctx context
  * @return {object}     copy of object with each function wrapped in a tap
  */
-exports.tapBindObject = function(obj, ctx){
+export function tapBindObject(obj, ctx){
     return mapValues(obj, fn => typeof fn === 'function' ? function(...args){
         return ctx.tap(fn.bind(ctx, ...args));
     } : fn);
@@ -18,6 +18,6 @@ exports.tapBindObject = function(obj, ctx){
  * @param  {object} ctx context
  * @return {object}     copy of object obj with each function bound to ctx
  */
-exports.bindObject = function(obj, ctx){
+export function bindObject(obj, ctx){
     return mapValues(obj, fn => typeof fn === 'function' ? fn.bind(ctx) : fn);
 };
