@@ -34,7 +34,7 @@ export default class Corrode extends CorrodeBase {
                 return this;
             }
 
-            let loopGuard = function(end, discard, i){
+            const loopGuard = function(end, discard, i){
                 fn.call(this, end, discard, i);
 
                 if(i >= length - 1){

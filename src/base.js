@@ -21,7 +21,6 @@ export default class CorrodeBase extends Transform {
     static LITTLE_ENDIAN = LITTLE_ENDIAN;
     static BIG_ENDIAN = BIG_ENDIAN;
 
-
     jobs = [];
     varStack = new VariableStack();
     streamBuffer = new BufferList();
@@ -31,22 +30,22 @@ export default class CorrodeBase extends Transform {
     isSeeking = false;
 
     primitveMap = {
-        int8: job => this.streamBuffer.readInt8(this.chunkOffset),
-        uint8: job => this.streamBuffer.readUInt8(this.chunkOffset),
+        int8: () => this.streamBuffer.readInt8(this.chunkOffset),
+        uint8: () => this.streamBuffer.readUInt8(this.chunkOffset),
 
-        int16: job => this.streamBuffer['readInt16' + job.endianness](this.chunkOffset),
-        uint16: job => this.streamBuffer['readUInt16' + job.endianness](this.chunkOffset),
+        int16: job => this.streamBuffer[`readInt16${job.endianness}`](this.chunkOffset),
+        uint16: job => this.streamBuffer[`readUInt16${job.endianness}`](this.chunkOffset),
 
-        int32: job => this.streamBuffer['readInt32' + job.endianness](this.chunkOffset),
-        uint32: job => this.streamBuffer['readUInt32' + job.endianness](this.chunkOffset),
+        int32: job => this.streamBuffer[`readInt32${job.endianness}`](this.chunkOffset),
+        uint32: job => this.streamBuffer[`readUInt32${job.endianness}`](this.chunkOffset),
 
-        float: job => this.streamBuffer['readFloat' + job.endianness](this.chunkOffset),
-        double: job => this.streamBuffer['readDouble' + job.endianness](this.chunkOffset),
+        float: job => this.streamBuffer[`readFloat${job.endianness}`](this.chunkOffset),
+        double: job => this.streamBuffer[`readDouble${job.endianness}`](this.chunkOffset),
 
         int64: job => {
-            const lo = this.streamBuffer['readUInt32' + job.endianness](this.chunkOffset + (job.endianness === LITTLE_ENDIAN ? 0 : 4));
-            const hi = this.streamBuffer['read' + (job.type === 'uint64' ? 'U' : '') + 'Int32' + job.endianness](this.chunkOffset + (job.endianness === LITTLE_ENDIAN ? 4 : 0));
-            return POW_32 * hi + lo;
+            const lo = this.streamBuffer[`readUInt32${job.endianness}`](this.chunkOffset + (job.endianness === LITTLE_ENDIAN ? 0 : 4));
+            const hi = this.streamBuffer[`read${job.type === 'uint64' ? 'U' : ''}Int32${job.endianness}`](this.chunkOffset + (job.endianness === LITTLE_ENDIAN ? 4 : 0));
+            return (POW_32 * hi) + lo;
         },
         uint64: job => this.primitveMap.int64(job)
     };
@@ -73,7 +72,6 @@ export default class CorrodeBase extends Transform {
     }
 
     _transform(chunk, encoding, done){
-
         this.streamBuffer.append(chunk);
 
         this.jobLoop();
@@ -117,7 +115,7 @@ export default class CorrodeBase extends Transform {
                     this
                         .push(job.name)
                         .tap(job.callback, job.args)
-                        .pop()
+                        .pop();
 
                 } else {
                     job.callback.apply(this, job.args);
@@ -140,7 +138,6 @@ export default class CorrodeBase extends Transform {
 
                 const loopVar = this.options.loopVarName;
                 const unqueue = this.queueJobs();
-
 
                 if(job.name){
                     if(!this.vars[job.name]){
@@ -288,7 +285,7 @@ export default class CorrodeBase extends Transform {
             name = undefined;
         }
 
-        let loopJob = {
+        const loopJob = {
             name,
             type: 'loop',
             callback,
@@ -299,7 +296,7 @@ export default class CorrodeBase extends Transform {
 
         loopJob.finish = function(discard){
             loopJob.finished = true;
-            loopJob.discarded = !!discard;
+            loopJob.discarded = Boolean(discard);
         };
 
         loopJob.discard = function(){

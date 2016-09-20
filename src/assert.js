@@ -10,7 +10,7 @@ export function equal(name, value){
     if(this.vars[name] !== value){
         throw new TypeError(`Expected ${value}, found ${this.vars[name]} at ${name}`);
     }
-};
+}
 
 /**
  * assert deep equality each value in Object|Array
@@ -32,7 +32,7 @@ export function allEqual(name, testValue){
     if(notEqualObjects.length !== 0){
         throw new TypeError(`Expected values in ${JSON.stringify(this.vars[name])} to all be ${testValue}`);
     }
-};
+}
 
 /**
  * assert equality objects
@@ -45,7 +45,7 @@ export function deepEqual(name, value){
     if(!lodash.isEqual(binaryValue, value)){
         throw new TypeError(`Expected ${JSON.stringify(value)}, found ${JSON.stringify(binaryValue)}`);
     }
-};
+}
 
 /**
  * assert array|object to contain item
@@ -57,7 +57,7 @@ export function includes(name, arr){
     if(!lodash.includes(arr, this.vars[name])){
         throw new TypeError(`Expected ${JSON.stringify(arr)} to include ${this.vars[name]}`);
     }
-};
+}
 
 /**
  * assert value to be within the bounds of an array
@@ -71,7 +71,7 @@ export function inBounds(name, value){
     if(index < 0 || index >= value.length){
         throw new TypeError(`Expected Array of ${value.length} items to be at least ${this.vars[name]} long`);
     }
-};
+}
 
 /**
  * assert value via callback
@@ -84,7 +84,7 @@ export function callback(name, fn, fnName = fn.name){
     if(!fn(this.vars[name])){
         throw new TypeError(`Callback failed at ${fnName}(${this.vars[name]})`);
     }
-};
+}
 
 /**
  * assert array to be a given length
@@ -96,7 +96,7 @@ export function arrayLength(name, length){
     if(typeof this.vars[name] === 'undefined' || this.vars[name].length !== length){
         throw new TypeError(`Expected array to have a length of ${length}, has ${this.vars[name].length}`);
     }
-};
+}
 
 /**
  * asserts a variable exists in the first place
@@ -107,7 +107,7 @@ export function exists(name){
     if(typeof this.vars[name] === 'undefined'){
         throw new TypeError(`Expected var ${name} to exist`);
     }
-};
+}
 
 /**
  * asserts a variable matches a given bitmask
@@ -120,6 +120,6 @@ export function bitmask(name, mask, assertMatch = true){
     const val = this.vars[name];
 
     if((val & mask) === mask === !assertMatch){
-        throw new TypeError(`Expected var ${name} to ${!assertMatch ? 'not ' : ''}match bitmask (value: 0b${val.toString(2)} assert: 0b${mask.toString(2)})`);
+        throw new TypeError(`Expected var ${name} to ${assertMatch ? ' ' : 'not'}match bitmask (value: 0b${val.toString(2)} assert: 0b${mask.toString(2)})`);
     }
-};
+}

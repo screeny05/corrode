@@ -7,11 +7,9 @@ import { mapValues } from 'lodash';
  * @return {object}     copy of object with each function wrapped in a tap
  */
 exports.tapBindObject = function(obj, ctx){
-    return mapValues(obj, function(fn){
-        return typeof fn === 'function' ? function(...args){
-            return ctx.tap(fn.bind(ctx, ...args));
-        } : fn;
-    });
+    return mapValues(obj, fn => typeof fn === 'function' ? function(...args){
+        return ctx.tap(fn.bind(ctx, ...args));
+    } : fn);
 };
 
 /**

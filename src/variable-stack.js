@@ -26,10 +26,10 @@ export default class VariableStack {
     }
 
     push(name, value = {}){
-        if(typeof this.top.value[name] !== 'undefined'){
-            value = this.value[name];
-        } else {
+        if(typeof this.top.value[name] === 'undefined'){
             this.top.value[name] = value;
+        } else {
+            value = this.value[name];
         }
 
         this.stack.push({
@@ -40,7 +40,7 @@ export default class VariableStack {
     }
 
     pop(){
-        let popLayer = this.top;
+        const popLayer = this.top;
         if(popLayer.isRoot){
             throw new ReferenceError('can\'t pop root layer');
         }
@@ -55,4 +55,4 @@ export default class VariableStack {
             this.pop();
         }
     }
-};
+}
