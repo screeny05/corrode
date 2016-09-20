@@ -1,10 +1,12 @@
 import CorrodeBase from './base';
-import utils from './utils';
+import * as utils from './utils';
 import { isPlainObject } from 'lodash';
 
 import * as MAPPERS from './map';
 import * as ASSERTIONS from './assert';
 const EXTENSIONS = {};
+
+console.log(utils);
 
 export default class Corrode extends CorrodeBase {
     constructor(){

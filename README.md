@@ -7,6 +7,7 @@
 [![npm](https://img.shields.io/npm/v/corrode.svg?style=flat-square)](https://www.npmjs.com/package/corrode)
 [![coverage](https://img.shields.io/coveralls/screeny05/corrode.svg?style=flat-square)](https://coveralls.io/github/screeny05/corrode)
 [![build](https://img.shields.io/travis/screeny05/corrode.svg?style=flat-square)](https://travis-ci.org/screeny05/corrode)
+[![docs](https://doc.esdoc.org/github.com/screeny05/corrode/badge.svg)](https://doc.esdoc.org/github.com/screeny05/corrode/)
 
 corrode - parsing binary data
 
@@ -15,8 +16,6 @@ $ npm install --save corrode
 ```
 
 
-**Testing and Docs are WIP**
-
-**API guaranteed to change until v1.0.0**
+**Docs are WIP**
 
 **Not guaranteed to work synchronously**
