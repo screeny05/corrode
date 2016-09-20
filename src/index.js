@@ -2,11 +2,11 @@ import CorrodeBase from './base';
 import utils from './utils';
 import { isPlainObject } from 'lodash';
 
-import MAPPERS from './map';
-import ASSERTIONS from './assert';
+import * as MAPPERS from './map';
+import * as ASSERTIONS from './assert';
 const EXTENSIONS = {};
 
-class Corrode extends CorrodeBase {
+export default class Corrode extends CorrodeBase {
     constructor(){
         super(...arguments);
 
@@ -147,5 +147,3 @@ Corrode.addExtension = function(name, fn){
 Corrode.EXTENSIONS = EXTENSIONS;
 Corrode.MAPPERS = MAPPERS;
 Corrode.ASSERTIONS = ASSERTIONS;
-
-module.exports = Corrode;

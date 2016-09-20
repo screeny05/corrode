@@ -8,7 +8,7 @@ const BIG_ENDIAN = 'BE';
 const POW_32 = Math.pow(2, 32);
 const LOOP_VAR_SYMBOL = Symbol('loop-variable');
 
-module.exports = class CorrodeBase extends Transform {
+export default class CorrodeBase extends Transform {
     static defaults = {
         endianness: LITTLE_ENDIAN,
         loopVarName: LOOP_VAR_SYMBOL,

@@ -1,4 +1,4 @@
-module.exports = class VariableStack {
+export default class VariableStack {
 
     stack = [{ isRoot: true, value: {} }];
 
