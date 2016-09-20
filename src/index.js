@@ -1,11 +1,12 @@
 import CorrodeBase from './base';
 import utils from './utils';
+import { isPlainObject } from 'lodash';
 
 import MAPPERS from './map';
 import ASSERTIONS from './assert';
 const EXTENSIONS = {};
 
-module.exports = class Corrode extends CorrodeBase {
+class Corrode extends CorrodeBase {
     constructor(){
         super(...arguments);
 
@@ -126,12 +127,15 @@ module.exports = class Corrode extends CorrodeBase {
     }
 }
 
-module.exports.addExtension = function(name, fn){
+Corrode.addExtension = function(name, fn){
     EXTENSIONS[name] = function(name = 'values', ...args){
         return this.tap(name, function(){
             const value = fn.apply(this, args);
 
             if(typeof value !== 'undefined'){
+                if(this.options.strictObjectMode && this.jobs.length > 0 && !isPlainObject(value)){
+                    throw new TypeError(`Can't mix immediate returns with later reads on a non-object value (${JSON.stringify(value)}) in strictObjectMode`);
+                }
                 this.vars = value;
             }
         });
@@ -140,6 +144,8 @@ module.exports.addExtension = function(name, fn){
     EXTENSIONS[name].orgFn = fn;
 };
 
-module.exports.EXTENSIONS = EXTENSIONS;
-module.exports.MAPPERS = MAPPERS;
-module.exports.ASSERTIONS = ASSERTIONS;
+Corrode.EXTENSIONS = EXTENSIONS;
+Corrode.MAPPERS = MAPPERS;
+Corrode.ASSERTIONS = ASSERTIONS;
+
+module.exports = Corrode;
