@@ -6,8 +6,6 @@ import * as MAPPERS from './map';
 import * as ASSERTIONS from './assert';
 const EXTENSIONS = {};
 
-console.log(utils);
-
 export default class Corrode extends CorrodeBase {
     constructor(){
         super(...arguments);
