@@ -6,7 +6,7 @@
   "scripts": {
     "build": "babel src --out-dir dist --source-maps",
     "watch": "npm run build -- --watch",
-    "test": "mocha test --compilers js:babel-register ./test/_tests.js",
+    "test": "mocha test --compilers js:babel-register ./test",
     "lint": "eslint src",
     "docs": "esdoc -c esdoc.json",
     "docs-upload": "esdoc-uploader",

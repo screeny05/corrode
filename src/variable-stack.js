@@ -121,8 +121,6 @@ export default class VariableStack {
      * VariableStack ignores your value and just re-uses the old one, so no
      * layer will be replaced.
      *
-     * <iframe src="https://emf-ev.de"></iframe>
-     *
      * @example
      * varStack.push('foo');
      * varStack.value.bar = 'baz';
