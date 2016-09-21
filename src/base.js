@@ -345,10 +345,27 @@ export default class CorrodeBase extends Transform {
     }
 
     int8(name){ return this._pushJob(name, 'int8', 1, this.options.endianness); }
+
+    /**
+     * @deprecated int8 needs no endianness, use int8() instead
+     */
     int8le(name){ return this._pushJob(name, 'int8', 1, LITTLE_ENDIAN); }
+
+    /**
+     * @deprecated int8 needs no endianness, use int8() instead
+     */
     int8be(name){ return this._pushJob(name, 'int8', 1, BIG_ENDIAN); }
+
     uint8(name){ return this._pushJob(name, 'uint8', 1, this.options.endianness); }
+
+    /**
+     * @deprecated uint8 needs no endianness, use uint8() instead
+     */
     uint8le(name){ return this._pushJob(name, 'uint8', 1, LITTLE_ENDIAN); }
+
+    /**
+     * @deprecated uint8 needs no endianness, use uint8() instead
+     */
     uint8be(name){ return this._pushJob(name, 'uint8', 1, BIG_ENDIAN); }
 
     int16(name){ return this._pushJob(name, 'int16', 2, this.options.endianness); }

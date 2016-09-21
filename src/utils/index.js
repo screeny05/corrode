@@ -10,7 +10,7 @@ export function tapBindObject(obj, ctx){
     return mapValues(obj, fn => typeof fn === 'function' ? function(...args){
         return ctx.tap(fn.bind(ctx, ...args));
     } : fn);
-};
+}
 
 /**
  * bind each function in an object to a given context
@@ -20,4 +20,4 @@ export function tapBindObject(obj, ctx){
  */
 export function bindObject(obj, ctx){
     return mapValues(obj, fn => typeof fn === 'function' ? fn.bind(ctx) : fn);
-};
+}

@@ -14,8 +14,8 @@ export function equal(name, value){
 
 /**
  * assert deep equality each value in Object|Array
- * @param {string} name  key of the object|array to test
- * @param {mixed} value comparision, undefined for auto-detect
+ * @param {string} name     key of the object|array to test
+ * @param {mixed} testValue comparision, undefined for auto-detect
  * @throws TypeError assertion-error
  */
 export function allEqual(name, testValue){
@@ -76,7 +76,7 @@ export function inBounds(name, value){
 /**
  * assert value via callback
  * @param {string}   name   key of the value to test
- * @param {function} value  comparator
+ * @param {function} fn     callback
  * @param {string}   fnName optional test-name
  * @throws TypeError assertion-error
  */

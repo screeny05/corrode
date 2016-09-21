@@ -6,6 +6,7 @@ beforeEach(function(){
     this.stack = new VarStack();
 });
 
+/** @test {VariableStack} */
 it('starts as an empty object', function(){
     expect(this.stack.stack).to.have.length.of(1);
     expect(this.stack.top.isRoot).to.be.true;
@@ -13,11 +14,16 @@ it('starts as an empty object', function(){
     expect(this.stack.value).to.be.empty;
 });
 
+/** @test {VariableStack#constructor} */
 it('allows properties on layer 0', function(){
     this.stack.value.foo = 'bar';
     expect(this.stack.value.foo).to.equal('bar');
 });
 
+/**
+ * @test {VariableStack#push}
+ * @test {VariableStack#top}
+ */
 it('allows object-descension', function(){
     this.stack.push('child');
     expect(this.stack.value).to.be.object;
@@ -26,18 +32,21 @@ it('allows object-descension', function(){
     expect(this.stack.top.isRoot).to.be.false;
 });
 
+/** @test {VariableStack#constructor} */
 it('haves correct value-shortcut', function(){
     this.stack.push('child');
     this.stack.value.val = 'fixture';
     expect(this.stack.value).to.deep.equal(this.stack.top.value);
 });
 
+/** @test {VariableStack#constructor} */
 it('allows deep-adding', function(){
     this.stack.push('child');
     this.stack.value.fixture = 'fixture';
     expect(this.stack.value.fixture).to.equal('fixture');
 });
 
+/** @test {VariableStack#constructor} */
 it('allows object-popping', function(){
     this.stack.push('child');
     this.stack.pop();
@@ -46,6 +55,7 @@ it('allows object-popping', function(){
     expect(this.stack.value.child).to.be.empty;
 });
 
+/** @test {VariableStack#constructor} */
 it('allows object-popping with values', function(){
     this.stack.push('child');
     this.stack.value.fixture = 'fixture';
@@ -53,6 +63,7 @@ it('allows object-popping with values', function(){
     expect(this.stack.value.child.fixture).to.equal('fixture');
 });
 
+/** @test {VariableStack#constructor} */
 it('allows multiple pushed objects', function(){
     this.stack.push('child-1');
     this.stack.value.fixture = 'fixture-1';
@@ -71,6 +82,7 @@ it('allows multiple pushed objects', function(){
     expect(this.stack.value['child-2'].fixture).to.equal('fixture-2');
 });
 
+/** @test {VariableStack#constructor} */
 it('allows object-repushing', function(){
     this.stack.push('child');
     this.stack.value.val = 'fixture';
@@ -80,6 +92,7 @@ it('allows object-repushing', function(){
     expect(this.stack.value.val).to.equal('fixture');
 });
 
+/** @test {VariableStack#constructor} */
 it('allows array-repushing', function(){
     this.stack.push('child', []);
     this.stack.value.push('fixture');
@@ -89,6 +102,7 @@ it('allows array-repushing', function(){
     expect(this.stack.value[0]).to.equal('fixture');
 });
 
+/** @test {VariableStack#constructor} */
 it('allows primitive-repushing', function(){
     this.stack.push('child', 2);
     this.stack.value *= 2;
@@ -97,6 +111,7 @@ it('allows primitive-repushing', function(){
     expect(this.stack.value).to.equal(4);
 });
 
+/** @test {VariableStack#constructor} */
 it('repushes the same instance', function(){
     this.stack.push('child-1');
     this.stack.value.val = 'fixture';
@@ -110,6 +125,7 @@ it('repushes the same instance', function(){
     expect(this.stack.value['child-2']).to.be.empty;
 });
 
+/** @test {VariableStack#constructor} */
 it('allows object-repushing on user-defined objects', function(){
     this.stack.value.child = { val: 'fixture' };
     this.stack.push('child');
@@ -117,6 +133,7 @@ it('allows object-repushing on user-defined objects', function(){
     expect(this.stack.value.val).to.equal('fixture');
 });
 
+/** @test {VariableStack#constructor} */
 it('allows layer-peeking & allPop', function(){
     this.stack.push('child');
     this.stack.value.val = 'val'
@@ -146,6 +163,7 @@ it('allows layer-peeking & allPop', function(){
     expect(this.stack.value.child.child.child.child.fixture).to.equal('fixture');
 });
 
+/** @test {VariableStack#constructor} */
 it('properly supports layer-peeking', function(){
     this.stack.push('child1');
     this.stack.value.val = 'val-1';
@@ -170,6 +188,7 @@ it('properly supports layer-peeking', function(){
     expect(this.stack.peek(3).child1.val).to.equal('val-1');
 });
 
+/** @test {VariableStack#constructor} */
 it('prevents invalid popping', function(){
     expect(this.stack.pop.bind(this.stack)).to.throw(ReferenceError);
 
@@ -177,6 +196,7 @@ it('prevents invalid popping', function(){
     expect(this.stack.pop.bind(this.stack)).to.not.throw(ReferenceError);
 });
 
+/** @test {VariableStack#constructor} */
 it('prevents invalid peeking', function(){
     expect(this.stack.peek.bind(this.stack)).to.throw(ReferenceError);
 
@@ -184,6 +204,7 @@ it('prevents invalid peeking', function(){
     expect(this.stack.peek.bind(this.stack)).to.not.throw(ReferenceError);
 });
 
+/** @test {VariableStack#constructor} */
 it('allows array pushing', function(){
     this.stack.push('child', []);
     this.stack.value.push('fixture');
@@ -195,6 +216,7 @@ it('allows array pushing', function(){
     expect(this.stack.value.child[0]).to.equal('fixture');
 });
 
+/** @test {VariableStack#constructor} */
 it('allows full primitive value-replacing', function(){
     this.stack.push('child');
     this.stack.value = 'fixture';
@@ -202,6 +224,7 @@ it('allows full primitive value-replacing', function(){
     expect(this.stack.value).to.equal('fixture');
 });
 
+/** @test {VariableStack#constructor} */
 it('allows full object value-replacing', function(){
     this.stack.push('child');
     this.stack.value.fixture = 'fixture';
@@ -210,6 +233,7 @@ it('allows full object value-replacing', function(){
     expect(this.stack.value).to.be.empty;
 });
 
+/** @test {VariableStack#constructor} */
 it('allows full array value-replacing', function(){
     this.stack.push('child', []);
     this.stack.value.push('fixture');

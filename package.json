@@ -8,6 +8,8 @@
     "watch": "npm run build -- --watch",
     "test": "mocha test --compilers js:babel-register ./test/_tests.js",
     "lint": "eslint src",
+    "docs": "esdoc -c esdoc.json",
+    "docs-upload": "esdoc-uploader",
     "coverage": "nyc --require babel-core/register --reporter=lcov mocha",
     "coverall": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
     "prepublish": "npm run build"
@@ -32,6 +34,8 @@
     "buffer-safe": "^1.0.0",
     "chai": "^3.5.0",
     "coveralls": "^2.11.9",
+    "esdoc": "^0.4.8",
+    "esdoc-uploader": "^1.0.1",
     "eslint": "^3.0.0",
     "eslint-config-xo": "^0.15.2",
     "eslint-plugin-babel": "^3.3.0",
