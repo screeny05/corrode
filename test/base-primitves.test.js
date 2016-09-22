@@ -9,7 +9,14 @@ describe('CorrodeBase - Primitives', () => {
         this.eqMultiArray = require('./helpers/asserts').eqMultiArray.bind(this);
     });
 
-
+    /**
+     * @test {CorrodeBase#int8}
+     * @test {CorrodeBase#int8le}
+     * @test {CorrodeBase#int8be}
+     * @test {CorrodeBase#uint8}
+     * @test {CorrodeBase#uint8le}
+     * @test {CorrodeBase#uint8be}
+     */
     it('reads int8', function(done){
         this.base
             .int8('int8')
@@ -35,6 +42,14 @@ describe('CorrodeBase - Primitives', () => {
         });
     });
 
+    /**
+     * @test {CorrodeBase#int16}
+     * @test {CorrodeBase#int16le}
+     * @test {CorrodeBase#int16be}
+     * @test {CorrodeBase#uint16}
+     * @test {CorrodeBase#uint16le}
+     * @test {CorrodeBase#uint16be}
+     */
     it('reads int16', function(done){
         this.base
             .int16('int16')
@@ -60,6 +75,14 @@ describe('CorrodeBase - Primitives', () => {
         });
     });
 
+    /**
+     * @test {CorrodeBase#int32}
+     * @test {CorrodeBase#int32le}
+     * @test {CorrodeBase#int32be}
+     * @test {CorrodeBase#uint32}
+     * @test {CorrodeBase#uint32le}
+     * @test {CorrodeBase#uint32be}
+     */
     it('reads int32', function(done){
         this.base
             .int32('int32')
@@ -85,7 +108,15 @@ describe('CorrodeBase - Primitives', () => {
         });
     });
 
-    // http://www.ecma-international.org/ecma-262/5.1/#sec-8.5
+    /**
+     * @see http://www.ecma-international.org/ecma-262/5.1/#sec-8.5
+     * @test {CorrodeBase#int64}
+     * @test {CorrodeBase#int64le}
+     * @test {CorrodeBase#int64be}
+     * @test {CorrodeBase#uint64}
+     * @test {CorrodeBase#uint64le}
+     * @test {CorrodeBase#uint64be}
+     */
     it('reads int64', function(done){
         this.base
             .int64('int64')
@@ -111,6 +142,11 @@ describe('CorrodeBase - Primitives', () => {
         });
     });
 
+    /**
+     * @test {CorrodeBase#float}
+     * @test {CorrodeBase#floatle}
+     * @test {CorrodeBase#floatbe}
+     */
     it('reads float', function(done){
         this.base
             .float('float')
@@ -129,6 +165,11 @@ describe('CorrodeBase - Primitives', () => {
         });
     });
 
+    /**
+     * @test {CorrodeBase#double}
+     * @test {CorrodeBase#doublele}
+     * @test {CorrodeBase#doublebe}
+     */
     it('reads double', function(done){
         this.base
             .double('double')
@@ -146,6 +187,7 @@ describe('CorrodeBase - Primitives', () => {
         });
     });
 
+    /** @test {Corrode#string} */
     it('reads utf8-strings', function(done){
         this.base.string('string', 16, 'utf8');
 
@@ -154,6 +196,19 @@ describe('CorrodeBase - Primitives', () => {
         });
     });
 
+    /** @test {Corrode#string} */
+    it('reads strings, regardless of the underlying buffer', function(done){
+        this.base
+            .string('hi', 4)
+            .string('lo', 4);
+
+        this.eqMultiArray([[0x61], [0x62], [0x63, 0x64, 0x65], [0x66, 0x67], [0x68, 9, 10]], done, {
+            hi: 'abcd',
+            lo: 'efgh'
+        });
+    });
+
+    /** @test {Corrode#buffer} */
     it('reads buffers', function(done){
         this.base
             .buffer('hi', 4)
@@ -165,6 +220,7 @@ describe('CorrodeBase - Primitives', () => {
         });
     });
 
+    /** @test {Corrode#buffer} */
     it('reads buffers, regardless of the underlying buffer', function(done){
         this.base
             .buffer('hi', 4)

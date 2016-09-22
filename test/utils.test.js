@@ -8,6 +8,7 @@ describe('Utils', () => {
         };
     });
 
+    /** @test {tapBindObject} */
     it('binds object with tap', function(){
         let boundFixture = utils.tapBindObject({
             fnFixture: function(argOne, argTwo){
@@ -24,6 +25,7 @@ describe('Utils', () => {
         boundFixture.fnFixture('foo', 'bar')();
     });
 
+    /** @test {bindObject} */
     it('binds object with data', function(){
         let obj = {
             fnFixture: function(){

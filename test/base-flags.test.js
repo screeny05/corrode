@@ -185,6 +185,7 @@ describe('CorrodeBase#options', () => {
         });
     });
 
+    /** @test {CorrodeBase#isSeeking} */
     it('flushes when isSeeking = false', function(done){
         this.base.loop('loop', function(){
             this.uint8('var');
@@ -195,6 +196,7 @@ describe('CorrodeBase#options', () => {
         });
     });
 
+    /** @test {CorrodeBase#isSeeking} */
     it('prevents flushes when isSeeking = true', function(done){
         this.base.isSeeking = true;
 
@@ -207,6 +209,7 @@ describe('CorrodeBase#options', () => {
         });
     });
 
+    /** @test {CorrodeBase#isSeeking} */
     it('allows mixing of isSeeking-modes', function(done){
         this.base.loop('loop', function(end, discard, i){
             this.uint8('var');

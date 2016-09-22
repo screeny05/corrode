@@ -8,7 +8,10 @@ describe('Corrode - Helpers', () => {
         this.eqArray = require('./helpers/asserts').eqArray.bind(this);
     });
 
-    // coverage-fix
+    /**
+     * coverage fix
+     * @test {Corrode#debug}
+     */
     it('debugs', function(done){
         this.base
             .loop('array', function(end, discard, i){
@@ -23,6 +26,7 @@ describe('Corrode - Helpers', () => {
         });
     });
 
+    /** @test {Corrode#fromBuffer} */
     it('converts from buffer', function(){
         this.base
             .loop('array', function(end, discard, i){

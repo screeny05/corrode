@@ -1,7 +1,10 @@
 const { expect } = require('chai');
 const Corrode = require('../src');
 
-/** @test {Corrode#ext} */
+/**
+ * @test {Corrode#addExtension}
+ * @test {Corrode#ext}
+ */
 describe('Corrode#ext', () => {
     beforeEach(function(){
         this.base = new Corrode();
@@ -22,6 +25,7 @@ describe('Corrode#ext', () => {
             })
             .map.push();
     });
+
 
     it('supports extensions', function(done){
         this.base.ext.simpleRepeat('extObj', 'val_1', 'val_2');

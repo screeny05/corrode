@@ -23,6 +23,7 @@ describe('CorrodeBase#skip', () => {
         });
     });
 
+    /** @test {CorrodeBase#isSeeking} */
     it('prevents us from unskipping content with isSeeking = false', function(done){
         this.base
             .uint8('var_1')
@@ -36,6 +37,7 @@ describe('CorrodeBase#skip', () => {
         done();
     });
 
+    /** @test {CorrodeBase#isSeeking} */
     it('allows us to unskip content with isSeeking = true', function(done){
         this.base.isSeeking = true;
 

@@ -10,6 +10,14 @@ describe('CorrodeBase#jobs', () => {
         this.eqArray = require('./helpers/asserts').eqArray.bind(this);
     });
 
+    /**
+     * @test {CorrodeBase#int8}
+     * @test {CorrodeBase#int8le}
+     * @test {CorrodeBase#int8be}
+     * @test {CorrodeBase#uint8}
+     * @test {CorrodeBase#uint8le}
+     * @test {CorrodeBase#uint8be}
+     */
     it('pushes int8 jobs', function(){
         this.base
             .int8('int8')
@@ -29,6 +37,14 @@ describe('CorrodeBase#jobs', () => {
         ]);
     });
 
+    /**
+     * @test {CorrodeBase#int16}
+     * @test {CorrodeBase#int16le}
+     * @test {CorrodeBase#int16be}
+     * @test {CorrodeBase#uint16}
+     * @test {CorrodeBase#uint16le}
+     * @test {CorrodeBase#uint16be}
+     */
     it('pushes int16 jobs', function(){
         this.base
             .int16('int16')
@@ -48,6 +64,14 @@ describe('CorrodeBase#jobs', () => {
         ]);
     });
 
+    /**
+     * @test {CorrodeBase#int32}
+     * @test {CorrodeBase#int32le}
+     * @test {CorrodeBase#int32be}
+     * @test {CorrodeBase#uint32}
+     * @test {CorrodeBase#uint32le}
+     * @test {CorrodeBase#uint32be}
+     */
     it('pushes int32 jobs', function(){
         this.base
             .int32('int32')
@@ -67,6 +91,14 @@ describe('CorrodeBase#jobs', () => {
         ]);
     });
 
+    /**
+     * @test {CorrodeBase#int64}
+     * @test {CorrodeBase#int64le}
+     * @test {CorrodeBase#int64be}
+     * @test {CorrodeBase#uint64}
+     * @test {CorrodeBase#uint64le}
+     * @test {CorrodeBase#uint64be}
+     */
     it('pushes int64 jobs', function(){
         this.base
             .int64('int64')
@@ -86,6 +118,11 @@ describe('CorrodeBase#jobs', () => {
         ]);
     });
 
+    /**
+     * @test {CorrodeBase#float}
+     * @test {CorrodeBase#floatle}
+     * @test {CorrodeBase#floatbe}
+     */
     it('pushes float jobs', function(){
         this.base
             .float('float')
@@ -99,6 +136,11 @@ describe('CorrodeBase#jobs', () => {
         ]);
     });
 
+    /**
+     * @test {CorrodeBase#double}
+     * @test {CorrodeBase#doublele}
+     * @test {CorrodeBase#doublebe}
+     */
     it('pushes double jobs', function(){
         this.base
             .double('double')
@@ -112,6 +154,19 @@ describe('CorrodeBase#jobs', () => {
         ]);
     });
 
+    /**
+     * @test {CorrodeBase#int8}
+     * @test {CorrodeBase#uint8}
+     * @test {CorrodeBase#int16}
+     * @test {CorrodeBase#uint16}
+     * @test {CorrodeBase#int32}
+     * @test {CorrodeBase#uint32}
+     * @test {CorrodeBase#int64}
+     * @test {CorrodeBase#uint64}
+     * @test {CorrodeBase#float}
+     * @test {CorrodeBase#double}
+     * @test {CorrodeBase#options.endianness}
+     */
     it('pushes options.endianness correct jobs', function(){
         let base = new Base({ endianness: BIG_ENDIAN });
 
@@ -141,6 +196,7 @@ describe('CorrodeBase#jobs', () => {
         ]);
     });
 
+    /** @test {Corrode#buffer} */
     it('pushes buffer jobs', function(){
         this.base
             .buffer('buffer1', 1)
@@ -156,6 +212,7 @@ describe('CorrodeBase#jobs', () => {
         ]);
     });
 
+    /** @test {Corrode#string} */
     it('pushes string jobs', function(){
         this.base
             .string('string8default', 8)
@@ -171,6 +228,7 @@ describe('CorrodeBase#jobs', () => {
         ]);
     });
 
+    /** @test {Corrode#push} */
     it('pushes push jobs', function(){
         this.base
             .push('object', fixture.object)
@@ -182,6 +240,7 @@ describe('CorrodeBase#jobs', () => {
         ]);
     });
 
+    /** @test {Corrode#pop} */
     it('pushes pop jobs', function(){
         this.base.pop();
 
@@ -190,6 +249,7 @@ describe('CorrodeBase#jobs', () => {
         ]);
     });
 
+    /** @test {Corrode#skip} */
     it('pushes skip jobs', function(){
         this.base
             .skip(16)
@@ -201,6 +261,7 @@ describe('CorrodeBase#jobs', () => {
         ]);
     });
 
+    /** @test {Corrode#loop} */
     it('pushes loop jobs', function(){
         let noop = function(){};
 
@@ -227,6 +288,7 @@ describe('CorrodeBase#jobs', () => {
         expect(this.base.jobs[2].discarded).to.be.true;
     });
 
+    /** @test {Corrode#tap} */
     it('pushes tap jobs', function(){
         let noop = function(){};
 
@@ -244,6 +306,7 @@ describe('CorrodeBase#jobs', () => {
         ]);
     });
 
+    /** @test {Corrode#queueJobs} */
     it('queues and unqueues jobs', function(){
         this.base
             .uint8le('uint8le')
@@ -265,6 +328,7 @@ describe('CorrodeBase#jobs', () => {
         ]);
     });
 
+    /** @test {Corrode#removeReadJobs} */
     it('removes read jobs', function(){
         let noop = function(){};
 
@@ -288,6 +352,7 @@ describe('CorrodeBase#jobs', () => {
         ]);
     });
 
+    /** @test {Corrode#jobLoop} */
     it('throws error on unknown job', function(){
         this.base.jobs.push({ type: 'invalid-job-type', length: 1 });
         expect(this.eqArray.bind(this, () => {}, [1, 2, 3], { foo: 'bar' })).to.throw(Error);

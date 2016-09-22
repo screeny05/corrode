@@ -8,6 +8,7 @@ describe('CorrodeBase#varStack', () => {
         this.eqArray = require('./helpers/asserts').eqArray.bind(this);
     });
 
+    /** @test {CorrodeBase#push} */
     it('pushes and pops', function(done){
         this.base
             .uint8('val_0')
@@ -33,11 +34,16 @@ describe('CorrodeBase#varStack', () => {
         })
     });
 
+    /** @test {CorrodeBase#pop} */
     it('denies popping the root-layer', function(){
         this.base.pop();
         expect(this.eqArray.bind(this, [], () => {}, {})).to.throw(ReferenceError);
     });
 
+    /**
+     * @test {CorrodeBase#push}
+     * @test {CorrodeBase#pop}
+     */
     it('pushes back into old layers', function(done){
         this.base
             .uint8('val_0')
@@ -61,6 +67,10 @@ describe('CorrodeBase#varStack', () => {
         });
     });
 
+    /**
+     * @test {CorrodeBase#push}
+     * @test {CorrodeBase#finishRemainingJobs}
+     */
     it('automatically unpushes as it unwinds', function(done){
         this.base
             .uint8('var_0')
@@ -75,6 +85,9 @@ describe('CorrodeBase#varStack', () => {
         });
     });
 
+    /**
+     * @test {CorrodeBase#options.strictObjectMode}
+     */
     it('denies pushing into non-object vars', function(){
         this.base
             .uint8('var_0')

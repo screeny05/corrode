@@ -1,3 +1,11 @@
+/**
+ * Asserts help you to make sure, the buffer you're parsing
+ * is in the correct format. These assertions are like chai, throwing an error
+ * when an assertion doesn't hold.
+ *
+ * These functions won't modify the {Corrode#vars}.
+ */
+
 import lodash from 'lodash';
 
 /**
