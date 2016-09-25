@@ -57,6 +57,34 @@ describe('CorrodeBase - Edge Cases', () => {
         });
     });
 
+    /** @test {CorrodeBase#string} */
+    it('throws errors for invalid variables when using strings as length as references to vars - strings', function(){
+        this.base
+            .uint8('unknown')
+            .string('string', 'length');
+
+        expect(this.eqArray.bind(this, [2, 0x21, 0x22], () => {}, {})).to.throw(TypeError);
+    });
+
+    /** @test {CorrodeBase#buffer} */
+    it('throws errors for invalid variables when using strings as length as references to vars - buffers', function(){
+        this.base
+            .uint8('unknown')
+            .buffer('buffer', 'length');
+
+        expect(this.eqArray.bind(this, [2, 0x21, 0x22], () => {}, {})).to.throw(TypeError);
+    });
+
+    /** @test {CorrodeBase#skip} */
+    it('throws errors for invalid variables when using strings as length as references to vars - skip', function(){
+        this.base
+            .uint8('unknown')
+            .skip('length')
+            .uint8('var_1')
+
+        expect(this.eqArray.bind(this, [2, 1, 2, 3, 4], () => {}, {})).to.throw(TypeError);
+    });
+
     /**
      * @test {CorrodeBase#chunkOffset}
      * @test {CorrodeBase#streamOffset}

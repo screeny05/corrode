@@ -163,6 +163,7 @@ export default class CorrodeBase extends Transform {
     constructor(options){
         super({ ...options, objectMode: true, encoding: null });
 
+        /** @type {Object} options default-options overwritten by user options */
         this.options = {
             ...CorrodeBase.defaults,
             ...options
@@ -186,6 +187,11 @@ export default class CorrodeBase extends Transform {
         // (useful for going back to a previous chunk)
         if(!this.isSeeking){
             this.streamBuffer.consume(this.chunkOffset);
+            /**
+             * offset in the current running chunk ({@link CorrodeBase#streamBuffer})
+             * @access public
+             * @type {Number}
+             */
             this.chunkOffset = 0;
         }
 
@@ -324,6 +330,11 @@ export default class CorrodeBase extends Transform {
             // determine length of next job
             const length = typeof job.length === 'string' ? this.vars[job.length] : job.length;
 
+            // only valid numbers can be used as length
+            if(typeof length !== 'number'){
+                throw new TypeError(`Cannot find a valid length for job ${job.name}, dereferenced length is ${JSON.stringify(length)}`);
+            }
+
             // break on unsufficient streamBuffer-length (wait if not unwinding yet)
             if(this.streamBuffer.length - this.chunkOffset < length){
                 if(this.isUnwinding && this.jobs.length > 0){
@@ -371,6 +382,11 @@ export default class CorrodeBase extends Transform {
      * {@link CorrodeBase#isUnwinding}
      */
     finishRemainingJobs(){
+        /**
+         * indicates whether only pops are getting processed
+         * @access public
+         * @type {Boolean}
+         */
         this.isUnwinding = true;
         this.removeReadJobs();
         this.jobLoop();
@@ -396,12 +412,41 @@ export default class CorrodeBase extends Transform {
      */
     _moveOffset(by){
         this.chunkOffset += by;
+        /**
+         * offset in the whole piped stream
+         * @access public
+         * @type {Number}
+         */
         this.streamOffset += by;
     }
 
     /**
      * remove all jobs from {@link CorrodeBase#jobs} with the ability to re-add them back later.
      * @returns {function} function to append all queued jobs back onto the jobs-array (borrowed from redux)
+     * @example
+     *   + [
+     *   |   { type: 'push', name: 'struct', fn },
+     *   |   { type: 'uint8', name: 'var' ' }
+     *   | ]
+     *   |
+     *   | jobLoop - iteration
+     *   |
+     *   | var unqueueJobs = queJobs();
+     *   |
+     *   | []
+     *   |
+     *   | fn();
+     *   |
+     *   | [
+     *   |   { type: 'uint8', name: 'strvar' }
+     *   | ]
+     *   |
+     *   | unqueueJobs();
+     *   |
+     *   | [
+     *   |   { type: 'uint8', name: 'strvar' },
+     *   |   { type: 'uint8', name: 'var'   }
+     *   v ]
      */
     queueJobs(){
         const queuedJobs = this.jobs.slice();
@@ -500,7 +545,7 @@ export default class CorrodeBase extends Transform {
      * data. If this data won't come the job gets aborted and corrode ends.
      * If you want to skip a negative amount of bytes you have to disable auto-flushing.
      * this can be done by setting {@link CorrodeBase#isSeeking} to `true`.
-     * @param {number} length how many bytes to skip
+     * @param {number|string} length how many bytes to skip. Given a string, corrode will try to find a variable with the given string in the current layer
      * @return {CorrodeBase} this
      */
     skip(length){
@@ -543,9 +588,10 @@ export default class CorrodeBase extends Transform {
     /**
      * pushes a buffer-job onto the job-array
      * the buffer-job will read a buffer with the given length starting at the
-     * current offset {@link CorrodeBase#bufferOffset}
+     * current offset {@link CorrodeBase#bufferOffset}.
+     * The returned Buffer will be a slice (not a copy) of the underlying {@link CorrodeBase#streamBuffer}
      * @param {string} name name of the buffer-variable
-     * @param {number} length length of the buffer in bytes
+     * @param {number|string} length length of the buffer in bytes. Given a string, corrode will try to find a variable with the given string in the current layer
      * @return {CorrodeBase} this
      */
     buffer(name, length){
@@ -561,7 +607,7 @@ export default class CorrodeBase extends Transform {
      * the string-job will read a string with the given length starting at the
      * current offset {@link CorrodeBase#bufferOffset}
      * @param {string} name name of the string-variable
-     * @param {number} length length of the string in bytes (_not characters_)
+     * @param {number|string} length length of the string in bytes (_not characters_). Given a string, corrode will try to find a variable with the given string in the current layer
      * @param {string} [encoding=CorrodeBase#options.encoding] encoding encoding used to decode the string, defaults to 'utf8'.
      *                 available encodings can be found here https://nodejs.org/api/buffer.html#buffer_buffers_and_character_encodings
      * @return {CorrodeBase} this
