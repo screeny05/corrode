@@ -13,11 +13,20 @@
 
 corrode - parsing binary data
 
+#### Install
 ```
 $ npm install --save corrode
 ```
 
+#### Tests
+```
+$ npm test
+```
+
+#### Offline Docs
+```
+$ npm run docs
+$ open doc/index.html
+```
 
 **Docs are WIP**
-
-**Not guaranteed to work synchronously**

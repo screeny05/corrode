@@ -20,8 +20,8 @@
  * These should be pure functions.
  *
  * The other way - defining your own mapper-function accepts deals with the {@link VariableStack}
- *  at {@link Corrode#vars} by itself. This means: reads and writes from {Corrode#vars}. Because of that
- * they are inherently impure. A next step ould be to move all mappers to pure functions.
+ * at {@link Corrode#vars} by itself. This means: reads and writes from {@link Corrode#vars}. Because of that
+ * they are inherently impure. A next step should be to move all mappers to pure functions.
  * (see Issue #28)
  */
 

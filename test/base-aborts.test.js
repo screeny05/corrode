@@ -1,7 +1,7 @@
 const { expect } = require('chai');
 const Base = require('../src/base');
 
-/** @test {CorrodeBase} */
+/** @test {CorrodeBase#jobLoop} */
 describe('CorrodeBase - Aborts', () => {
     beforeEach(function(){
         this.base = new Base();

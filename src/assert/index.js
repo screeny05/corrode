@@ -3,7 +3,7 @@
  * is in the correct format. These assertions are like chai, throwing an error
  * when an assertion doesn't hold.
  *
- * These functions won't modify the {Corrode#vars}.
+ * These functions won't modify {@link Corrode#vars}.
  */
 
 import lodash from 'lodash';

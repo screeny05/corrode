@@ -6,6 +6,7 @@ describe('CorrodeBase#skip', () => {
     beforeEach(function(){
         this.base = new Base();
         this.eqArray = require('./helpers/asserts').eqArray.bind(this);
+        this.eqMultiArray = require('./helpers/asserts').eqMultiArray.bind(this);
     });
 
     it('allows us to skip content', function(done){
@@ -32,7 +33,7 @@ describe('CorrodeBase#skip', () => {
             .skip(-3)
             .uint8('var_3');
 
-        expect(this.eqArray.bind(this, [1, 3, 0, 2], done, {})).to.throw(RangeError);
+        expect(this.eqMultiArray.bind(this, [[1], [3], [0], [2]], done, {})).to.throw(RangeError);
 
         done();
     });

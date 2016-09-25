@@ -123,6 +123,7 @@ describe('CorrodeBase#loop - anonymous', () => {
         });
     });
 
+    /** @test {CorrodeBase#options.anonymousLoopDiscardDeep} */
     it('anonymous loop (discard deep, no finish)', function(done){
         this.base = new Base({ anonymousLoopDiscardDeep: true });
 
@@ -151,6 +152,7 @@ describe('CorrodeBase#loop - anonymous', () => {
         });
     });
 
+    /** @test {CorrodeBase#options.anonymousLoopDiscardDeep} */
     it('anonymous loop (discard shallow, no finish)', function(done){
         this.base.loop(function(finish, discard, i){
             if(!this.vars['fix']){

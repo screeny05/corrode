@@ -9,6 +9,7 @@ describe('CorrodeBase#options', () => {
         this.eqMultiArray = require('./helpers/asserts').eqMultiArray.bind(this);
     });
 
+    /** @test {CorrodeBase#options.finishJobsOnEOF} */
     it('correctly finishes primitive jobs on EOF', function(done){
         this.base
             .uint8('var_1')
@@ -27,6 +28,7 @@ describe('CorrodeBase#options', () => {
         });
     });
 
+    /** @test {CorrodeBase#options.finishJobsOnEOF} */
     it('correctly finishes tap jobs on EOF', function(done){
         this.base
             .uint8('var_1')
@@ -49,6 +51,7 @@ describe('CorrodeBase#options', () => {
         });
     });
 
+    /** @test {CorrodeBase#options.finishJobsOnEOF} */
     it('correctly finishes loop jobs on EOF', function(done){
         this.base
             .uint8('var_1')
@@ -75,6 +78,7 @@ describe('CorrodeBase#options', () => {
         });
     });
 
+    /** @test {CorrodeBase#options.finishJobsOnEOF} */
     it('correctly finishes nested jobs on EOF', function(done){
         this.base
             .uint8('var_1')
@@ -128,6 +132,7 @@ describe('CorrodeBase#options', () => {
         });
     });
 
+    /** @test {CorrodeBase#options.finishJobsOnEOF} */
     it('correctly rests in the current state when finishJobsOnEOF is false - tap', function(done){
         this.base = new Base({ finishJobsOnEOF: false });
 
@@ -147,6 +152,7 @@ describe('CorrodeBase#options', () => {
         });
     });
 
+    /** @test {CorrodeBase#options.finishJobsOnEOF} */
     it('correctly rests in the current state when finishJobsOnEOF is false - loop', function(done){
         this.base = new Base({ finishJobsOnEOF: false });
 
@@ -167,6 +173,7 @@ describe('CorrodeBase#options', () => {
         });
     });
 
+    /** @test {CorrodeBase#options.loopVarName} */
     it('should not be disturbed, when changing the loopVarName', function(done){
         this.base = new Base({ loopVarName: '__loop' });
 

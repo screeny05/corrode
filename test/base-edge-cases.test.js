@@ -9,6 +9,7 @@ describe('CorrodeBase - Edge Cases', () => {
         this.eqMultiArray = require('./helpers/asserts').eqMultiArray.bind(this);
     });
 
+    /** @test {CorrodeBase#jobLoop} */
     it('correctly overrides primitves', function(done){
         this.base
             .uint8('var')
@@ -19,6 +20,7 @@ describe('CorrodeBase - Edge Cases', () => {
         });
     });
 
+    /** @test {CorrodeBase#string} */
     it('considers strings as length as references to vars - strings', function(done){
         this.base
             .uint8('length')
@@ -30,6 +32,7 @@ describe('CorrodeBase - Edge Cases', () => {
         });
     });
 
+    /** @test {CorrodeBase#buffer} */
     it('considers strings as length as references to vars - buffers', function(done){
         this.base
             .uint8('length')
@@ -41,6 +44,7 @@ describe('CorrodeBase - Edge Cases', () => {
         });
     });
 
+    /** @test {CorrodeBase#skip} */
     it('considers strings as length as references to vars - skip', function(done){
         this.base
             .uint8('length')
@@ -53,6 +57,10 @@ describe('CorrodeBase - Edge Cases', () => {
         });
     });
 
+    /**
+     * @test {CorrodeBase#chunkOffset}
+     * @test {CorrodeBase#streamOffset}
+    */
     it('has the correct offset', function(done){
         this.base
             .uint8('var_1')
