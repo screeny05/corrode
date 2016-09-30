@@ -45,7 +45,7 @@ const bind = function(fn){
  * @param {string}           name identifier of the variable to map
  * @param {function(val: *)} fn   map-function
  */
-export function map(name, fn){
+export function callback(name, fn){
     this.vars[name] = fn(this.vars[name]);
 }
 

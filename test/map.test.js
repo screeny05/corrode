@@ -14,7 +14,7 @@ describe('Map', () => {
 
     /** @test {map} */
     it('maps via callback', function(){
-        expect(this.map('map', 'number', val => val * 2)).to.equal(fixture.number * 2);
+        expect(this.map('callback', 'number', val => val * 2)).to.equal(fixture.number * 2);
     });
 
     /** @test {get} */
