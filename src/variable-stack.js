@@ -23,10 +23,10 @@
  *
  * @example
  *  +--------------------------+                +-----------------+
- *  |  VariableStack#value:    |                |                 | current layer
- *  |{                         |                | {}              |
- *  |  value_1: { foo: 'bar' },|                |                 | isRoot: false
- *  |}                         |                +-----------------+
+ *  | VariableStack#value:     |                |                 | current layer
+ *  | {                        |                | {}              |
+ *  |   value_1: { foo: 'bar' }|                |                 | isRoot: false
+ *  | }                        |                +-----------------+
  *  +------------+-------------+                |                 |
  *               |                              | {               |
  *               +                              |   foo: 'bar',   | VariableStack

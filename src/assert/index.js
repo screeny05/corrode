@@ -77,7 +77,7 @@ export function inBounds(name, value){
     const index = this.vars[name];
 
     if(index < 0 || index >= value.length){
-        throw new TypeError(`Expected Array of ${value.length} items to be at least ${this.vars[name]} long`);
+        throw new TypeError(`Expected Array of ${value.length} items to be at least ${index} long`);
     }
 }
 
@@ -85,12 +85,12 @@ export function inBounds(name, value){
  * assert value via callback
  * @param {string}   name   key of the value to test
  * @param {function} fn     callback
- * @param {string}   fnName optional test-name
+ * @param {string}   testname optional test-name
  * @throws TypeError assertion-error
  */
-export function callback(name, fn, fnName = fn.name){
+export function callback(name, fn, testname = fn.name){
     if(!fn(this.vars[name])){
-        throw new TypeError(`Callback failed at ${fnName}(${this.vars[name]})`);
+        throw new TypeError(`Callback failed at ${testname}(${this.vars[name]})`);
     }
 }
 
@@ -128,6 +128,6 @@ export function bitmask(name, mask, assertMatch = true){
     const val = this.vars[name];
 
     if((val & mask) === mask === !assertMatch){
-        throw new TypeError(`Expected var ${name} to ${assertMatch ? ' ' : 'not'}match bitmask (value: 0b${val.toString(2)} assert: 0b${mask.toString(2)})`);
+        throw new TypeError(`Expected var ${name} to ${assertMatch ? '' : 'not '}match bitmask (value: 0b${val.toString(2)} assert: 0b${mask.toString(2)})`);
     }
 }

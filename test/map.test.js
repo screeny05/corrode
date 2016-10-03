@@ -69,4 +69,32 @@ describe('Map', () => {
         map.push.call(that, 'object');
         expect(that.vars).to.deep.equal(fixture.object);
     });
+
+    /** @test {bitmask} */
+    it('maps via bitmask', function(){
+        expect(this.map('bitmask', 'bitmaskMatch', {
+            isX80: 0x80,
+            isX40: 0x40,
+            isX20: 0x20,
+            isX10: 0x10,
+            isX08: 0x08,
+            isX04: 0x04,
+            isX02: 0x02,
+            isX01: 0x01
+        })).to.deep.equal({
+            isX80: true,
+            isX40: false,
+            isX20: true,
+            isX10: true,
+            isX08: true,
+            isX04: true,
+            isX02: true,
+            isX01: false
+        });
+    });
+
+    /** @test {bitmask} */
+    it('maps single values via bitmask', function(){
+        expect(this.map('bitmask', 'bitmaskMatch', 0x80)).to.be.true;
+    });
 });

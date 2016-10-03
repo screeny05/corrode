@@ -3,8 +3,10 @@
  * {@link Corrode#vars}
  *
  * Imagine them like this:
+ * ```
  * const parser = new Corrode();
  * parser.uint8('value').map.double('value');
+ * ```
  *
  * Of course there's no real mapping-function which doubles a value.
  * But the concept is that they are functions receiving a value, processing it
@@ -23,6 +25,9 @@
  * at {@link Corrode#vars} by itself. This means: reads and writes from {@link Corrode#vars}. Because of that
  * they are inherently impure. A next step should be to move all mappers to pure functions.
  * (see Issue #28)
+ *
+ * Note that all mappers don't check for existance, validity or other assumptions.
+ * You have to do that yourself with assertions.
  */
 
 /**
@@ -44,6 +49,10 @@ const bind = function(fn){
  * replace a variable in the stack by a mapped version of itself
  * @param {string}           name identifier of the variable to map
  * @param {function(val: *)} fn   map-function
+ * @example
+ * parser.uint8('value').map.callback('value', val => (val - 1) * 2)
+ *
+ * // [21] => { value: 10 }
  */
 export function callback(name, fn){
     this.vars[name] = fn(this.vars[name]);
@@ -54,6 +63,15 @@ export function callback(name, fn){
  * @param {string} name                    identifier of the variable to map
  * @param {array|object|string} accessable accessable variable
  * @param {string} [src=name]              identifier of the variable in {@link Corrode#vars} by which to access `accessable`
+ * @example <caption>get from array</caption>
+ * parser.uint8('accessor').map.get('accessor', ['A', 'B', 'C', 'D'])
+ *
+ * // [2] => { accessor: 'C' }
+ *
+ * @example <caption>get from object</caption>
+ * parser.terminatedString('accessor').map.get('accessor', { foo: 'A', bar: 'B', qux: 'C' })
+ *
+ * // ['q', 'u', 'x', 0x00] => { accessor: 'C' }
  */
 export function get(name, accessable, src = name){
     this.vars[name] = accessable[this.vars[src]];
@@ -119,6 +137,39 @@ export function find(name, array, attr, src = name){
  */
 export function push(name = 'values'){
     this.vars = this.vars[name];
+}
+
+/**
+ * map a value by checking whether it has some bits set
+ * @param {string} name    identifier of the variable, to write to {@link Corrode#vars}
+ * @param  {Object|number} maskObject Object or number by which to check the bits of the variable to map
+ * @example <caption>map via number</caption>
+ * parser.uint8('bits').map.bitmask('bits', 0x80)
+ *
+ * // [0b10111110] => { bits: true }
+ *
+ * @example <caption>map via object</caption>
+ * parser.uint8('bits').map.bitmask('bits', {
+ *   isCompressed: 0x80,
+ *   isReadOnly: 0x40
+ * })
+ *
+ * // [0b10111110] => { bits: { isCompressed: true, isReadOnly: false } }
+ */
+export function bitmask(name, maskObject){
+    const bits = this.vars[name];
+
+    // shortcut for single values
+    if(typeof maskObject === 'number'){
+        return this.vars[name] = (bits & maskObject) === maskObject;
+    }
+
+    const values = {};
+    Object.keys(maskObject).forEach(maskName => {
+        const mask = maskObject[maskName];
+        values[maskName] = (bits & mask) === mask;
+    });
+    this.vars[name] = values;
 }
 
 /**
