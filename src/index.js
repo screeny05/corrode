@@ -6,7 +6,9 @@ import * as MAPPERS from './map';
 import * as ASSERTIONS from './assert';
 
 /**
- * This class is what's exposed to the developer.
+ * Corrode
+ * A batteries-included library for reading your binary data.
+ * It helps you converting that blob-mess into readable data.
  *
  * It inherits from {@link CorrodeBase} to make the abstraction between these
  * two components more obvious. CorrodeBase does all the dirty low-level work

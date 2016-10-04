@@ -83,6 +83,22 @@ export function get(name, accessable, src = name){
  * @param {Array<Object>} array array, containing the objects to filter
  * @param {string} attr         identifier of the attribute from an object of `array` to compare against
  * @param {string} [src=name]   {@link Corrode#vars}-identifier to read from
+ * @throws {Error} when no object can be found
+ * @example
+ * parser.uint8('matchAgainst').map.findAll('matchAgainst', [
+ *   { children: 1, name: 'foo' },
+ *   { children: 2, name: 'bar' },
+ *   { children: 2, name: 'qux' }
+ * ], 'children')
+ *
+ * // [2] => { matchAgainst: [
+ * //   { children: 2, name: 'bar' },
+ * //   { children: 2, name: 'qux' }
+ * // ]}
+ *
+ * // [1] => { matchAgainst: [
+ * //   { children: 1, name: 'foo' }
+ * // ]}
  */
 export function findAll(name, array, attr, src = name){
     const filtered = array.filter(item => item[attr] === this.vars[src]);
@@ -94,11 +110,22 @@ export function findAll(name, array, attr, src = name){
 
 /**
  * retrieve the first object from an array of objects, matching a specified attribute against a specified value
- * like {findAll}, but returning only the first element
+ * like {@link findAll}, but returning only the first element
  * @param {string} name         identifier of the variable, to write to {@link Corrode#vars}
  * @param {Array<Object>} array array, containing the objects to filter
  * @param {string} attr         identifier of the attribute from an object of `array` to compare against
  * @param {string} [src=name]   {@link Corrode#vars}-identifier to read from
+ * @throws {Error} when no object can be found
+ * @example
+ * parser.uint8('matchAgainst').map.find('matchAgainst', [
+ *   { id: 1, name: 'foo' },
+ *   { id: 7, name: 'bar' },
+ *   { id: 4, name: 'qux' }
+ * ], 'id')
+ *
+ * // [4] => { matchAgainst: { id: 4, name: 'qux' } }
+ *
+ * // [2] => Error cannot find object!
  */
 export function find(name, array, attr, src = name){
     findAll.call(this, name, array, attr, src);
@@ -176,17 +203,29 @@ export function bitmask(name, maskObject){
  * retrieve absolute value of a number
  * {@link Math.abs}
  * @type {function}
+ * @example
+ * this.int8('value').map.abs('value')
+ *
+ * // [-14] => { value: 14 }
  */
 export const abs = bind(Math.abs);
 
 /**
  * retrieve inverted number
  * @type {function}
+ * @example
+ * this.uint8('value').map.abs('value')
+ *
+ * // [27] => { value: -27 }
  */
 export const invert = bind(val => val * -1);
 
 /**
  * retrieve trimmed string
  * @type {function}
+ * @example
+ * this.terminatedString('value').map.trim('value')
+ *
+ * // [' ', '\t', 'f', 'o', 'b', 'r', '\n'] => { value: 'fobr' }
  */
 export const trim = bind(str => str.trim());

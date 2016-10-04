@@ -31,26 +31,20 @@ const FRAME_TYPE_PICTURE      = /^APIC$/;
 const FRAME_TYPE_EXPERIMENTAL = /^[XYZ]/;
 
 Corrode.addExtension('flagField', function flagField(src, flagsInvalidBitmask, flagsMap){
-    const bits = this.vars[src];
-    const destFlags = {};
-    if((bits & flagsInvalidBitmask) > 0){
+    if((this.vars[src] & flagsInvalidBitmask) > 0){
         throw new TypeError('ID3 File contains invalid flag, aborting mission.');
     }
 
-
-    Object
-        .keys(flagsMap)
-        .map(flagName => destFlags[flagName] = (bits & flagsMap[flagName]) === flagsMap[flagName]);
-
-    return destFlags;
+    this.map.bitmask('src', flagsMap);
 });
 
 Corrode.addExtension('id3frameHeader', function id3frameHeader(){
     this
         .string('id', 4)
         .uint32be('size')
-        .uint16('flagmask')
-        .ext.flagField('flags', 'flagmask', FRAME_FLAG_INVALID, {
+        .uint16('flags')
+        .assert.bitmask('flags', FRAME_FLAG_INVALID, false)
+        .map.bitmask('flags', {
             tagAlterPreserve: FRAME_FLAG_TAG_ALTER_PRESERVE,
             fileAlterPreserve: FRAME_FLAG_FILE_ALTER_PRESERVE,
             readOnly: FRAME_FLAG_READ_ONLY,
@@ -94,12 +88,13 @@ id3Parser
     .uint8('version')
     .uint8('revision')
     .assert.equal('version', 3)
-    .uint8('flagmask')
-    .ext.flagField('flags', 'flagmask', TAG_FLAG_INVALID, {
+    .uint8('flags')
+    .assert.bitmask('flags', TAG_FLAG_INVALID, false)
+    .map.bitmask('flags', {
         unsynchronisation: TAG_FLAG_UNSYNCHRONISATION,
         extendedHeader: TAG_FLAG_EXTENDED_HEADER,
         experimental: TAG_FLAG_EXPERIMENTAL
-    });
+    })
 
 // get tag-size
 id3Parser.tap('size', function(){
@@ -141,6 +136,8 @@ id3Parser.loop('frames', function(end, discard, i){
         });
 });
 
+
+// run parser & print data
 fs.createReadStream(FILE_PATH)
     .pipe(id3Parser)
     .on('finish', () => {
@@ -157,7 +154,7 @@ fs.createReadStream(FILE_PATH)
                 try {
                     var path = require('temp').path({ suffix: '.jpg' });
                     require('fs').writeFileSync(path, frame.content.data);
-                    require('image-to-ascii')(path, { bg: true }, (err, conv) => console.log(err || conv));
+                    require('image-to-ascii')(path, { bg: true, width: 40 }, (err, conv) => console.log(err || conv));
                 } catch(e){}
             });
     });
