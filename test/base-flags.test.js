@@ -166,16 +166,16 @@ describe('CorrodeBase#options', () => {
             });
 
         this.eqArray([1, 2, 3], done, () => {
-            expect(this.base.varStack.peek()[this.base.options.loopVarName]).to.exist;
+            expect(this.base.varStack.peek()[this.base.options.loopIdentifier]).to.exist;
             expect(this.base.varStack.top.isRoot).to.not.be.true;
             expect(this.base.varStack.stack.length).to.be.greaterThan(1);
             expect(this.base.jobs).to.not.be.empty;
         });
     });
 
-    /** @test {CorrodeBase#options.loopVarName} */
-    it('should not be disturbed, when changing the loopVarName', function(done){
-        this.base = new Base({ loopVarName: '__loop' });
+    /** @test {CorrodeBase#options.loopIdentifier} */
+    it('should not be disturbed, when changing the loopIdentifier', function(done){
+        this.base = new Base({ loopIdentifier: '__loop' });
 
         this.base.loop('loop', function(){
             this.uint8('var');

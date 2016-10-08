@@ -1,6 +1,6 @@
 {
 	"source": "src",
-	"destination": "doc",
+	"destination": "esdoc",
 	"plugins": [
 		{
 			"name": "esdoc-es7-plugin"
@@ -9,5 +9,11 @@
 	"test": {
 		"type": "mocha",
 		"source": "test"
+	},
+	"manual": {
+		"changelog": ["CHANGELOG.md"],
+		"tutorial": ["doc/getting-started.md"],
+		"overview": ["doc/overview.md"],
+		"configuration": ["doc/configuration.md"]
 	}
 }

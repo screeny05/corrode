@@ -1,2 +1,8 @@
-coverage
 .nyc_output
+.travis.yml
+corrode.svg
+esdoc.json
+
+coverage
+esdoc
+test

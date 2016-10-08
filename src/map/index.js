@@ -1,5 +1,5 @@
 /**
- * These functions provide basic mapping-abilities to Corrode's VariableStack
+ * These functions provide basic mapping-abilities for Corrode's VariableStack
  * {@link Corrode#vars}
  *
  * Imagine them like this:

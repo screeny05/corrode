@@ -17,15 +17,18 @@ const LOOP_VAR_SYMBOL = Symbol('loop-variable');
  * library for even huge files. Unless necessary or explicitly wanted by the user,
  * corrode flushes it's internal buffer {@link Corrode#streamBuffer} asap.
  *
- * The library works not directly. If you call e.g. {@link Corrode#uint32be} there won't
- * be a direct read from a given buffer. Instead there will be a new *job*, added
- * to {@link Corrode#jobs}. This array is responsible for managing the work to be done
- * once data flows. This way, it's possible to insert new jobs and making for
- * an imperative way of using this library.
+ * The library doesn't work directly when called. If you call e.g.
+ * {@link Corrode#uint32be} there won't be a direct read from a given buffer.
+ * Instead there will be a new *job*, added to {@link Corrode#jobs}.
+ * This array of jobs is responsible for managing the work to be done
+ * once data flows. This way, it's possible to insert new jobs on the fly
+ * and making for an imperative way of using this library.
  *
  * Corrode will process the given stream as long as long as there's new chunks
  * and jobs. Once either of these drain, corrode will stop and clean possibly
  * remaining jobs (i.e. remove all read-jobs).
+ *
+ * In fact CorrodeBase can be used as a standalone-library, if low-level is your thing.
  */
 export default class CorrodeBase extends Transform {
 
@@ -37,7 +40,7 @@ export default class CorrodeBase extends Transform {
      */
     static defaults = {
         endianness: LITTLE_ENDIAN,
-        loopVarName: LOOP_VAR_SYMBOL,
+        loopIdentifier: LOOP_VAR_SYMBOL,
         encoding: 'utf8',
         finishJobsOnEOF: true,
         anonymousLoopDiscardDeep: false,
@@ -154,7 +157,7 @@ export default class CorrodeBase extends Transform {
      * options default to {@link Corrode.defaults}, also accepts options
      * for {@link Transform#constructor}.
      * @param {string}  options.endianness=CorrodeBase#LITTLE_ENDIAN endianness, when none is explicitly given by the job
-     * @param {*}       options.loopVarName=Symbol(loop-variable)    identifier of the temporary variable used internally for loops
+     * @param {*}       options.loopIdentifier=Symbol(loop-variable)    identifier of the temporary variable used internally for loops
      * @param {string}  options.encoding='utf8'                      default encoding, when none is explicitly given by the job
      * @param {boolean} options.finishJobsOnEOF=true                 whether to finish all remaining jobs on stream-end or leave the corrode-instance in an unfinished state with possibly many unresolved functions and unpredictable state (see tests)
      * @param {boolean} options.anonymousLoopDiscardDeep=false       when anonymous loop-jobs get discarded, the original state which gets restored is either a shallow copy or a deep copy of the original object (see tests)
@@ -281,7 +284,7 @@ export default class CorrodeBase extends Transform {
                     continue;
                 }
 
-                const loopVar = this.options.loopVarName;
+                const loopIdentifier = this.options.loopIdentifier;
                 const unqueue = this.queueJobs();
 
                 if(typeof job.name !== 'undefined'){
@@ -290,9 +293,9 @@ export default class CorrodeBase extends Transform {
                     }
 
                     this
-                        .tap(loopVar, job.callback, [job.finish, job.discard, job.iteration++])
+                        .tap(loopIdentifier, job.callback, [job.finish, job.discard, job.iteration++])
                         .tap(function(){
-                            const loopResult = this.vars[loopVar];
+                            const loopResult = this.vars[loopIdentifier];
 
                             // push vars only if job isn't discarded and yielded vars
                             // (no empty objects this way)
@@ -300,26 +303,26 @@ export default class CorrodeBase extends Transform {
                                 this.vars[job.name].push(loopResult);
                             }
                             job.discarded = false;
-                            delete this.vars[loopVar];
+                            delete this.vars[loopIdentifier];
                         });
 
                 } else {
                     // make copy, in case the user discards the result
                     // {@link CorrodeBase#options.anonymousLoopDiscardDeep}
                     if(this.options.anonymousLoopDiscardDeep){
-                        job[loopVar] = cloneDeep(this.vars);
+                        job[loopIdentifier] = cloneDeep(this.vars);
                     } else {
-                        job[loopVar] = { ...this.vars };
+                        job[loopIdentifier] = { ...this.vars };
                     }
 
                     this
                         .tap(job.callback, [job.finish, job.discard, job.iteration++])
                         .tap(function(){
-                            if(job.discarded && typeof job[loopVar] !== 'undefined'){
-                                this.vars = job[loopVar];
+                            if(job.discarded && typeof job[loopIdentifier] !== 'undefined'){
+                                this.vars = job[loopIdentifier];
                             }
                             job.discarded = false;
-                            delete job[loopVar];
+                            delete job[loopIdentifier];
                         });
                 }
 
