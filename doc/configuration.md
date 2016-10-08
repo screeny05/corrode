@@ -26,7 +26,7 @@ Determines the identifier of the temporary variable which gets created when usin
 ## `encoding`
 **default:** `'utf8'`
 
-**accepts:** Any encoding nodes `Buffer.prototype.toString` accepts. [Full list here](https://nodejs.org/api/buffer.html#buffer_buffers_and_character_encodings).
+**accepts:** Any encoding `Buffer.prototype.toString` accepts. [Full list here](https://nodejs.org/api/buffer.html#buffer_buffers_and_character_encodings).
 
 Determines which encoding to use for string-functions like `.string()` or `.terminatedString()`. Can be overwitten on a per-use-basis by the functions themselves.
 

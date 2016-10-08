@@ -1,7 +1,7 @@
 {
   "name": "corrode",
-  "version": "0.1.0",
-  "description": "",
+  "version": "1.0.0",
+  "description": "A batteries-included library for reading binary data.",
   "main": "dist/index.js",
   "scripts": {
     "build": "babel src --out-dir dist --source-maps",
@@ -23,7 +23,7 @@
   "bugs": {
     "url": "https://github.com/screeny05/corrode/issues"
   },
-  "homepage": "https://github.com/screeny05/corrode#readme",
+  "homepage": "https://github.com/screeny05/corrode",
   "devDependencies": {
     "babel-cli": "^6.10.1",
     "babel-eslint": "^6.1.0",

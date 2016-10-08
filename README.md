@@ -10,7 +10,7 @@
 [![build status](https://img.shields.io/travis/screeny05/corrode.svg?style=flat-square)](https://travis-ci.org/screeny05/corrode)
 [![docs](https://doc.esdoc.org/github.com/screeny05/corrode/badge.svg)](https://doc.esdoc.org/github.com/screeny05/corrode/)
 
-Corrode is a batteries-included library for reading your binary data. It helps you converting that blob-mess into readable data.
+Corrode is a batteries-included library for reading binary data. It helps you converting that blob-mess into useable data.
 
 Use it to parse _that one_ obscure binary-file with the help of JavaScript.
 
@@ -36,7 +36,7 @@ corrode provides standard read-actions like uint8-uint64 for big & little endian
 Additionally you can use assertions to always be sure, the data you parse corresponds to a specified format.
 The parsing is done not by a configuration-object, but by imperative code, allowing for far greater flexibility.
 
-corrode is an abstraction on top of nodes `TransformStream` and as such is pipeable to but also provides functions for more simple usage.
+corrode is an abstraction on top of `TransformStream` and as such is pipeable to but also provides functions for more simple usage.
 
 This library is not only heavily inspired by [dissolve](https://github.com/deoxxa/dissolve), it in fact can be seen as a total rewrite with even more features.
 The code is written in ES7, fully documented and tested.
@@ -78,7 +78,7 @@ These are just some of the very basic operations supported by Corrode.
 
 ## Examples
 All examples can be found in the examples/-folder. Included:
-* ID3v2.3-Parser - strict, unforgiving parser for a subset of this standard. It needs `npm i image-to-ascii temp` and can be run with `node examples/id3 test.mp3`.
+* ID3v2.3-Parser - strict, unforgiving parser for a subset of the standard used to store meta-data in mp3-files. It needs `npm i image-to-ascii temp` and can be run with `node examples/id3 test.mp3`.
 
 If you'd like to include your own examples, just open a PR. I'm more than happy to not have to think about existing complex structured binary data to parse myself.
 
@@ -108,7 +108,7 @@ corrode is currently not tested for use in browsers.
 
 ## Used dependencies (3)
 The following dependencies are installed when installing corrode:
-* bl - used for buffering data, in case a job gets gready or you don't want to auto-flush
+* bl - used for buffering data, in case a job gets greedy or you don't want to auto-flush
 * readable-streams - ensures consistent and stable behaviour of the underlying Transform-Stream
 * lodash - several utility functions
 
