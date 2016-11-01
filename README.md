@@ -84,9 +84,9 @@ If you'd like to include your own examples, just open a PR. I'm more than happy 
 
 
 ## Documentation & API Reference
-* [Corrode Overview](https://doc.esdoc.org/github.com/screeny05/corrode/doc/manual/overview.html)
-* [API Reference](https://doc.esdoc.org/github.com/screeny05/corrode/doc/identifiers.html)
-* [Getting Started](https://doc.esdoc.org/github.com/screeny05/corrode/doc/manual/tutorial.html)
+* [Corrode Overview](https://doc.esdoc.org/github.com/screeny05/corrode/manual/overview.html)
+* [API Reference](https://doc.esdoc.org/github.com/screeny05/corrode/identifiers.html)
+* [Getting Started](https://doc.esdoc.org/github.com/screeny05/corrode/manual/tutorial.html)
 
 
 ## Why use corrode over dissolve
