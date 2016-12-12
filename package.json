@@ -1,6 +1,6 @@
 {
   "name": "corrode",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A batteries-included library for reading binary data.",
   "main": "dist/index.js",
   "scripts": {
@@ -46,8 +46,8 @@
   },
   "dependencies": {
     "bl": "^1.1.2",
-    "lodash": "^4.16.1",
-    "readable-stream": "^2.1.5"
+    "lodash": "^4.17.2",
+    "readable-stream": "^2.2.2"
   },
   "eslintConfig": {
     "extends": "xo/esnext",

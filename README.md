@@ -61,12 +61,12 @@ parser
     });
 ```
 
-#### Parse a buffer
+#### Parsing a buffer
 ```javascript
 parser.fromBuffer(buffer, () => console.log(parser.vars));
 ```
 
-#### Parse a filestream
+#### Parsing a filestream
 ```javascript
 var stream = fs.createReadStream(file);
 stream.pipe(parser);

@@ -1,6 +1,6 @@
 {
   "name": "corrode",
-  "version": "0.1.0",
+  "version": "1.0.1",
   "dependencies": {
     "bl": {
       "version": "1.1.2",
@@ -10,7 +10,7 @@
         "readable-stream": {
           "version": "2.0.6",
           "from": "readable-stream@>=2.0.5 <2.1.0",
-          "resolved": "http://registry.npm.taobao.org/readable-stream/download/readable-stream-2.0.6.tgz"
+          "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.0.6.tgz"
         }
       }
     },
@@ -27,17 +27,17 @@
     "inherits": {
       "version": "2.0.3",
       "from": "inherits@>=2.0.1 <2.1.0",
-      "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.1.tgz"
+      "resolved": "https://registry.npmjs.org/inherits/-/inherits-2.0.3.tgz"
     },
     "isarray": {
       "version": "1.0.0",
       "from": "isarray@>=1.0.0 <1.1.0",
-      "resolved": "http://registry.npm.taobao.org/isarray/download/isarray-1.0.0.tgz"
+      "resolved": "https://registry.npmjs.org/isarray/-/isarray-1.0.0.tgz"
     },
     "lodash": {
-      "version": "4.16.1",
-      "from": "lodash@>=4.6.1 <5.0.0",
-      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.13.1.tgz"
+      "version": "4.17.2",
+      "from": "lodash@>=4.17.2 <5.0.0",
+      "resolved": "https://registry.npmjs.org/lodash/-/lodash-4.17.2.tgz"
     },
     "process-nextick-args": {
       "version": "1.0.7",
@@ -45,9 +45,9 @@
       "resolved": "https://registry.npmjs.org/process-nextick-args/-/process-nextick-args-1.0.7.tgz"
     },
     "readable-stream": {
-      "version": "2.1.5",
-      "from": "readable-stream@>=2.1.4 <3.0.0",
-      "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.1.4.tgz"
+      "version": "2.2.2",
+      "from": "readable-stream@>=2.2.2 <3.0.0",
+      "resolved": "https://registry.npmjs.org/readable-stream/-/readable-stream-2.2.2.tgz"
     },
     "string_decoder": {
       "version": "0.10.31",
