@@ -1,3 +1,5 @@
+# Configuration
+
 Corrode provides some configuration-options. These are either defaults, safeguards or advanced-user-stuff.
 
 Corrode accepts an object as its first parameter, containing options.

@@ -1,3 +1,5 @@
+# Getting started
+
 ## Introduction
 This document will guide you through most of the basic functionality of corrode by example.
 Our goal is to parse a structured file for storing flat, arbitrary data.

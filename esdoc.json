@@ -1,19 +1,24 @@
 {
 	"source": "src",
 	"destination": "esdoc",
-	"plugins": [
-		{
-			"name": "esdoc-es7-plugin"
-		}
-	],
 	"test": {
 		"type": "mocha",
 		"source": "test"
 	},
 	"manual": {
+		"overview": ["doc/overview.md"],
 		"changelog": ["CHANGELOG.md"],
 		"tutorial": ["doc/getting-started.md"],
-		"overview": ["doc/overview.md"],
 		"configuration": ["doc/configuration.md"]
+	},
+	"experimentalProposal": {
+		"classProperties": true,
+		"objectRestSpread": true,
+		"decorators": true,
+		"doExpressions": true,
+		"functionBind": true,
+		"asyncGenerators": true,
+		"exportExtensions": true,
+		"dynamicImport": true
 	}
 }

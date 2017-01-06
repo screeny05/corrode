@@ -1,3 +1,5 @@
+# Overview
+
 ## Components
 Corrode consists of 5 components:
 1. The [VariableStack](https://doc.esdoc.org/github.com/screeny05/corrode/class/src/variable-stack.js~VariableStack.html). It handles all things variables when reading data, pushing structures and looping bytes.
