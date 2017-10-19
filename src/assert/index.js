@@ -96,11 +96,16 @@ export function callback(name, fn, testname = fn.name){
 
 /**
  * assert array to be a given length
- * @param {string}   name   key of the value to test
- * @param {number} length comparision
+ * @param {string}        name   key of the value to test
+ * @param {number|string} length comparision
  * @throws TypeError assertion-error
  */
 export function arrayLength(name, length){
+    // try to get the length param from the vars if available
+    if(typeof length === 'string' && this.vars[length] !== 'undefined'){
+        length = this.vars[length];
+    }
+
     if(typeof this.vars[name] === 'undefined' || this.vars[name].length !== length){
         throw new TypeError(`Expected array to have a length of ${length}, has ${this.vars[name].length}`);
     }

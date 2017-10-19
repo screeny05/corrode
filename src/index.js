@@ -5,6 +5,8 @@ import { isPlainObject } from 'lodash';
 import * as MAPPERS from './map';
 import * as ASSERTIONS from './assert';
 
+import { inspect } from 'util';
+
 /**
  * Corrode
  * A batteries-included library for reading your binary data.
@@ -43,7 +45,7 @@ export default class Corrode extends CorrodeBase {
      * @param {object} options {@link CorrodeBase#constructor}
      */
     constructor(options){
-        super(options, ...arguments);
+        super(...arguments);
 
         // bind ext, map & assert onto this instance
         /** @type {Object<bound Function>} ext {@link Corrode.EXTENSIONS} bound to this instance */
@@ -74,7 +76,7 @@ export default class Corrode extends CorrodeBase {
             name = undefined;
         }
 
-        this.tap(function(){
+        return this.tap(function(){
             if(typeof length === 'string'){
                 length = this.vars[length];
             }
@@ -213,7 +215,10 @@ export default class Corrode extends CorrodeBase {
      */
     debug(){
         return this.tap(function(){
-            console.log(this.vars);
+            console.log(inspect(this.vars, {
+                showHidden: false,
+                depth: null
+            }));
         });
     }
 
@@ -249,7 +254,7 @@ export default class Corrode extends CorrodeBase {
                 const value = fn.apply(this, args);
 
                 if(typeof value !== 'undefined'){
-                    if(this.options.strictObjectMode && this.jobs.length > 0 && !isPlainObject(value)){
+                    if(this.options.strictObjectMode && this.jobs.length > 0 && value !== this && !isPlainObject(value)){
                         throw new TypeError(`Can't mix immediate returns with later reads on a non-object value (${JSON.stringify(value)}) in strictObjectMode`);
                     }
                     /** @type {Object} vars {@link CorrodeBase#vars} */

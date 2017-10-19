@@ -13,6 +13,10 @@ describe('Corrode - Helpers', () => {
      * @test {Corrode#debug}
      */
     it('debugs', function(done){
+        let output = [];
+        const orgConsoleLog = console.log;
+        console.log = (...strings) => output = strings;
+
         this.base
             .loop('array', function(end, discard, i){
                 this
@@ -21,7 +25,13 @@ describe('Corrode - Helpers', () => {
             })
             .debug();
 
-        this.eqArray([3, 5, 7], done, {
+        this.eqArray([3, 5, 7], function(){
+            expect(output).to.deep.equal([
+                '{ array: [ 3, 5, 7 ] }'
+            ]);
+            console.log = orgConsoleLog;
+            done();
+        }, {
             array: [3, 5, 7],
         });
     });

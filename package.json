@@ -1,8 +1,9 @@
 {
   "name": "corrode",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A batteries-included library for reading binary data.",
   "main": "dist/index.js",
+  "module": "src/index.js",
   "scripts": {
     "build": "babel src --out-dir dist --source-maps",
     "watch": "npm run build -- --watch",
@@ -51,10 +52,6 @@
   },
   "eslintConfig": {
     "extends": "xo/esnext",
-    "env": {
-      "browser": true,
-      "jquery": true
-    },
     "rules": {
       "indent": [
         "error",

@@ -1,3 +1,15 @@
+class VariableStackLayer {
+    constructor(value = {}, isRoot = false, name = null){
+        this.value = value;
+        this.isRoot = isRoot;
+        this.name = name;
+    }
+
+    isRoot = false;
+    value = {};
+    name = null;
+}
+
 /**
  * The VariableStack is a special kind of stack.
  * It allows corrode to do black magic like loops in loops and other crazy stuff.
@@ -49,21 +61,22 @@
  *
 */
 export default class VariableStack {
+    constructor(){
+        this.top = this.stack[0];
+    }
 
     /**
      * internal storage for the stack
      * @access public
      * @type {Array<Object>}
      */
-    stack = [{ isRoot: true, value: {} }];
+    stack = [new VariableStackLayer({}, true)];
 
     /**
      * retrieve the top-layer
      * @return {Object} the current layer
      */
-    get top(){
-        return this.peekLayer(0);
-    }
+    top = null;
 
     /**
      * retrieve the value of the top.layer
@@ -139,11 +152,8 @@ export default class VariableStack {
             value = this.value[name];
         }
 
-        this.stack.push({
-            isRoot: false,
-            name,
-            value
-        });
+        const index = this.stack.push(new VariableStackLayer(value, false, name));
+        this.top = this.stack[index - 1];
     }
 
     /**
@@ -157,6 +167,8 @@ export default class VariableStack {
         }
 
         this.stack.pop();
+
+        this.top = this.stack[this.stack.length - 1];
 
         // reassure that the value in the layer above is right
         // (in case of non-object values)

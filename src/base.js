@@ -240,7 +240,7 @@ export default class CorrodeBase extends Transform {
                 // in strictObjectMode the variable being pushed has to be a real object.
                 // this prevents accidentaly pushing numbers, strings, etc.
                 if(this.options.strictObjectMode && typeof this.vars[job.name] !== 'undefined' && !isPlainObject(this.vars[job.name])){
-                    throw new TypeError(`Can't push into a non-object value (${JSON.stringify(this.vars[job.name])}) in strictObjectMode`);
+                    throw new TypeError(`Can't push into a non-object value (${job.name}) in strictObjectMode`);
                 }
 
                 this.jobs.shift();
@@ -452,13 +452,13 @@ export default class CorrodeBase extends Transform {
      *   v ]
      */
     queueJobs(){
-        const queuedJobs = this.jobs.slice();
+        const queuedJobs = this.jobs;
 
         // empty jobs
-        this.jobs.splice(0);
+        this.jobs = [];
 
         // unqueue-method
-        return () => this.jobs.push(...queuedJobs);
+        return () => this.jobs = this.jobs.concat(queuedJobs);
     }
 
     /**

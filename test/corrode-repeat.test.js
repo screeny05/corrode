@@ -315,4 +315,32 @@ describe('Corrode#repeat', () => {
             repeat: [0, 1, 2, 3, 4]
         });
     });
+
+    it('repeats 0 times direct', function(done){
+        this.base
+            .repeat('repeat', 0, function(){
+                this.uint8('shouldntexist')
+            })
+            .uint8('value');
+
+        this.eqArray([10, 20], done, {
+            repeat: [],
+            value: 10
+        });
+    });
+
+    it('repeats 0 times with a string as length', function(done){
+        this.base
+            .uint8('lengthValue')
+            .repeat('repeat', 'lengthValue', function(){
+                this.uint8('shouldntexist')
+            })
+            .uint8('value');
+
+        this.eqArray([0, 10, 20], done, {
+            lengthValue: 0,
+            repeat: [],
+            value: 10
+        });
+    });
 });
