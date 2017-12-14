@@ -1,24 +1,35 @@
 {
-	"source": "src",
-	"destination": "esdoc",
-	"test": {
-		"type": "mocha",
-		"source": "test"
-	},
-	"manual": {
-		"overview": ["doc/overview.md"],
-		"changelog": ["CHANGELOG.md"],
-		"tutorial": ["doc/getting-started.md"],
-		"configuration": ["doc/configuration.md"]
-	},
-	"experimentalProposal": {
-		"classProperties": true,
-		"objectRestSpread": true,
-		"decorators": true,
-		"doExpressions": true,
-		"functionBind": true,
-		"asyncGenerators": true,
-		"exportExtensions": true,
-		"dynamicImport": true
-	}
+	"source": "./src",
+	"destination": "./esdoc",
+	"plugins": [{
+		"name": "esdoc-standard-plugin",
+		"option": {
+			"manual": {
+				"files": [
+					"./doc/overview.md",
+					"./doc/getting-startet.md",
+					"./doc/configuration.md",
+					"./CHANGELOG.md"
+				]
+			},
+			"test": {
+				"source": "./test"
+			}
+		}
+	}, {
+		"name": "esdoc-ecmascript-proposal-plugin",
+		"option": {
+			"classProperties": true,
+			"objectRestSpread": true,
+			"doExpressions": true,
+			"functionBind": true,
+			"functionSent": true,
+			"asyncGenerators": true,
+			"decorators": true,
+			"exportExtensions": true,
+			"dynamicImport": true
+		}
+	}, {
+		"name": "esdoc-coverage-plugin"
+	}]
 }
