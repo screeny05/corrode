@@ -9,7 +9,7 @@
   <script src="script/prettify/prettify.js"></script>
   <script src="script/manual.js"></script>
 <meta name="description" content="A batteries-included library for reading binary data."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="corrode"><meta property="twitter:description" content="A batteries-included library for reading binary data."></head>
-<body class="layout-container manual-root manual-index" data-ice="rootContainer">
+<body class="layout-container manual-root" data-ice="rootContainer">
 
 <header>
   <a href="./">Home</a>
@@ -84,36 +84,10 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div class="github-markdown">
-  
-
-  
-
-  <div class="manual-cards">
-    
-  <div class="manual-card-wrap" data-ice="cards">
-      <div class="manual-card">
-        <div data-ice="card"><h1>Overview</h1><h2>Components</h2><p>Corrode consists of 5 components:</p><ol>
-<li>The <a href="https://doc.esdoc.org/github.com/screeny05/corrode/class/src/variable-stack.js~VariableStack.html">VariableStack</a>. It handles all things variables when reading data, pushing structures and looping bytes.</li>
-<li>The <a href="https://doc.esdoc.org/github.com/screeny05/corrode/class/src/base.js~CorrodeBase.html">CorrodeBase</a>. This is the part of corrode, reading all bytes. It&apos;s the low-level part handling all the small things, preventing you from shooting yourself into the foot. Of course, it also enables you to do just that, if you explicitly ask for it.</li>
-<li>The <a href="">Assertions</a>. Just like your assertion-library of choice these ensure you read correct data. If not it will abort mission.</li>
-<li>The <a href="">Mappers</a>. Doing all the bulk parts of work for you, the mappers ensure your data is in the way you need it to be. Think of these like JavaScripts Array.prototype.map. Except for bits and bytes.</li>
-<li>Corrode itself. This is the only thing you - as a developer - are directly in contact with. It connects The CorrodeBase with the Assertions and Mappers to provide a unified interface.</li>
-</ol><p>For more info on each of those see the Reference.</p><p>For info on ways to configure corrode to your liking, see Configuration.</p><h2>The Assertions</h2><p>Asserts help you to make sure, the buffer you&apos;re parsing is in the correct format.
-These assertions are like chai, throwing an error when an assertion doesn&apos;t hold.</p><p>These functions won&apos;t modify your variables.</p><p>All assertions can be called from a Corrode instance like this:</p><pre><code class="lang-javascript"><code class="source-code prettyprint">parser.assert.equal(&apos;var&apos;, 5);</code>
-</code></pre><h2>The Mappers</h2><p>These functions provide basic mapping-abilities for Corrode&apos;s VariableStack.</p><p>Imagine them like this:</p><pre><code class="lang-javascript"><code class="source-code prettyprint">const parser = new Corrode();
-parser.uint8(&apos;value&apos;).map.double(&apos;value&apos;);</code>
-</code></pre><p>Of course there&apos;s no existing mapping-function which doubles a value (yet?).
-But the concept is that they are functions receiving a value, processing it
-and saving a new value in the {@link VariableStack} in place of the old one.</p><p>The imaginary code above would yield <code>{ value: 4 }</code>, parsing a buffer like this <code>[2]</code>.</p><p>Note that all mappers don&apos;t check for existance, validity or other assumptions.
-You have to do that yourself with assertions.</p><h2>When will i be able to access the variables? (Extensions, Asserts &amp; Mappers)</h2><h2>Corrode#position / Corrode#skip issues (isSeeking)</h2></div>
-        <a data-ice="link" href="manual/overview.html"></a>
-      </div>
-    </div>
-<div class="manual-card-wrap" data-ice="cards">
-      <div class="manual-card">
-        <div data-ice="card"><h1>Getting started</h1><h2>Introduction</h2><p>This document will guide you through most of the basic functionality of corrode by example.
-Our goal is to parse a structured file for storing flat, arbitrary data.</p><h2>Data Structure</h2><p>This will be the structure we are going to parse:</p><ul>
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="getting-started">Getting started</h1><h2 id="introduction">Introduction</h2><p>This document will guide you through most of the basic functionality of corrode by example.
+Our goal is to parse a structured file for storing flat, arbitrary data.</p>
+<h2 id="data-structure">Data Structure</h2><p>This will be the structure we are going to parse:</p>
+<ul>
 <li>Container - Little endian<ul>
 <li>Header<ul>
 <li>Magic Number [uint32 0xDEADBEEF]</li>
@@ -145,7 +119,14 @@ Our goal is to parse a structured file for storing flat, arbitrary data.</p><h2>
 </li>
 </ul>
 </li>
-</ul><h2>How we&apos;ll do this</h2><p>To better structure our code, we will split it into three main parsers: Header, Index, Data.</p><p>For cases like this, there&apos;s <code>Corrode.addExtension</code>, which is let&apos;s us break down big pieces of code.</p><p>Apart from this function and the basic read-structures there are also assertions and mappers.</p><p>Assertions allow us to test the parsed data on whether or not it matches certain requirements. This helps in making sure, that the data we parse aligns with our specification. When an assertion is not met, corrode will throw an <code>Error</code> and halt execution.</p><p>Mappers provide us with a way to transform read data into something different, or mapping certain values to other ones.</p><p>The Header-parser will show you the basics of their usage.</p><h2>Let&apos;s get started</h2><h3>The header parser</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">/**
+</ul>
+<h2 id="how-we--39-ll-do-this">How we&apos;ll do this</h2><p>To better structure our code, we will split it into three main parsers: Header, Index, Data.</p>
+<p>For cases like this, there&apos;s <code>Corrode.addExtension</code>, which is let&apos;s us break down big pieces of code.</p>
+<p>Apart from this function and the basic read-structures there are also assertions and mappers.</p>
+<p>Assertions allow us to test the parsed data on whether or not it matches certain requirements. This helps in making sure, that the data we parse aligns with our specification. When an assertion is not met, corrode will throw an <code>Error</code> and halt execution.</p>
+<p>Mappers provide us with a way to transform read data into something different, or mapping certain values to other ones.</p>
+<p>The Header-parser will show you the basics of their usage.</p>
+<h2 id="let--39-s-get-started">Let&apos;s get started</h2><h3 id="the-header-parser">The header parser</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">/**
  * reads header data from our own specified format
  * @throws Error magic number doesn&apos;t match
  * @return {Object} header-data
@@ -177,10 +158,15 @@ Corrode.addExtension(&apos;containerHeader&apos;, function containerHeaderParser
 
         .uint32(&apos;dataCount&apos;);
 });</code>
-</code></pre><p>This is all we need for parsing any header of this structure. See how this assert makes sure we have the correct file? And how we&apos;re able to convert an uint32 into a native js Date object? This is how we roll.</p><h3>The index parser</h3><p>Let&apos;s spice things up a bit, by creating our index parser. It needs access to the parsed data of the header, because there&apos;s the data-count of the whole file.</p><p>Also, instead of just one we will create two extensions for parsing the index:</p><ul>
+</code></pre>
+<p>This is all we need for parsing any header of this structure. See how this assert makes sure we have the correct file? And how we&apos;re able to convert an uint32 into a native js Date object? This is how we roll.</p>
+<h3 id="the-index-parser">The index parser</h3><p>Let&apos;s spice things up a bit, by creating our index parser. It needs access to the parsed data of the header, because there&apos;s the data-count of the whole file.</p>
+<p>Also, instead of just one we will create two extensions for parsing the index:</p>
+<ul>
 <li>One that parses the index itself</li>
 <li>Another one that parses each index-entry</li>
-</ul><h4>The index entry parser</h4><pre><code class="lang-javascript"><code class="source-code prettyprint">/**
+</ul>
+<h4 id="the-index-entry-parser">The index entry parser</h4><pre><code class="lang-javascript"><code class="source-code prettyprint">/**
  * reads the data of an index-entry
  * @return {Object} index-entry
  * @example
@@ -211,7 +197,8 @@ Corrode.addExtension(&apos;containerIndexEntry&apos;, function containerIndexEnt
         // we&apos;ll check this later, when parsing the data
         .buffer(&apos;checksum&apos;, 32);
 });</code>
-</code></pre><h4>The index parser itself</h4><pre><code class="lang-javascript"><code class="source-code prettyprint">/**
+</code></pre>
+<h4 id="the-index-parser-itself">The index parser itself</h4><pre><code class="lang-javascript"><code class="source-code prettyprint">/**
  * reads the data of the container-index
  * @param {Object&lt;containerHeader&gt;} header parsed header-data of the container-file
  * @return {Array&lt;containerIndexEntry&gt;} index
@@ -231,7 +218,12 @@ Corrode.addExtension(&apos;containerIndex&apos;, function containerIndexParser(h
         // of entries here, instead of an object like this { entries: [...] }
         .map.push(&apos;entries&apos;);
 });</code>
-</code></pre><p>As you can see, this is a rather simple extension. It executes the containerIndexEntry parser as many times as the header says there are files in the container. The <code>repeat</code>-function creates a new array in the current variable-layer (@TODO see Overview).</p><p>By using the <code>map.push</code>-function we replace the current variable-layer with our own value. So instead of returning an object containing an array of objects containing the data, we just get an array of index-entries.</p><h3>The data parser</h3><p>We will also split the data-parser into two. Again there will be a parser for the entries and one for the data itself.</p><p>We don&apos;t do this because of technical limitations, but because i like to have clean and separate functions for everything. If you want to, you can still smooch the entry-parser into into the repeat.</p><h4>The data-entry parser</h4><pre><code class="lang-javascript"><code class="source-code prettyprint">/**
+</code></pre>
+<p>As you can see, this is a rather simple extension. It executes the containerIndexEntry parser as many times as the header says there are files in the container. The <code>repeat</code>-function creates a new array in the current variable-layer (@TODO see Overview).</p>
+<p>By using the <code>map.push</code>-function we replace the current variable-layer with our own value. So instead of returning an object containing an array of objects containing the data, we just get an array of index-entries.</p>
+<h3 id="the-data-parser">The data parser</h3><p>We will also split the data-parser into two. Again there will be a parser for the entries and one for the data itself.</p>
+<p>We don&apos;t do this because of technical limitations, but because i like to have clean and separate functions for everything. If you want to, you can still smooch the entry-parser into into the repeat.</p>
+<h4 id="the-data-entry-parser">The data-entry parser</h4><pre><code class="lang-javascript"><code class="source-code prettyprint">/**
  * reads the data of a data-entry
  * @throws Error callback doesn&apos;t match
  * @param {Object&lt;containerIndexEntry&gt;} indexEntry
@@ -251,7 +243,10 @@ Corrode.addExtension(&apos;containerDataEntry&apos;, function containerDataEntry
         // only return the buffer
         .map.push(&apos;data&apos;);
 });</code>
-</code></pre><p>Note that the position-function works in a slightly restricted way, in that it only allows skipping forward without any additional configuration. @TODO See <code>Corrode#isSeeking</code> for more info.</p><p>In the way there&apos;s a <code>map.callback</code> there&apos;s also a <code>assert.callback</code> taking a function by which it checks the incoming value.</p><h4>The data parser itself</h4><pre><code class="lang-javascript"><code class="source-code prettyprint">/**
+</code></pre>
+<p>Note that the position-function works in a slightly restricted way, in that it only allows skipping forward without any additional configuration. @TODO See <code>Corrode#isSeeking</code> for more info.</p>
+<p>In the way there&apos;s a <code>map.callback</code> there&apos;s also a <code>assert.callback</code> taking a function by which it checks the incoming value.</p>
+<h4 id="the-data-parser-itself">The data parser itself</h4><pre><code class="lang-javascript"><code class="source-code prettyprint">/**
  * read container data
  * @param {Object&lt;containerIndex&gt;} index
  * @return {Array&lt;containerDataEntry&gt;} container-data
@@ -273,7 +268,8 @@ Corrode.addExtension(&apos;containerData&apos;, function containerDataParser(ind
         })
         .map.push(&apos;entries&apos;);
 });</code>
-</code></pre><h3>Wiring everything together</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">Corrode.addExtension(&apos;container&apos;, function containerParser(){
+</code></pre>
+<h3 id="wiring-everything-together">Wiring everything together</h3><pre><code class="lang-javascript"><code class="source-code prettyprint">Corrode.addExtension(&apos;container&apos;, function containerParser(){
     this
         .ext.containerHeader(&apos;header&apos;)
         .tap(function(){
@@ -285,7 +281,8 @@ Corrode.addExtension(&apos;containerData&apos;, function containerDataParser(ind
         })
         .map.push(&apos;data&apos;);
 });</code>
-</code></pre><h2>Parsing a file</h2><pre><code class="lang-javascript"><code class="source-code prettyprint">const parser = new Corrode();
+</code></pre>
+<h2 id="parsing-a-file">Parsing a file</h2><pre><code class="lang-javascript"><code class="source-code prettyprint">const parser = new Corrode();
 parser
     .ext.container(&apos;container&apos;)
     .map.push(&apos;container&apos;);
@@ -296,49 +293,27 @@ fstream.pipe(parser);
 parser.on(&apos;finish&apos;, () =&gt; {
     console.log(parser.vars);
 });</code>
-</code></pre><h2>Escaping callback-hell</h2><pre><code class="lang-javascript"><code class="source-code prettyprint">Corrode.addExtension(&apos;containerIndex&apos;, function containerIndexParser(header){
+</code></pre>
+<h2 id="escaping-callback-hell">Escaping callback-hell</h2><pre><code class="lang-javascript"><code class="source-code prettyprint">Corrode.addExtension(&apos;containerIndex&apos;, function containerIndexParser(header){
     if(typeof header === &apos;string&apos;){
         header = this.vars[header];
     }
 
     ...
 });</code>
-</code></pre><pre><code class="lang-javascript"><code class="source-code prettyprint">Corrode.addExtension(&apos;container&apos;, function containerParser(){
+</code></pre>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">Corrode.addExtension(&apos;container&apos;, function containerParser(){
     this
         .ext.containerHeader(&apos;header&apos;)
         .ext.containerIndex(&apos;index&apos;, &apos;header&apos;)
         .ext.containerData(&apos;data&apos;, &apos;index&apos;)
         .map.push(&apos;data&apos;);
 });</code>
-</code></pre><h2>Further reading</h2><ul>
+</code></pre>
+<h2 id="further-reading">Further reading</h2><ul>
 <li>Configuration</li>
 <li>Examples</li>
-</ul></div>
-        <a data-ice="link" href="manual/getting-started.html"></a>
-      </div>
-    </div>
-<div class="manual-card-wrap" data-ice="cards">
-      <div class="manual-card">
-        <div data-ice="card"><h1>Configuration</h1><p>Corrode provides some configuration-options. These are either defaults, safeguards or advanced-user-stuff.</p><p>Corrode accepts an object as its first parameter, containing options.</p><p>These options also get passed on to the TransformStream-constructor, so <a href="https://nodejs.org/api/stream.html#stream_constructor_new_stream_writable_options">those</a> <a href="https://nodejs.org/api/stream.html#stream_new_stream_readable_options">options</a> are also valid.</p><h2><code>endianness</code></h2><p><strong>default:</strong> <code>&apos;LE&apos;</code></p><p><strong>accepts:</strong> <code>&apos;LE&apos;, &apos;BE&apos;</code> (for little endian &amp; big endian)</p><p>If you use methods like <code>.uint8()</code> or <code>.int32()</code> this option determines what endianness corrode uses when reading your bytes.</p><p>Of course using <code>.uint16be()</code> or <code>.doublele()</code> will overwrite this default, as you&apos;d expect.</p><h2><code>loopIdentifier</code></h2><p><strong>default:</strong> <code>Symbol(loop-variable)</code></p><p><strong>accepts:</strong> Anything which can be used as an identifier in an object.</p><p>Determines the identifier of the temporary variable which gets created when using <code>.loop()</code>.</p><h2><code>encoding</code></h2><p><strong>default:</strong> <code>&apos;utf8&apos;</code></p><p><strong>accepts:</strong> Any encoding <code>Buffer.prototype.toString</code> accepts. <a href="https://nodejs.org/api/buffer.html#buffer_buffers_and_character_encodings">Full list here</a>.</p><p>Determines which encoding to use for string-functions like <code>.string()</code> or <code>.terminatedString()</code>. Can be overwitten on a per-use-basis by the functions themselves.</p><h2><code>finishJobsOnEOF</code></h2><p><strong>default:</strong> <code>true</code></p><p><strong>accepts:</strong> <code>true, false</code></p><p>Determines whether or not to finish everything up, once corrode encounters the end of the stream being piped into corrode, or the end of the buffer.</p><p>Set to <code>false</code> if you want to parse a file which was split in two or more parts. Or somethin along those lines.</p><p>What this flag does in detail is to clean up all remaining jobs from the job list, which are read-related, once EOF is reached. Then the job list will be worked on, until there are no more jobs. Meaning all VariableStack-Layers have been popped, giving you access to all that sweet data of yours.</p><h2><code>anonymousLoopDiscardDeep</code></h2><p><strong>default:</strong> <code>false</code></p><p><strong>accepts:</strong> <code>true, false</code></p><p>Corrode provides the <code>discard()</code> function inside <code>.loop()</code>- and <code>.repeat()</code>-callbacks. If you use those anonymously (meaning you don&apos;t push an array onto the variable-stack by giving a string as the first parameter) and then call the <code>discard()</code> function, corrode will discard whatever data you read, and restore what&apos;s been there before.</p><p>By default this is done in a shallow way, meaning that corrode will clone the users data before the callback is called shallowly by using <code>Object.assign()</code> and that shallow copy gets assigned again when calling <code>discard()</code>.</p><p>This may lead to problems, when modifiyng objects within the curren VariableStack-layer. Those won&apos;t get replaced with their original version.</p><p>To circumvent this problem you can set this option to true. This is not done, because probably no-one needs this, and it may be a huge performance-hit to clone an entire object, everytime the loop-callback is called.</p><h2><code>strictObjectMode</code></h2><p><strong>default:</strong> <code>true</code></p><p><strong>accepts:</strong> <code>true, false</code></p><p>When this option is set to true, corrode will prevent you from pushing into anything that&apos;s not an object. Meaning moves like this:</p><pre><code class="lang-javascript"><code class="source-code prettyprint">parser.uint8(&apos;val&apos;).tap(&apos;val&apos;, function(){});</code>
-</code></pre><p>will throw an error. This way corrode provides a naive way of type-safety.</p></div>
-        <a data-ice="link" href="manual/configuration.html"></a>
-      </div>
-    </div>
-<div class="manual-card-wrap" data-ice="cards">
-      <div class="manual-card">
-        <div data-ice="card"><h1>Changelog</h1><h2>corrode v1.0.2</h2><ul>
-<li>Update ESDoc to v0.5.2 for better ES7 support</li>
-</ul><h2>corrode v1.0.1</h2><ul>
-<li>Update lodash from 4.16.1 to 4.17.2</li>
-<li>Update readable-stream from 2.1.5 to 2.2.2</li>
-<li>Fix http links in npm-shrinkwrap.json</li>
-</ul><h2>corrode v1.0.0</h2><ul>
-<li>Initial release. Any Changes prior to this version are merged into this one.</li>
-</ul></div>
-        <a data-ice="link" href="manual/CHANGELOG.html"></a>
-      </div>
-    </div>
-</div>
+</ul>
 </div>
 </div>
 

@@ -7,7 +7,7 @@
 			"manual": {
 				"files": [
 					"./docs-md/overview.md",
-					"./docs-md/getting-startet.md",
+					"./docs-md/getting-started.md",
 					"./docs-md/configuration.md",
 					"./CHANGELOG.md"
 				]

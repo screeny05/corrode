@@ -1939,13 +1939,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/base.js~corrodebase#vars",
-    "class/src/base.js~CorrodeBase.html#instance-set-vars",
+    "class/src/base.js~CorrodeBase.html#instance-get-vars",
     "src/base.js~CorrodeBase#vars",
     "member"
   ],
   [
     "src/base.js~corrodebase#vars",
-    "class/src/base.js~CorrodeBase.html#instance-get-vars",
+    "class/src/base.js~CorrodeBase.html#instance-set-vars",
     "src/base.js~CorrodeBase#vars",
     "member"
   ],
@@ -2143,13 +2143,13 @@ window.esdocSearchIndex = [
   ],
   [
     "src/variable-stack.js~variablestack#value",
-    "class/src/variable-stack.js~VariableStack.html#instance-get-value",
+    "class/src/variable-stack.js~VariableStack.html#instance-set-value",
     "src/variable-stack.js~VariableStack#value",
     "member"
   ],
   [
     "src/variable-stack.js~variablestack#value",
-    "class/src/variable-stack.js~VariableStack.html#instance-set-value",
+    "class/src/variable-stack.js~VariableStack.html#instance-get-value",
     "src/variable-stack.js~VariableStack#value",
     "member"
   ],

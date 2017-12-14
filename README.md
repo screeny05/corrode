@@ -8,7 +8,7 @@
 [![dependencies](https://img.shields.io/david/screeny05/corrode.svg?style=flat-square)](https://david-dm.org/screeny05/corrode)
 [![coverage](https://img.shields.io/coveralls/screeny05/corrode.svg?style=flat-square)](https://coveralls.io/github/screeny05/corrode)
 [![build status](https://img.shields.io/travis/screeny05/corrode.svg?style=flat-square)](https://travis-ci.org/screeny05/corrode)
-[![docs](https://doc.esdoc.org/github.com/screeny05/corrode/badge.svg)](https://doc.esdoc.org/github.com/screeny05/corrode/)
+[![docs](https://corrode.scn.cx/badge.svg)](https://corrode.scn.cx/)
 
 Corrode is a batteries-included library for reading binary data. It helps you converting that blob-mess into useable data.
 
@@ -84,9 +84,9 @@ If you'd like to include your own examples, just open a PR. I'm more than happy 
 
 
 ## Documentation & API Reference
-* [Corrode Overview](https://doc.esdoc.org/github.com/screeny05/corrode/manual/overview.html)
-* [API Reference](https://doc.esdoc.org/github.com/screeny05/corrode/identifiers.html)
-* [Getting Started](https://doc.esdoc.org/github.com/screeny05/corrode/manual/tutorial.html)
+* [Corrode Overview](https://corrode.scn.cx/manual/overview.html)
+* [API Reference](https://corrode.scn.cx/identifiers.html)
+* [Getting Started](https://corrode.scn.cx/manual/getting-started.html)
 
 
 ## Why use corrode over dissolve
