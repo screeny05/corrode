@@ -2,7 +2,7 @@
 	"source": "./src",
 	"destination": "./esdoc",
 	"plugins": [{
-		"name": "esdoc-standard-plugin",
+		"name": "esdoc2-standard-plugin",
 		"option": {
 			"manual": {
 				"files": [
@@ -17,7 +17,7 @@
 			}
 		}
 	}, {
-		"name": "esdoc-ecmascript-proposal-plugin",
+		"name": "esdoc2-ecmascript-proposal-plugin",
 		"option": {
 			"classProperties": true,
 			"objectRestSpread": true,
@@ -30,6 +30,6 @@
 			"dynamicImport": true
 		}
 	}, {
-		"name": "esdoc-coverage-plugin"
+		"name": "esdoc2-coverage-plugin"
 	}]
 }
