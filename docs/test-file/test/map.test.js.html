@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">test/map.test.js | corrode</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="A batteries-included library for reading binary data."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="corrode"><meta property="twitter:description" content="A batteries-included library for reading binary data."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/screeny05/corrode"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base.js~CorrodeBase.html">CorrodeBase</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/index.js~Corrode.html">Corrode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/variable-stack.js~VariableStack.html">VariableStack</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#assert">assert</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-allEqual">allEqual</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-arrayLength">arrayLength</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bitmask">bitmask</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-callback">callback</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-deepEqual">deepEqual</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-equal">equal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-exists">exists</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inBounds">inBounds</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-includes">includes</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#map">map</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bitmask">bitmask</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-callback">callback</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-find">find</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-findAll">findAll</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get">get</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-push">push</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-abs">abs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-invert">invert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-trim">trim</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bindObject">bindObject</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tapBindObject">tapBindObject</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">test/map.test.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const expect = require(&apos;chai&apos;).expect;
+const fixture = require(&apos;./fixtures/vars&apos;);
+const map = require(&apos;../src/map&apos;);
+
+describe(&apos;Map&apos;, () =&gt; {
+    beforeEach(function(){
+        this.fixture = fixture.clone();
+
+        this.map = function(fn, on, ...args){
+            map[fn].call({ vars: this.fixture }, on, ...args);
+            return this.fixture[on];
+        };
+    });
+
+    /** @test {map} */
+    it(&apos;maps via callback&apos;, function(){
+        expect(this.map(&apos;callback&apos;, &apos;number&apos;, val =&gt; val * 2)).to.equal(fixture.number * 2);
+    });
+
+    /** @test {get} */
+    it(&apos;maps via get - array&apos;, function(){
+        expect(this.map(&apos;get&apos;, &apos;zero&apos;, [&apos;fixture&apos;])).to.equal(&apos;fixture&apos;);
+        expect(this.map(&apos;get&apos;, &apos;one&apos;, [0, {}])).to.be.object;
+        expect(this.map(&apos;get&apos;, &apos;two&apos;, [0, 0, {}])).to.be.empty;
+    });
+
+    /** @test {get} */
+    it(&apos;maps via get - object&apos;, function(){
+        expect(this.map(&apos;get&apos;, &apos;string&apos;, { fixture: &apos;string&apos; })).to.equal(&apos;string&apos;);
+        expect(this.map(&apos;get&apos;, &apos;string2&apos;, { fixture: {} })).to.be.object;
+    });
+
+    /** @test {findAll} */
+    it(&apos;maps via findAll&apos;, function(){
+        expect(this.map(&apos;findAll&apos;, &apos;one&apos;, fixture.objectArray, &apos;id&apos;)).to.deep.equal([fixture.objectArray[0]]);
+        expect(this.map(&apos;findAll&apos;, &apos;two&apos;, fixture.objectArray, &apos;id&apos;)).to.have.length.of(2);
+        expect(this.map(&apos;findAll&apos;, &apos;id&apos;, fixture.objectArray, &apos;id&apos;)[0].name).to.equal(&apos;quxbaz&apos;);
+        expect(this.map.bind(this, &apos;findAll&apos;, &apos;three&apos;, fixture.objectArray, &apos;id&apos;)).to.throw(Error);
+    });
+
+    /** @test {find} */
+    it(&apos;maps via find&apos;, function(){
+        expect(this.map(&apos;find&apos;, &apos;one&apos;, fixture.objectArray, &apos;id&apos;)).to.deep.equal(fixture.objectArray[0]);
+        expect(this.map(&apos;find&apos;, &apos;id&apos;, fixture.objectArray, &apos;id&apos;).name).to.equal(&apos;quxbaz&apos;);
+        expect(this.map.bind(this, &apos;find&apos;, &apos;three&apos;, fixture.objectArray, &apos;id&apos;)).to.throw(Error);
+    });
+
+    /** @test {abs} */
+    it(&apos;maps via abs&apos;, function(){
+        expect(this.map(&apos;abs&apos;, &apos;negative&apos;)).to.equal(1);
+        expect(this.map(&apos;abs&apos;, &apos;two&apos;)).to.equal(2);
+    });
+
+    /** @test {invert} */
+    it(&apos;maps via invert&apos;, function(){
+        expect(this.map(&apos;invert&apos;, &apos;negative&apos;)).to.equal(1);
+        expect(this.map(&apos;invert&apos;, &apos;three&apos;)).to.equal(-3);
+    });
+
+    /** @test {trim} */
+    it(&apos;maps via trim&apos;, function(){
+        expect(this.map(&apos;trim&apos;, &apos;untrimmed&apos;)).to.equal(fixture.trimmed);
+        expect(this.map(&apos;trim&apos;, &apos;trimmed&apos;)).to.equal(fixture.trimmed);
+    });
+
+    /** @test {push} */
+    it(&apos;pushes&apos;, function(){
+        let that = { vars: fixture.clone() };
+        map.push.call(that, &apos;object&apos;);
+        expect(that.vars).to.deep.equal(fixture.object);
+    });
+
+    /** @test {bitmask} */
+    it(&apos;maps via bitmask&apos;, function(){
+        expect(this.map(&apos;bitmask&apos;, &apos;bitmaskMatch&apos;, {
+            isX80: 0x80,
+            isX40: 0x40,
+            isX20: 0x20,
+            isX10: 0x10,
+            isX08: 0x08,
+            isX04: 0x04,
+            isX02: 0x02,
+            isX01: 0x01
+        })).to.deep.equal({
+            isX80: true,
+            isX40: false,
+            isX20: true,
+            isX10: true,
+            isX08: true,
+            isX04: true,
+            isX02: true,
+            isX01: false
+        });
+    });
+
+    /** @test {bitmask} */
+    it(&apos;maps single values via bitmask&apos;, function(){
+        expect(this.map(&apos;bitmask&apos;, &apos;bitmaskMatch&apos;, 0x80)).to.be.true;
+    });
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc2.org">esdoc2<span data-ice="esdocVersion">(2.1.3)</span><img src="./image/esdoc2-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

@@ -1,14 +1,14 @@
 {
 	"source": "./src",
-	"destination": "./esdoc",
+	"destination": "./docs",
 	"plugins": [{
 		"name": "esdoc2-standard-plugin",
 		"option": {
 			"manual": {
 				"files": [
-					"./doc/overview.md",
-					"./doc/getting-startet.md",
-					"./doc/configuration.md",
+					"./docs-md/overview.md",
+					"./docs-md/getting-startet.md",
+					"./docs-md/configuration.md",
 					"./CHANGELOG.md"
 				]
 			},

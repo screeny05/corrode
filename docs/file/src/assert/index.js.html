@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/assert/index.js | corrode</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="A batteries-included library for reading binary data."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="corrode"><meta property="twitter:description" content="A batteries-included library for reading binary data."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/screeny05/corrode"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base.js~CorrodeBase.html">CorrodeBase</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/index.js~Corrode.html">Corrode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/variable-stack.js~VariableStack.html">VariableStack</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#assert">assert</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-allEqual">allEqual</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-arrayLength">arrayLength</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bitmask">bitmask</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-callback">callback</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-deepEqual">deepEqual</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-equal">equal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-exists">exists</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inBounds">inBounds</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-includes">includes</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#map">map</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bitmask">bitmask</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-callback">callback</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-find">find</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-findAll">findAll</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get">get</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-push">push</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-abs">abs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-invert">invert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-trim">trim</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bindObject">bindObject</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tapBindObject">tapBindObject</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/assert/index.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * Asserts help you to make sure, the buffer you&apos;re parsing
+ * is in the correct format. These assertions are like chai, throwing an error
+ * when an assertion doesn&apos;t hold.
+ *
+ * These functions won&apos;t modify {@link Corrode#vars}.
+ */
+
+import lodash from &apos;lodash&apos;;
+
+/**
+ * assert strict equal single value
+ * @param {string} name   key of the value to test
+ * @param {mixed}  value  comparision
+ * @throws TypeError assertion-error
+ */
+export function equal(name, value){
+    if(this.vars[name] !== value){
+        throw new TypeError(`Expected ${value}, found ${this.vars[name]} at ${name}`);
+    }
+}
+
+/**
+ * assert deep equality each value in Object|Array
+ * @param {string} name     key of the object|array to test
+ * @param {mixed} testValue comparision, undefined for auto-detect
+ * @throws TypeError assertion-error
+ */
+export function allEqual(name, testValue){
+    let values = this.vars[name];
+    if(!Array.isArray(values)){
+        values = lodash.values(values);
+    }
+
+    if(typeof testValue === &apos;undefined&apos;){
+        testValue = values[0];
+    }
+
+    const notEqualObjects = values.filter(varValue =&gt; varValue !== testValue);
+    if(notEqualObjects.length !== 0){
+        throw new TypeError(`Expected values in ${JSON.stringify(this.vars[name])} to all be ${testValue}`);
+    }
+}
+
+/**
+ * assert equality objects
+ * @param {string} name  key of the object to test
+ * @param {object} value comparision
+ * @throws TypeError assertion-error
+ */
+export function deepEqual(name, value){
+    const binaryValue = this.vars[name];
+    if(!lodash.isEqual(binaryValue, value)){
+        throw new TypeError(`Expected ${JSON.stringify(value)}, found ${JSON.stringify(binaryValue)}`);
+    }
+}
+
+/**
+ * assert array|object to contain item
+ * @param {string} name key of the value to test
+ * @param {array|object} arr comparision
+ * @throws TypeError assertion-error
+ */
+export function includes(name, arr){
+    if(!lodash.includes(arr, this.vars[name])){
+        throw new TypeError(`Expected ${JSON.stringify(arr)} to include ${this.vars[name]}`);
+    }
+}
+
+/**
+ * assert value to be within the bounds of an array
+ * @param {string} name  key of the number to test
+ * @param {array} value comparision
+ * @throws TypeError assertion-error
+ */
+export function inBounds(name, value){
+    const index = this.vars[name];
+
+    if(index &lt; 0 || index &gt;= value.length){
+        throw new TypeError(`Expected Array of ${value.length} items to be at least ${index} long`);
+    }
+}
+
+/**
+ * assert value via callback
+ * @param {string}   name   key of the value to test
+ * @param {function} fn     callback
+ * @param {string}   testname optional test-name
+ * @throws TypeError assertion-error
+ */
+export function callback(name, fn, testname = fn.name){
+    if(!fn(this.vars[name])){
+        throw new TypeError(`Callback failed at ${testname}(${this.vars[name]})`);
+    }
+}
+
+/**
+ * assert array to be a given length
+ * @param {string}        name   key of the value to test
+ * @param {number|string} length comparision
+ * @throws TypeError assertion-error
+ */
+export function arrayLength(name, length){
+    // try to get the length param from the vars if available
+    if(typeof length === &apos;string&apos; &amp;&amp; this.vars[length] !== &apos;undefined&apos;){
+        length = this.vars[length];
+    }
+
+    if(typeof this.vars[name] === &apos;undefined&apos; || this.vars[name].length !== length){
+        throw new TypeError(`Expected array to have a length of ${length}, has ${this.vars[name].length}`);
+    }
+}
+
+/**
+ * asserts a variable exists in the first place
+ * @param {string}   name   key of the value to test
+ * @throws TypeError assertion-error
+ */
+export function exists(name){
+    if(typeof this.vars[name] === &apos;undefined&apos;){
+        throw new TypeError(`Expected var ${name} to exist`);
+    }
+}
+
+/**
+ * asserts a variable matches a given bitmask
+ * @param  {string} name         key of the value to test
+ * @param  {number} mask         bitmask to match
+ * @param  {boolean} assertMatch true: should match; false: shouldn&apos;t match
+ * @throws TypeError assertion-error
+ */
+export function bitmask(name, mask, assertMatch = true){
+    const val = this.vars[name];
+
+    if((val &amp; mask) === mask === !assertMatch){
+        throw new TypeError(`Expected var ${name} to ${assertMatch ? &apos;&apos; : &apos;not &apos;}match bitmask (value: 0b${val.toString(2)} assert: 0b${mask.toString(2)})`);
+    }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc2.org">esdoc2<span data-ice="esdocVersion">(2.1.3)</span><img src="./image/esdoc2-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

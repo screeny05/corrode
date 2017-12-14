@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/map/index.js | corrode</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="A batteries-included library for reading binary data."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="corrode"><meta property="twitter:description" content="A batteries-included library for reading binary data."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/screeny05/corrode"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base.js~CorrodeBase.html">CorrodeBase</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/index.js~Corrode.html">Corrode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/variable-stack.js~VariableStack.html">VariableStack</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#assert">assert</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-allEqual">allEqual</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-arrayLength">arrayLength</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bitmask">bitmask</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-callback">callback</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-deepEqual">deepEqual</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-equal">equal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-exists">exists</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inBounds">inBounds</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-includes">includes</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#map">map</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bitmask">bitmask</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-callback">callback</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-find">find</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-findAll">findAll</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get">get</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-push">push</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-abs">abs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-invert">invert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-trim">trim</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bindObject">bindObject</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tapBindObject">tapBindObject</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/map/index.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">/**
+ * These functions provide basic mapping-abilities for Corrode&apos;s VariableStack
+ * {@link Corrode#vars}
+ *
+ * Imagine them like this:
+ * ```
+ * const parser = new Corrode();
+ * parser.uint8(&apos;value&apos;).map.double(&apos;value&apos;);
+ * ```
+ *
+ * Of course there&apos;s no real mapping-function which doubles a value.
+ * But the concept is that they are functions receiving a value, processing it
+ * and saving a new value in the {@link VariableStack} in place of the old one.
+ *
+ * The imaginary code above would yield `{ value: 4 }`, parsing a buffer like this `[2]`.
+ *
+ * There are two ways to create a mapper. Either by using the {bind} helper-function
+ * which simply receives a value and returns one, or by defining the function yourself.
+ *
+ * The bind-utility only allows for simple functions with no additional parameters.
+ * Our double-mapper would be a perfect example: `export const double = bind(val =&gt; val * 2)`.
+ * These should be pure functions.
+ *
+ * The other way - defining your own mapper-function accepts deals with the {@link VariableStack}
+ * at {@link Corrode#vars} by itself. This means: reads and writes from {@link Corrode#vars}. Because of that
+ * they are inherently impure. A next step should be to move all mappers to pure functions.
+ * (see Issue #28)
+ *
+ * Note that all mappers don&apos;t check for existance, validity or other assumptions.
+ * You have to do that yourself with assertions.
+ */
+
+/**
+ * helper function to bind a mapper
+ * mappers created with this utility accept two parameters:
+ * name and src, with the src defaulting to name.
+ * This way, we get a mapper which per-default takes the target as the source
+ * but also accepts a different source.
+ * @param {function(val: *)} fn map-function
+ * @return {function}         function ready to use in tap
+ */
+const bind = function(fn){
+    return function(name, src = name){
+        this.vars[name] = fn(this.vars[src]);
+    };
+};
+
+/**
+ * replace a variable in the stack by a mapped version of itself
+ * @param {string}           name identifier of the variable to map
+ * @param {function(val: *)} fn   map-function
+ * @example
+ * parser.uint8(&apos;value&apos;).map.callback(&apos;value&apos;, val =&gt; (val - 1) * 2)
+ *
+ * // [21] =&gt; { value: 10 }
+ */
+export function callback(name, fn){
+    this.vars[name] = fn(this.vars[name]);
+}
+
+/**
+ * retrieve a value from an accessable type (like array[0] or object[&apos;foo&apos;])
+ * @param {string} name                    identifier of the variable to map
+ * @param {array|object|string} accessable accessable variable
+ * @param {string} [src=name]              identifier of the variable in {@link Corrode#vars} by which to access `accessable`
+ * @example &lt;caption&gt;get from array&lt;/caption&gt;
+ * parser.uint8(&apos;accessor&apos;).map.get(&apos;accessor&apos;, [&apos;A&apos;, &apos;B&apos;, &apos;C&apos;, &apos;D&apos;])
+ *
+ * // [2] =&gt; { accessor: &apos;C&apos; }
+ *
+ * @example &lt;caption&gt;get from object&lt;/caption&gt;
+ * parser.terminatedString(&apos;accessor&apos;).map.get(&apos;accessor&apos;, { foo: &apos;A&apos;, bar: &apos;B&apos;, qux: &apos;C&apos; })
+ *
+ * // [&apos;q&apos;, &apos;u&apos;, &apos;x&apos;, 0x00] =&gt; { accessor: &apos;C&apos; }
+ */
+export function get(name, accessable, src = name){
+    this.vars[name] = accessable[this.vars[src]];
+}
+
+/**
+ * retrieve a filtered array of objects from an array of objects, matching a specified attribute against a specified value
+ * @param {string} name         identifier of the variable, to write to {@link Corrode#vars}
+ * @param {Array&lt;Object&gt;} array array, containing the objects to filter
+ * @param {string} attr         identifier of the attribute from an object of `array` to compare against
+ * @param {string} [src=name]   {@link Corrode#vars}-identifier to read from
+ * @throws {Error} when no object can be found
+ * @example
+ * parser.uint8(&apos;matchAgainst&apos;).map.findAll(&apos;matchAgainst&apos;, [
+ *   { children: 1, name: &apos;foo&apos; },
+ *   { children: 2, name: &apos;bar&apos; },
+ *   { children: 2, name: &apos;qux&apos; }
+ * ], &apos;children&apos;)
+ *
+ * // [2] =&gt; { matchAgainst: [
+ * //   { children: 2, name: &apos;bar&apos; },
+ * //   { children: 2, name: &apos;qux&apos; }
+ * // ]}
+ *
+ * // [1] =&gt; { matchAgainst: [
+ * //   { children: 1, name: &apos;foo&apos; }
+ * // ]}
+ */
+export function findAll(name, array, attr, src = name){
+    const filtered = array.filter(item =&gt; item[attr] === this.vars[src]);
+    if(filtered.length === 0){
+        throw new Error(`cannot find object in array with ${attr} === ${src}(${this.vars[src]})`);
+    }
+    this.vars[name] = filtered;
+}
+
+/**
+ * retrieve the first object from an array of objects, matching a specified attribute against a specified value
+ * like {@link findAll}, but returning only the first element
+ * @param {string} name         identifier of the variable, to write to {@link Corrode#vars}
+ * @param {Array&lt;Object&gt;} array array, containing the objects to filter
+ * @param {string} attr         identifier of the attribute from an object of `array` to compare against
+ * @param {string} [src=name]   {@link Corrode#vars}-identifier to read from
+ * @throws {Error} when no object can be found
+ * @example
+ * parser.uint8(&apos;matchAgainst&apos;).map.find(&apos;matchAgainst&apos;, [
+ *   { id: 1, name: &apos;foo&apos; },
+ *   { id: 7, name: &apos;bar&apos; },
+ *   { id: 4, name: &apos;qux&apos; }
+ * ], &apos;id&apos;)
+ *
+ * // [4] =&gt; { matchAgainst: { id: 4, name: &apos;qux&apos; } }
+ *
+ * // [2] =&gt; Error cannot find object!
+ */
+export function find(name, array, attr, src = name){
+    findAll.call(this, name, array, attr, src);
+    this.vars[name] = this.vars[name][0];
+}
+
+/**
+ * replace {@link Corrode#vars} completely with a value from {@link Corrode#vars}
+ * especially useful when pushing a variable further up in the stack
+ *
+ * @example &lt;caption&gt;push loop-variables up&lt;/caption&gt;
+ * parser.loop(&apos;array&apos;, function(){
+ *     this
+ *         .uint8(&apos;value&apos;)
+ *         .map.double()
+ *         .map.push(&apos;value&apos;);
+ * });
+ *
+ * // [1, 2, 3, 4] =&gt; { array: [2, 4, 6, 8] }
+ *
+ * @example &lt;caption&gt;push values in an extension&lt;/caption&gt;
+ * Corrode.addExtension(&apos;doStuff&apos;, function(){
+ *     this
+ *         .uint32(&apos;address&apos;)
+ *         .tap(function(){
+ *             this.vars.address = `0x${this.vars.address.toString(16)}`;
+ *         })
+ *         .map.push(&apos;address&apos;);
+ * });
+ *
+ * parser.ext.doStuff(&apos;hexAddress&apos;);
+ *
+ * // [245] =&gt; { hexAddress: &apos;0xf5&apos; }
+ *
+ * @param {string} [name=&apos;values&apos;] identifier of the variable being used as replacement
+ */
+export function push(name = &apos;values&apos;){
+    this.vars = this.vars[name];
+}
+
+/**
+ * map a value by checking whether it has some bits set
+ * @param {string} name    identifier of the variable, to write to {@link Corrode#vars}
+ * @param  {Object|number} maskObject Object or number by which to check the bits of the variable to map
+ * @example &lt;caption&gt;map via number&lt;/caption&gt;
+ * parser.uint8(&apos;bits&apos;).map.bitmask(&apos;bits&apos;, 0x80)
+ *
+ * // [0b10111110] =&gt; { bits: true }
+ *
+ * @example &lt;caption&gt;map via object&lt;/caption&gt;
+ * parser.uint8(&apos;bits&apos;).map.bitmask(&apos;bits&apos;, {
+ *   isCompressed: 0x80,
+ *   isReadOnly: 0x40
+ * })
+ *
+ * // [0b10111110] =&gt; { bits: { isCompressed: true, isReadOnly: false } }
+ */
+export function bitmask(name, maskObject){
+    const bits = this.vars[name];
+
+    // shortcut for single values
+    if(typeof maskObject === &apos;number&apos;){
+        return this.vars[name] = (bits &amp; maskObject) === maskObject;
+    }
+
+    const values = {};
+    Object.keys(maskObject).forEach(maskName =&gt; {
+        const mask = maskObject[maskName];
+        values[maskName] = (bits &amp; mask) === mask;
+    });
+    this.vars[name] = values;
+}
+
+/**
+ * retrieve absolute value of a number
+ * {@link Math.abs}
+ * @type {function}
+ * @example
+ * this.int8(&apos;value&apos;).map.abs(&apos;value&apos;)
+ *
+ * // [-14] =&gt; { value: 14 }
+ */
+export const abs = bind(Math.abs);
+
+/**
+ * retrieve inverted number
+ * @type {function}
+ * @example
+ * this.uint8(&apos;value&apos;).map.abs(&apos;value&apos;)
+ *
+ * // [27] =&gt; { value: -27 }
+ */
+export const invert = bind(val =&gt; val * -1);
+
+/**
+ * retrieve trimmed string
+ * @type {function}
+ * @example
+ * this.terminatedString(&apos;value&apos;).map.trim(&apos;value&apos;)
+ *
+ * // [&apos; &apos;, &apos;\t&apos;, &apos;f&apos;, &apos;o&apos;, &apos;b&apos;, &apos;r&apos;, &apos;\n&apos;] =&gt; { value: &apos;fobr&apos; }
+ */
+export const trim = bind(str =&gt; str.trim());
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc2.org">esdoc2<span data-ice="esdocVersion">(2.1.3)</span><img src="./image/esdoc2-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

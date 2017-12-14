@@ -9,4 +9,3 @@ install:
 
 script:
   - npm run coverall
-  - npm run docs-upload

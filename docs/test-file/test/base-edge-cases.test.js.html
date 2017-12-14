@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">test/base-edge-cases.test.js | corrode</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="A batteries-included library for reading binary data."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="corrode"><meta property="twitter:description" content="A batteries-included library for reading binary data."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/screeny05/corrode"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base.js~CorrodeBase.html">CorrodeBase</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/index.js~Corrode.html">Corrode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/variable-stack.js~VariableStack.html">VariableStack</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#assert">assert</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-allEqual">allEqual</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-arrayLength">arrayLength</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bitmask">bitmask</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-callback">callback</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-deepEqual">deepEqual</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-equal">equal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-exists">exists</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inBounds">inBounds</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-includes">includes</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#map">map</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bitmask">bitmask</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-callback">callback</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-find">find</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-findAll">findAll</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get">get</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-push">push</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-abs">abs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-invert">invert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-trim">trim</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bindObject">bindObject</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tapBindObject">tapBindObject</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">test/base-edge-cases.test.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const { expect } = require(&apos;chai&apos;);
+const Base = require(&apos;../src/base&apos;);
+
+/** @test {CorrodeBase} */
+describe(&apos;CorrodeBase - Edge Cases&apos;, () =&gt; {
+    beforeEach(function(){
+        this.base = new Base();
+        this.eqArray = require(&apos;./helpers/asserts&apos;).eqArray.bind(this);
+        this.eqMultiArray = require(&apos;./helpers/asserts&apos;).eqMultiArray.bind(this);
+    });
+
+    /** @test {CorrodeBase#jobLoop} */
+    it(&apos;correctly overrides primitves&apos;, function(done){
+        this.base
+            .uint8(&apos;var&apos;)
+            .uint8(&apos;var&apos;);
+
+        this.eqArray([1, 2, 3], done, {
+            var: 2
+        });
+    });
+
+    /** @test {CorrodeBase#string} */
+    it(&apos;considers strings as length as references to vars - strings&apos;, function(done){
+        this.base
+            .uint8(&apos;length&apos;)
+            .string(&apos;string&apos;, &apos;length&apos;);
+
+        this.eqArray([2, 0x21, 0x22], done, {
+            length: 2,
+            string: &apos;!&quot;&apos;
+        });
+    });
+
+    /** @test {CorrodeBase#buffer} */
+    it(&apos;considers strings as length as references to vars - buffers&apos;, function(done){
+        this.base
+            .uint8(&apos;length&apos;)
+            .buffer(&apos;buffer&apos;, &apos;length&apos;);
+
+        this.eqArray([2, 0x21, 0x22], done, {
+            length: 2,
+            buffer: Buffer.from([0x21, 0x22])
+        });
+    });
+
+    /** @test {CorrodeBase#skip} */
+    it(&apos;considers strings as length as references to vars - skip&apos;, function(done){
+        this.base
+            .uint8(&apos;length&apos;)
+            .skip(&apos;length&apos;)
+            .uint8(&apos;var_1&apos;)
+
+        this.eqArray([2, 1, 2, 3, 4], done, {
+            length: 2,
+            var_1: 3
+        });
+    });
+
+    /** @test {CorrodeBase#string} */
+    it(&apos;throws errors for invalid variables when using strings as length as references to vars - strings&apos;, function(){
+        this.base
+            .uint8(&apos;unknown&apos;)
+            .string(&apos;string&apos;, &apos;length&apos;);
+
+        expect(this.eqArray.bind(this, [2, 0x21, 0x22], () =&gt; {}, {})).to.throw(TypeError);
+    });
+
+    /** @test {CorrodeBase#buffer} */
+    it(&apos;throws errors for invalid variables when using strings as length as references to vars - buffers&apos;, function(){
+        this.base
+            .uint8(&apos;unknown&apos;)
+            .buffer(&apos;buffer&apos;, &apos;length&apos;);
+
+        expect(this.eqArray.bind(this, [2, 0x21, 0x22], () =&gt; {}, {})).to.throw(TypeError);
+    });
+
+    /** @test {CorrodeBase#skip} */
+    it(&apos;throws errors for invalid variables when using strings as length as references to vars - skip&apos;, function(){
+        this.base
+            .uint8(&apos;unknown&apos;)
+            .skip(&apos;length&apos;)
+            .uint8(&apos;var_1&apos;)
+
+        expect(this.eqArray.bind(this, [2, 1, 2, 3, 4], () =&gt; {}, {})).to.throw(TypeError);
+    });
+
+    /**
+     * @test {CorrodeBase#chunkOffset}
+     * @test {CorrodeBase#streamOffset}
+    */
+    it(&apos;has the correct offset&apos;, function(done){
+        this.base
+            .uint8(&apos;var_1&apos;)
+            .tap(function(){
+                expect(this.chunkOffset).to.equal(1);
+                expect(this.streamOffset).to.equal(1);
+            })
+            .uint8(&apos;var_2&apos;)
+            .uint8(&apos;var_3&apos;)
+            .tap(function(){
+                expect(this.chunkOffset).to.equal(1);
+                expect(this.streamOffset).to.equal(3);
+            });
+
+        this.eqMultiArray([[1, 2], [3], [4]], done, {
+            var_1: 1,
+            var_2: 2,
+            var_3: 3
+        });
+    });
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc2.org">esdoc2<span data-ice="esdocVersion">(2.1.3)</span><img src="./image/esdoc2-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

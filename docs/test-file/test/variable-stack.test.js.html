@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">test/variable-stack.test.js | corrode</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="A batteries-included library for reading binary data."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="corrode"><meta property="twitter:description" content="A batteries-included library for reading binary data."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/screeny05/corrode"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base.js~CorrodeBase.html">CorrodeBase</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/index.js~Corrode.html">Corrode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/variable-stack.js~VariableStack.html">VariableStack</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#assert">assert</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-allEqual">allEqual</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-arrayLength">arrayLength</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bitmask">bitmask</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-callback">callback</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-deepEqual">deepEqual</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-equal">equal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-exists">exists</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inBounds">inBounds</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-includes">includes</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#map">map</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bitmask">bitmask</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-callback">callback</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-find">find</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-findAll">findAll</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get">get</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-push">push</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-abs">abs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-invert">invert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-trim">trim</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bindObject">bindObject</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tapBindObject">tapBindObject</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">test/variable-stack.test.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const expect = require(&apos;chai&apos;).expect;
+const VarStack = require(&apos;../src/variable-stack&apos;);
+
+/** @test {VariableStack} */
+describe(&apos;VariableStack&apos;, () =&gt; {
+    beforeEach(function(){
+        this.stack = new VarStack();
+    });
+
+    /** @test {VariableStack} */
+    it(&apos;starts as an empty object&apos;, function(){
+        expect(this.stack.stack).to.have.length.of(1);
+        expect(this.stack.top.isRoot).to.be.true;
+        expect(this.stack.value).to.be.object;
+        expect(this.stack.value).to.be.empty;
+    });
+
+    /** @test {VariableStack#constructor} */
+    it(&apos;allows properties on layer 0&apos;, function(){
+        this.stack.value.foo = &apos;bar&apos;;
+        expect(this.stack.value.foo).to.equal(&apos;bar&apos;);
+    });
+
+    /**
+     * @test {VariableStack#push}
+     * @test {VariableStack#top}
+     * @test {VariableStack#value}
+     */
+    it(&apos;allows object-descension&apos;, function(){
+        this.stack.push(&apos;child&apos;);
+        expect(this.stack.value).to.be.object;
+        expect(this.stack.value).to.be.empty;
+        expect(this.stack.top.name).to.equal(&apos;child&apos;);
+        expect(this.stack.top.isRoot).to.be.false;
+    });
+
+    /** @test {VariableStack#push} */
+    it(&apos;haves correct value-shortcut&apos;, function(){
+        this.stack.push(&apos;child&apos;);
+        this.stack.value.val = &apos;fixture&apos;;
+        expect(this.stack.value).to.deep.equal(this.stack.top.value);
+    });
+
+    /** @test {VariableStack#push} */
+    it(&apos;allows deep-adding&apos;, function(){
+        this.stack.push(&apos;child&apos;);
+        this.stack.value.fixture = &apos;fixture&apos;;
+        expect(this.stack.value.fixture).to.equal(&apos;fixture&apos;);
+    });
+
+    /**
+     * @test {VariableStack#push}
+     * @test {VariableStack#pop}
+     */
+    it(&apos;allows object-popping&apos;, function(){
+        this.stack.push(&apos;child&apos;);
+        this.stack.pop();
+        expect(this.stack.top.isRoot).to.be.true;
+        expect(this.stack.value.child).to.be.object;
+        expect(this.stack.value.child).to.be.empty;
+    });
+
+    /**
+     * @test {VariableStack#push}
+     * @test {VariableStack#pop}
+     */
+    it(&apos;allows object-popping with values&apos;, function(){
+        this.stack.push(&apos;child&apos;);
+        this.stack.value.fixture = &apos;fixture&apos;;
+        this.stack.pop();
+        expect(this.stack.value.child.fixture).to.equal(&apos;fixture&apos;);
+    });
+
+    /**
+     * @test {VariableStack#push}
+     * @test {VariableStack#pop}
+     */
+    it(&apos;allows multiple pushed objects&apos;, function(){
+        this.stack.push(&apos;child-1&apos;);
+        this.stack.value.fixture = &apos;fixture-1&apos;;
+        this.stack.pop();
+
+        this.stack.push(&apos;child-2&apos;);
+        this.stack.value.fixture = &apos;fixture-2&apos;;
+        this.stack.pop();
+
+        expect(Object.keys(this.stack.value)).to.have.length.of(2);
+        expect(this.stack.value[&apos;child-1&apos;]).to.be.object;
+        expect(this.stack.value[&apos;child-1&apos;]).to.not.be.empty;
+        expect(this.stack.value[&apos;child-2&apos;]).to.be.object;
+        expect(this.stack.value[&apos;child-2&apos;]).to.not.be.empty;
+        expect(this.stack.value[&apos;child-1&apos;].fixture).to.equal(&apos;fixture-1&apos;);
+        expect(this.stack.value[&apos;child-2&apos;].fixture).to.equal(&apos;fixture-2&apos;);
+    });
+
+    /**
+     * @test {VariableStack#push}
+     * @test {VariableStack#pop}
+     */
+    it(&apos;allows object-repushing&apos;, function(){
+        this.stack.push(&apos;child&apos;);
+        this.stack.value.val = &apos;fixture&apos;;
+        this.stack.pop();
+        this.stack.push(&apos;child&apos;);
+        expect(this.stack.value).to.not.be.empty;
+        expect(this.stack.value.val).to.equal(&apos;fixture&apos;);
+    });
+
+    /** @test {VariableStack#push} */
+    it(&apos;allows array-repushing&apos;, function(){
+        this.stack.push(&apos;child&apos;, []);
+        this.stack.value.push(&apos;fixture&apos;);
+        this.stack.pop();
+        this.stack.push(&apos;child&apos;);
+        expect(this.stack.value).to.not.be.empty;
+        expect(this.stack.value[0]).to.equal(&apos;fixture&apos;);
+    });
+
+    /** @test {VariableStack#push} */
+    it(&apos;allows primitive-repushing&apos;, function(){
+        this.stack.push(&apos;child&apos;, 2);
+        this.stack.value *= 2;
+        this.stack.pop();
+        this.stack.push(&apos;child&apos;);
+        expect(this.stack.value).to.equal(4);
+    });
+
+    /**
+     * @test {VariableStack#push}
+     * @test {VariableStack#pop}
+     */
+    it(&apos;repushes the same instance&apos;, function(){
+        this.stack.push(&apos;child-1&apos;);
+        this.stack.value.val = &apos;fixture&apos;;
+        expect(this.stack.peek()[&apos;child-1&apos;]).to.equal(this.stack.value);
+        expect(this.stack.peek()[&apos;child-1&apos;].val).to.equal(this.stack.value.val);
+
+        this.stack.pop();
+        this.stack.push(&apos;child-2&apos;, []);
+        this.stack.pop();
+        expect(this.stack.value[&apos;child-2&apos;]).to.be.array;
+        expect(this.stack.value[&apos;child-2&apos;]).to.be.empty;
+    });
+
+    /**
+     * @test {VariableStack#push}
+     * @test {VariableStack#value}
+     */
+    it(&apos;allows object-repushing on user-defined objects&apos;, function(){
+        this.stack.value.child = { val: &apos;fixture&apos; };
+        this.stack.push(&apos;child&apos;);
+        expect(this.stack.value).to.not.be.empty;
+        expect(this.stack.value.val).to.equal(&apos;fixture&apos;);
+    });
+
+    /**
+     * @test {VariableStack#peek}
+     * @test {VariableStack#peekLayer}
+     * @test {VariableStack#popAll}
+     */
+    it(&apos;allows layer-peeking &amp; allPop&apos;, function(){
+        this.stack.push(&apos;child&apos;);
+        this.stack.value.val = &apos;val&apos;
+        expect(this.stack.peekLayer().isRoot).to.be.true;
+        expect(this.stack.peek().child.val).to.equal(&apos;val&apos;);
+        expect(this.stack.peek(0).val).to.equal(&apos;val&apos;);
+
+        this.stack.push(&apos;child&apos;);
+        expect(this.stack.peekLayer().isRoot).to.be.false;
+        expect(this.stack.peekLayer(2).isRoot).to.be.true;
+
+        this.stack.push(&apos;child&apos;);
+        expect(this.stack.peekLayer().isRoot).to.be.false;
+        expect(this.stack.peekLayer(2).isRoot).to.be.false;
+        expect(this.stack.peekLayer(3).isRoot).to.be.true;
+
+        this.stack.push(&apos;child&apos;);
+        this.stack.value.fixture = &apos;fixture&apos;;
+        expect(this.stack.peekLayer().isRoot).to.be.false;
+        expect(this.stack.peekLayer(2).isRoot).to.be.false;
+        expect(this.stack.peekLayer(3).isRoot).to.be.false;
+        expect(this.stack.peekLayer(4).isRoot).to.be.true;
+
+        this.stack.popAll();
+        expect(this.stack.top.isRoot).to.be.true;
+        expect(this.stack.value).to.not.be.empty;
+        expect(this.stack.value.child.child.child.child.fixture).to.equal(&apos;fixture&apos;);
+    });
+
+    /** @test {VariableStack#peek} */
+    it(&apos;properly supports layer-peeking&apos;, function(){
+        this.stack.push(&apos;child1&apos;);
+        this.stack.value.val = &apos;val-1&apos;;
+        this.stack.pop();
+
+        this.stack.push(&apos;child2&apos;);
+        this.stack.value.val = &apos;val-2&apos;;
+        this.stack.pop();
+
+        this.stack.push(&apos;child3&apos;);
+        this.stack.value.val = &apos;val-3&apos;;
+        expect(this.stack.peek().child1.val).to.equal(&apos;val-1&apos;);
+        expect(this.stack.peek().child2.val).to.equal(&apos;val-2&apos;);
+
+        this.stack.push(&apos;child31&apos;);
+        this.stack.value.val = &apos;val-3-1&apos;;
+        expect(this.stack.peek().val).to.equal(&apos;val-3&apos;);
+        expect(this.stack.peek(2).child1.val).to.equal(&apos;val-1&apos;);
+        expect(this.stack.peek(2).child2.val).to.equal(&apos;val-2&apos;);
+
+        this.stack.push(&apos;child311&apos;);
+        expect(this.stack.peek(3).child1.val).to.equal(&apos;val-1&apos;);
+    });
+
+    /** @test {VariableStack#pop} */
+    it(&apos;prevents invalid popping&apos;, function(){
+        expect(this.stack.pop.bind(this.stack)).to.throw(ReferenceError);
+
+        this.stack.push(&apos;child&apos;);
+        expect(this.stack.pop.bind(this.stack)).to.not.throw(ReferenceError);
+    });
+
+    /** @test {VariableStack#peek} */
+    it(&apos;prevents invalid peeking&apos;, function(){
+        expect(this.stack.peek.bind(this.stack)).to.throw(ReferenceError);
+
+        this.stack.push(&apos;child&apos;);
+        expect(this.stack.peek.bind(this.stack)).to.not.throw(ReferenceError);
+    });
+
+    /** @test {VariableStack#push} */
+    it(&apos;allows array pushing&apos;, function(){
+        this.stack.push(&apos;child&apos;, []);
+        this.stack.value.push(&apos;fixture&apos;);
+
+        expect(this.stack.value).to.be.array;
+        expect(this.stack.value).to.have.length.of(1);
+
+        this.stack.pop();
+        expect(this.stack.value.child[0]).to.equal(&apos;fixture&apos;);
+    });
+
+    /** @test {VariableStack#push} */
+    it(&apos;allows full primitive value-replacing&apos;, function(){
+        this.stack.push(&apos;child&apos;);
+        this.stack.value = &apos;fixture&apos;;
+
+        expect(this.stack.value).to.equal(&apos;fixture&apos;);
+    });
+
+    /** @test {VariableStack#push} */
+    it(&apos;allows full object value-replacing&apos;, function(){
+        this.stack.push(&apos;child&apos;);
+        this.stack.value.fixture = &apos;fixture&apos;;
+
+        this.stack.value = {};
+        expect(this.stack.value).to.be.empty;
+    });
+
+    /** @test {VariableStack#push} */
+    it(&apos;allows full array value-replacing&apos;, function(){
+        this.stack.push(&apos;child&apos;, []);
+        this.stack.value.push(&apos;fixture&apos;);
+
+        this.stack.value = [];
+        expect(this.stack.value).to.be.empty;
+    });
+
+    /** @test {VariableStack#set} */
+    it(&apos;updates the parent-layers value&apos;, function(){
+        this.stack.push(&apos;child&apos;, 10);
+        this.stack.value = 20;
+        expect(this.stack.peek().child).to.equal(20);
+
+        this.stack.pop();
+        expect(this.stack.value.child).to.equal(20);
+    });
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc2.org">esdoc2<span data-ice="esdocVersion">(2.1.3)</span><img src="./image/esdoc2-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

@@ -12,7 +12,7 @@
     "docs": "esdoc2 -c esdoc.json",
     "coverage": "nyc --require babel-core/register --reporter=lcov mocha",
     "coverall": "nyc npm test && nyc report --reporter=text-lcov | coveralls",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build && npm run docs"
   },
   "repository": {
     "type": "git",

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../">
+  <title data-ice="title">Manual | corrode</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="A batteries-included library for reading binary data."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="corrode"><meta property="twitter:description" content="A batteries-included library for reading binary data."></head>
+<body class="layout-container manual-root" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/screeny05/corrode"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div class="manual-toc-root">
+  
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/overview.html"><a href="manual/overview.html" data-ice="link">Overview</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/overview.html"><a href="manual/overview.html#components" data-ice="link">Components</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/overview.html"><a href="manual/overview.html#the-assertions" data-ice="link">The Assertions</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/overview.html"><a href="manual/overview.html#the-mappers" data-ice="link">The Mappers</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/overview.html"><a href="manual/overview.html#when-will-i-be-able-to-access-the-variables---extensions--asserts--amp--mappers-" data-ice="link">When will i be able to access the variables? (Extensions, Asserts &amp; Mappers)</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/overview.html"><a href="manual/overview.html#corrode-position---corrode-skip-issues--isseeking-" data-ice="link">Corrode#position / Corrode#skip issues (isSeeking)</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/configuration.html"><a href="manual/configuration.html" data-ice="link">Configuration</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/configuration.html"><a href="manual/configuration.html#-code-endianness--code-" data-ice="link">endianness</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/configuration.html"><a href="manual/configuration.html#-code-loopidentifier--code-" data-ice="link">loopIdentifier</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/configuration.html"><a href="manual/configuration.html#-code-encoding--code-" data-ice="link">encoding</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/configuration.html"><a href="manual/configuration.html#-code-finishjobsoneof--code-" data-ice="link">finishJobsOnEOF</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/configuration.html"><a href="manual/configuration.html#-code-anonymousloopdiscarddeep--code-" data-ice="link">anonymousLoopDiscardDeep</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/configuration.html"><a href="manual/configuration.html#-code-strictobjectmode--code-" data-ice="link">strictObjectMode</a></li>
+</ul>
+  </div>
+<div data-ice="manual">
+    <ul class="manual-toc">
+      
+    <li data-ice="manualNav" class="indent-h1" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html" data-ice="link">Changelog</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#corrode-v1-0-2" data-ice="link">corrode v1.0.2</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#corrode-v1-0-1" data-ice="link">corrode v1.0.1</a></li>
+<li data-ice="manualNav" class="indent-h2" data-link="manual/CHANGELOG.html"><a href="manual/CHANGELOG.html#corrode-v1-0-0" data-ice="link">corrode v1.0.0</a></li>
+</ul>
+  </div>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><div class="github-markdown" data-ice="content"><h1 id="configuration">Configuration</h1><p>Corrode provides some configuration-options. These are either defaults, safeguards or advanced-user-stuff.</p>
+<p>Corrode accepts an object as its first parameter, containing options.</p>
+<p>These options also get passed on to the TransformStream-constructor, so <a href="https://nodejs.org/api/stream.html#stream_constructor_new_stream_writable_options">those</a> <a href="https://nodejs.org/api/stream.html#stream_new_stream_readable_options">options</a> are also valid.</p>
+<h2 id="-code-endianness--code-"><code>endianness</code></h2><p><strong>default:</strong> <code>&apos;LE&apos;</code></p>
+<p><strong>accepts:</strong> <code>&apos;LE&apos;, &apos;BE&apos;</code> (for little endian &amp; big endian)</p>
+<p>If you use methods like <code>.uint8()</code> or <code>.int32()</code> this option determines what endianness corrode uses when reading your bytes.</p>
+<p>Of course using <code>.uint16be()</code> or <code>.doublele()</code> will overwrite this default, as you&apos;d expect.</p>
+<h2 id="-code-loopidentifier--code-"><code>loopIdentifier</code></h2><p><strong>default:</strong> <code>Symbol(loop-variable)</code></p>
+<p><strong>accepts:</strong> Anything which can be used as an identifier in an object.</p>
+<p>Determines the identifier of the temporary variable which gets created when using <code>.loop()</code>.</p>
+<h2 id="-code-encoding--code-"><code>encoding</code></h2><p><strong>default:</strong> <code>&apos;utf8&apos;</code></p>
+<p><strong>accepts:</strong> Any encoding <code>Buffer.prototype.toString</code> accepts. <a href="https://nodejs.org/api/buffer.html#buffer_buffers_and_character_encodings">Full list here</a>.</p>
+<p>Determines which encoding to use for string-functions like <code>.string()</code> or <code>.terminatedString()</code>. Can be overwitten on a per-use-basis by the functions themselves.</p>
+<h2 id="-code-finishjobsoneof--code-"><code>finishJobsOnEOF</code></h2><p><strong>default:</strong> <code>true</code></p>
+<p><strong>accepts:</strong> <code>true, false</code></p>
+<p>Determines whether or not to finish everything up, once corrode encounters the end of the stream being piped into corrode, or the end of the buffer.</p>
+<p>Set to <code>false</code> if you want to parse a file which was split in two or more parts. Or somethin along those lines.</p>
+<p>What this flag does in detail is to clean up all remaining jobs from the job list, which are read-related, once EOF is reached. Then the job list will be worked on, until there are no more jobs. Meaning all VariableStack-Layers have been popped, giving you access to all that sweet data of yours.</p>
+<h2 id="-code-anonymousloopdiscarddeep--code-"><code>anonymousLoopDiscardDeep</code></h2><p><strong>default:</strong> <code>false</code></p>
+<p><strong>accepts:</strong> <code>true, false</code></p>
+<p>Corrode provides the <code>discard()</code> function inside <code>.loop()</code>- and <code>.repeat()</code>-callbacks. If you use those anonymously (meaning you don&apos;t push an array onto the variable-stack by giving a string as the first parameter) and then call the <code>discard()</code> function, corrode will discard whatever data you read, and restore what&apos;s been there before.</p>
+<p>By default this is done in a shallow way, meaning that corrode will clone the users data before the callback is called shallowly by using <code>Object.assign()</code> and that shallow copy gets assigned again when calling <code>discard()</code>.</p>
+<p>This may lead to problems, when modifiyng objects within the curren VariableStack-layer. Those won&apos;t get replaced with their original version.</p>
+<p>To circumvent this problem you can set this option to true. This is not done, because probably no-one needs this, and it may be a huge performance-hit to clone an entire object, everytime the loop-callback is called.</p>
+<h2 id="-code-strictobjectmode--code-"><code>strictObjectMode</code></h2><p><strong>default:</strong> <code>true</code></p>
+<p><strong>accepts:</strong> <code>true, false</code></p>
+<p>When this option is set to true, corrode will prevent you from pushing into anything that&apos;s not an object. Meaning moves like this:</p>
+<pre><code class="lang-javascript"><code class="source-code prettyprint">parser.uint8(&apos;val&apos;).tap(&apos;val&apos;, function(){});</code>
+</code></pre>
+<p>will throw an error. This way corrode provides a naive way of type-safety.</p>
+</div>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc2.org">esdoc2<span data-ice="esdocVersion">(2.1.3)</span><img src="./image/esdoc2-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

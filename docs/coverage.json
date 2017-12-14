@@ -1,0 +1,50 @@
+{
+  "coverage": "90.83%",
+  "expectCount": 120,
+  "actualCount": 109,
+  "files": {
+    "src/assert/index.js": {
+      "expectCount": 9,
+      "actualCount": 9,
+      "undocumentLines": []
+    },
+    "src/base.js": {
+      "expectCount": 65,
+      "actualCount": 61,
+      "undocumentLines": [
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    "src/index.js": {
+      "expectCount": 18,
+      "actualCount": 18,
+      "undocumentLines": []
+    },
+    "src/map/index.js": {
+      "expectCount": 10,
+      "actualCount": 10,
+      "undocumentLines": []
+    },
+    "src/utils/index.js": {
+      "expectCount": 2,
+      "actualCount": 2,
+      "undocumentLines": []
+    },
+    "src/variable-stack.js": {
+      "expectCount": 16,
+      "actualCount": 9,
+      "undocumentLines": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        64,
+        65
+      ]
+    }
+  }
+}

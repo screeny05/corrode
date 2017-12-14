@@ -1,0 +1,1331 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="">
+  <title data-ice="title">Test | corrode</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="A batteries-included library for reading binary data."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="corrode"><meta property="twitter:description" content="A batteries-included library for reading binary data."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/screeny05/corrode"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base.js~CorrodeBase.html">CorrodeBase</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/index.js~Corrode.html">Corrode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/variable-stack.js~VariableStack.html">VariableStack</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#assert">assert</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-allEqual">allEqual</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-arrayLength">arrayLength</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bitmask">bitmask</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-callback">callback</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-deepEqual">deepEqual</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-equal">equal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-exists">exists</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inBounds">inBounds</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-includes">includes</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#map">map</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bitmask">bitmask</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-callback">callback</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-find">find</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-findAll">findAll</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get">get</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-push">push</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-abs">abs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-invert">invert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-trim">trim</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bindObject">bindObject</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tapBindObject">tapBindObject</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1>Test</h1>
+<table class="test-summary">
+  <thead>
+    <tr>
+      <td class="test-description">Description</td>
+      <td class="test-target">Identifier</td>
+    </tr>
+  </thead>
+
+  <tbody data-ice="tests"><tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/assert.test.js.html#lineNumber6"><p>Assert</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/assert.test.js.html#lineNumber17"><p>asserts equal</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-equal">equal</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/assert.test.js.html#lineNumber25"><p>asserts allEqual for objects</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-allEqual">allEqual</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/assert.test.js.html#lineNumber34"><p>asserts allEqual for arrays</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-allEqual">allEqual</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/assert.test.js.html#lineNumber43"><p>asserts deepEqual</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-deepEqual">deepEqual</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/assert.test.js.html#lineNumber51"><p>asserts includes for arrays</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-includes">includes</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/assert.test.js.html#lineNumber57"><p>asserts includes for objects</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-includes">includes</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/assert.test.js.html#lineNumber63"><p>asserts inBounds</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-inBounds">inBounds</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/assert.test.js.html#lineNumber72"><p>asserts via callback</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-callback">callback</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/assert.test.js.html#lineNumber80"><p>asserts arrayLength</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-arrayLength">arrayLength</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/assert.test.js.html#lineNumber88"><p>asserts exists</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-exists">exists</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/assert.test.js.html#lineNumber97"><p>asserts bitmask</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-bitmask">bitmask</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/base-aborts.test.js.html#lineNumber5"><p>CorrodeBase - Aborts</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-jobLoop">CorrodeBase#jobLoop</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-aborts.test.js.html#lineNumber11"><p>correctly aborts too short int16</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-aborts.test.js.html#lineNumber16"><p>correctly aborts too short int32</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-aborts.test.js.html#lineNumber21"><p>correctly aborts too short int64</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-aborts.test.js.html#lineNumber26"><p>correctly aborts too short float</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-aborts.test.js.html#lineNumber31"><p>correctly aborts too short double</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-aborts.test.js.html#lineNumber36"><p>correctly aborts too short string</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-aborts.test.js.html#lineNumber41"><p>correctly aborts too short buffer</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-aborts.test.js.html#lineNumber46"><p>correctly aborts too short skip</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/base-edge-cases.test.js.html#lineNumber5"><p>CorrodeBase - Edge Cases</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html">CorrodeBase</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-edge-cases.test.js.html#lineNumber13"><p>correctly overrides primitves</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-jobLoop">CorrodeBase#jobLoop</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-edge-cases.test.js.html#lineNumber24"><p>considers strings as length as references to vars - strings</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-string">CorrodeBase#string</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-edge-cases.test.js.html#lineNumber36"><p>considers strings as length as references to vars - buffers</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-buffer">CorrodeBase#buffer</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-edge-cases.test.js.html#lineNumber48"><p>considers strings as length as references to vars - skip</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-skip">CorrodeBase#skip</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-edge-cases.test.js.html#lineNumber61"><p>throws errors for invalid variables when using strings as length as references to vars - strings</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-string">CorrodeBase#string</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-edge-cases.test.js.html#lineNumber70"><p>throws errors for invalid variables when using strings as length as references to vars - buffers</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-buffer">CorrodeBase#buffer</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-edge-cases.test.js.html#lineNumber79"><p>throws errors for invalid variables when using strings as length as references to vars - skip</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-skip">CorrodeBase#skip</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-edge-cases.test.js.html#lineNumber92"><p>has the correct offset</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-member-chunkOffset">CorrodeBase#chunkOffset</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-member-streamOffset">CorrodeBase#streamOffset</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/base-flags.test.js.html#lineNumber5"><p>CorrodeBase#options</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-member-options">CorrodeBase#options</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-flags.test.js.html#lineNumber13"><p>correctly finishes primitive jobs on EOF</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span>CorrodeBase#options.finishJobsOnEOF</span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-flags.test.js.html#lineNumber32"><p>correctly finishes tap jobs on EOF</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span>CorrodeBase#options.finishJobsOnEOF</span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-flags.test.js.html#lineNumber55"><p>correctly finishes loop jobs on EOF</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span>CorrodeBase#options.finishJobsOnEOF</span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-flags.test.js.html#lineNumber82"><p>correctly finishes nested jobs on EOF</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span>CorrodeBase#options.finishJobsOnEOF</span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-flags.test.js.html#lineNumber136"><p>correctly rests in the current state when finishJobsOnEOF is false - tap</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span>CorrodeBase#options.finishJobsOnEOF</span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-flags.test.js.html#lineNumber156"><p>correctly rests in the current state when finishJobsOnEOF is false - loop</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span>CorrodeBase#options.finishJobsOnEOF</span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-flags.test.js.html#lineNumber177"><p>should not be disturbed, when changing the loopIdentifier</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span>CorrodeBase#options.loopIdentifier</span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-flags.test.js.html#lineNumber196"><p>flushes when isSeeking = false</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-member-isSeeking">CorrodeBase#isSeeking</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-flags.test.js.html#lineNumber207"><p>prevents flushes when isSeeking = true</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-member-isSeeking">CorrodeBase#isSeeking</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-flags.test.js.html#lineNumber220"><p>allows mixing of isSeeking-modes</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-member-isSeeking">CorrodeBase#isSeeking</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/base-loop-anonymous.test.js.html#lineNumber5"><p>CorrodeBase#loop - anonymous</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-loop">CorrodeBase#loop</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-loop-anonymous.test.js.html#lineNumber12"><p>anonymous loop (overriding)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-loop-anonymous.test.js.html#lineNumber24"><p>anonymous loop (scope)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-loop-anonymous.test.js.html#lineNumber40"><p>anonymous loop (no discard, no finish)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-loop-anonymous.test.js.html#lineNumber60"><p>anonymous loop (no discard, finish after)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-loop-anonymous.test.js.html#lineNumber75"><p>anonymous loop (no discard, finish before)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-loop-anonymous.test.js.html#lineNumber90"><p>anonymous loop (discard before, no finish)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-loop-anonymous.test.js.html#lineNumber106"><p>anonymous loop (discard after, no finish)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-loop-anonymous.test.js.html#lineNumber127"><p>anonymous loop (discard deep, no finish)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span>CorrodeBase#options.anonymousLoopDiscardDeep</span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-loop-anonymous.test.js.html#lineNumber156"><p>anonymous loop (discard shallow, no finish)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span>CorrodeBase#options.anonymousLoopDiscardDeep</span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-loop-anonymous.test.js.html#lineNumber182"><p>anonymous loop (discard, finish before)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-loop-anonymous.test.js.html#lineNumber197"><p>anonymous loop (discard, finish after)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/base-loop-named.test.js.html#lineNumber5"><p>CorrodeBase#loop - named</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-loop">CorrodeBase#loop</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-loop-named.test.js.html#lineNumber12"><p>named loop</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-loop-named.test.js.html#lineNumber28"><p>named loop (scope)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-loop-named.test.js.html#lineNumber55"><p>named loop (no discard, finish after)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-loop-named.test.js.html#lineNumber74"><p>named loop (no discard, finish before)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-loop-named.test.js.html#lineNumber93"><p>named loop (discard before, no finish)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-loop-named.test.js.html#lineNumber114"><p>named loop (discard after, no finish)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-loop-named.test.js.html#lineNumber141"><p>named loop (discard, finish before)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-loop-named.test.js.html#lineNumber160"><p>named loop (discard, finish after)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-loop-named.test.js.html#lineNumber179"><p>named loops replaced var</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/base-primitves.test.js.html#lineNumber5"><p>CorrodeBase - Primitives</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html">CorrodeBase</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-primitves.test.js.html#lineNumber20"><p>reads int8</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-int8">CorrodeBase#int8</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-int8le">CorrodeBase#int8le</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-int8be">CorrodeBase#int8be</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint8">CorrodeBase#uint8</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint8le">CorrodeBase#uint8le</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint8be">CorrodeBase#uint8be</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-primitves.test.js.html#lineNumber53"><p>reads int16</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-int16">CorrodeBase#int16</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-int16le">CorrodeBase#int16le</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-int16be">CorrodeBase#int16be</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint16">CorrodeBase#uint16</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint16le">CorrodeBase#uint16le</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint16be">CorrodeBase#uint16be</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-primitves.test.js.html#lineNumber86"><p>reads int32</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-int32">CorrodeBase#int32</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-int32le">CorrodeBase#int32le</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-int32be">CorrodeBase#int32be</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint32">CorrodeBase#uint32</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint32le">CorrodeBase#uint32le</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint32be">CorrodeBase#uint32be</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-primitves.test.js.html#lineNumber120"><p>reads int64</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-int64">CorrodeBase#int64</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-int64le">CorrodeBase#int64le</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-int64be">CorrodeBase#int64be</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint64">CorrodeBase#uint64</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint64le">CorrodeBase#uint64le</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint64be">CorrodeBase#uint64be</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-primitves.test.js.html#lineNumber150"><p>reads float</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-float">CorrodeBase#float</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-floatle">CorrodeBase#floatle</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-floatbe">CorrodeBase#floatbe</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-primitves.test.js.html#lineNumber173"><p>reads double</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-double">CorrodeBase#double</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-doublele">CorrodeBase#doublele</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-doublebe">CorrodeBase#doublebe</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-primitves.test.js.html#lineNumber191"><p>reads utf8-strings</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-string">Corrode#string</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-primitves.test.js.html#lineNumber200"><p>reads strings, regardless of the underlying buffer</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-string">Corrode#string</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-primitves.test.js.html#lineNumber212"><p>reads buffers</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-buffer">Corrode#buffer</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-primitves.test.js.html#lineNumber224"><p>reads buffers, regardless of the underlying buffer</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-buffer">Corrode#buffer</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/base-push-jobs.test.js.html#lineNumber7"><p>CorrodeBase#jobs</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-member-jobs">CorrodeBase#jobs</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-push-jobs.test.js.html#lineNumber21"><p>pushes int8 jobs</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-int8">CorrodeBase#int8</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-int8le">CorrodeBase#int8le</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-int8be">CorrodeBase#int8be</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint8">CorrodeBase#uint8</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint8le">CorrodeBase#uint8le</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint8be">CorrodeBase#uint8be</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-push-jobs.test.js.html#lineNumber48"><p>pushes int16 jobs</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-int16">CorrodeBase#int16</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-int16le">CorrodeBase#int16le</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-int16be">CorrodeBase#int16be</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint16">CorrodeBase#uint16</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint16le">CorrodeBase#uint16le</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint16be">CorrodeBase#uint16be</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-push-jobs.test.js.html#lineNumber75"><p>pushes int32 jobs</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-int32">CorrodeBase#int32</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-int32le">CorrodeBase#int32le</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-int32be">CorrodeBase#int32be</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint32">CorrodeBase#uint32</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint32le">CorrodeBase#uint32le</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint32be">CorrodeBase#uint32be</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-push-jobs.test.js.html#lineNumber102"><p>pushes int64 jobs</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-int64">CorrodeBase#int64</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-int64le">CorrodeBase#int64le</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-int64be">CorrodeBase#int64be</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint64">CorrodeBase#uint64</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint64le">CorrodeBase#uint64le</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint64be">CorrodeBase#uint64be</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-push-jobs.test.js.html#lineNumber126"><p>pushes float jobs</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-float">CorrodeBase#float</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-floatle">CorrodeBase#floatle</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-floatbe">CorrodeBase#floatbe</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-push-jobs.test.js.html#lineNumber144"><p>pushes double jobs</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-double">CorrodeBase#double</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-doublele">CorrodeBase#doublele</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-doublebe">CorrodeBase#doublebe</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-push-jobs.test.js.html#lineNumber170"><p>pushes options.endianness correct jobs</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-int8">CorrodeBase#int8</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint8">CorrodeBase#uint8</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-int16">CorrodeBase#int16</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint16">CorrodeBase#uint16</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-int32">CorrodeBase#int32</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint32">CorrodeBase#uint32</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-int64">CorrodeBase#int64</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-uint64">CorrodeBase#uint64</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-float">CorrodeBase#float</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-double">CorrodeBase#double</a></span>
+<span>CorrodeBase#options.endianness</span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-push-jobs.test.js.html#lineNumber200"><p>pushes buffer jobs</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-buffer">Corrode#buffer</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-push-jobs.test.js.html#lineNumber216"><p>pushes string jobs</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-string">Corrode#string</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-push-jobs.test.js.html#lineNumber232"><p>pushes push jobs</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-push">Corrode#push</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-push-jobs.test.js.html#lineNumber244"><p>pushes pop jobs</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-pop">Corrode#pop</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-push-jobs.test.js.html#lineNumber253"><p>pushes skip jobs</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-skip">Corrode#skip</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-push-jobs.test.js.html#lineNumber265"><p>pushes loop jobs</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-loop">Corrode#loop</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-push-jobs.test.js.html#lineNumber292"><p>pushes tap jobs</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-tap">Corrode#tap</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-push-jobs.test.js.html#lineNumber310"><p>queues and unqueues jobs</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-queueJobs">Corrode#queueJobs</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-push-jobs.test.js.html#lineNumber332"><p>removes read jobs</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-removeReadJobs">Corrode#removeReadJobs</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-push-jobs.test.js.html#lineNumber356"><p>throws error on unknown job</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-jobLoop">Corrode#jobLoop</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/base-skip.test.js.html#lineNumber5"><p>CorrodeBase#skip</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-skip">CorrodeBase#skip</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-skip.test.js.html#lineNumber12"><p>allows us to skip content</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-skip.test.js.html#lineNumber28"><p>prevents us from unskipping content with isSeeking = false</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-member-isSeeking">CorrodeBase#isSeeking</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-skip.test.js.html#lineNumber42"><p>allows us to unskip content with isSeeking = true</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-member-isSeeking">CorrodeBase#isSeeking</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-skip.test.js.html#lineNumber59"><p>prevents us from unskipping too far</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/base-stack.test.js.html#lineNumber5"><p>CorrodeBase#varStack</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-member-varStack">CorrodeBase#varStack</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-stack.test.js.html#lineNumber12"><p>pushes and pops</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-push">CorrodeBase#push</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-stack.test.js.html#lineNumber38"><p>denies popping the root-layer</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-pop">CorrodeBase#pop</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-stack.test.js.html#lineNumber47"><p>pushes back into old layers</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-push">CorrodeBase#push</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-pop">CorrodeBase#pop</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-stack.test.js.html#lineNumber74"><p>automatically unpushes as it unwinds</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-push">CorrodeBase#push</a></span>
+<span><a href="class/src/base.js~CorrodeBase.html#instance-method-finishRemainingJobs">CorrodeBase#finishRemainingJobs</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-stack.test.js.html#lineNumber91"><p>denies pushing into non-object vars</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span>CorrodeBase#options.strictObjectMode</span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/base-tap.test.js.html#lineNumber5"><p>CorrodeBase#tap</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-tap">CorrodeBase#tap</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-tap.test.js.html#lineNumber11"><p>taps into the current state</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-tap.test.js.html#lineNumber23"><p>taps into a named var</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-tap.test.js.html#lineNumber41"><p>re-taps into existing objects</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-tap.test.js.html#lineNumber68"><p>supports custom arguments in anonymous taps</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-tap.test.js.html#lineNumber84"><p>supports custom arguments in named taps</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-tap.test.js.html#lineNumber103"><p>does not allow tapping into other objects</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span>CorrodeBase#options.strictObjectMode</span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/base-tap.test.js.html#lineNumber115"><p>allows tapping into other objects when strictObjectMode is false</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span>CorrodeBase#options.strictObjectMode</span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/corrode-extensions.test.js.html#lineNumber8"><p>Corrode#ext</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span>Corrode#addExtension</span>
+<span><a href="class/src/index.js~Corrode.html#instance-member-ext">Corrode#ext</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-extensions.test.js.html#lineNumber30"><p>supports extensions</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-extensions.test.js.html#lineNumber52"><p>supports extensions with return values and scope-access</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-extensions.test.js.html#lineNumber71"><p>supports extensions with return and read</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-extensions.test.js.html#lineNumber87"><p>supports extensions with return and read</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-extensions.test.js.html#lineNumber115"><p>supports calling extensions within extensions</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/corrode-helper.test.js.html#lineNumber5"><p>Corrode - Helpers</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/index.js~Corrode.html">Corrode</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-helper.test.js.html#lineNumber15"><p>coverage fix</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/index.js~Corrode.html#instance-method-debug">Corrode#debug</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-helper.test.js.html#lineNumber40"><p>converts from buffer</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/index.js~Corrode.html#instance-method-fromBuffer">Corrode#fromBuffer</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/corrode-pointer.test.js.html#lineNumber5"><p>Corrode#pointer</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/index.js~Corrode.html#instance-method-pointer">Corrode#pointer</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-pointer.test.js.html#lineNumber11"><p>retrieves from array</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-pointer.test.js.html#lineNumber31"><p>retrieves from object</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-pointer.test.js.html#lineNumber52"><p>retrieves from string</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/corrode-position.test.js.html#lineNumber5"><p>Corrode#position</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/index.js~Corrode.html#instance-method-position">Corrode#position</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-position.test.js.html#lineNumber11"><p>jumps to absolute positions</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-position.test.js.html#lineNumber31"><p>prevents jumps to invalid negative positions</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-position.test.js.html#lineNumber39"><p>allows jumps to future positive positions</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/corrode-repeat.test.js.html#lineNumber5"><p>Corrode#repeat</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/index.js~Corrode.html#instance-method-repeat">Corrode#repeat</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-repeat.test.js.html#lineNumber11"><p>repeats anonymously</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-repeat.test.js.html#lineNumber25"><p>repeats named</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-repeat.test.js.html#lineNumber45"><p>repeats anonymously as long as possible</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-repeat.test.js.html#lineNumber59"><p>repeats named as long as possible</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-repeat.test.js.html#lineNumber79"><p>repeats anonymously with the right scope</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-repeat.test.js.html#lineNumber95"><p>repeats named with the right scope</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-repeat.test.js.html#lineNumber128"><p>repeats anonymously with a string as length</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-repeat.test.js.html#lineNumber145"><p>repeats named with a string as length</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-repeat.test.js.html#lineNumber166"><p>shortcuts anonymous repeats</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-repeat.test.js.html#lineNumber174"><p>shortcuts named repeats</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-repeat.test.js.html#lineNumber183"><p>repeats (no discard, finish after)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-repeat.test.js.html#lineNumber202"><p>repeats (no discard, finish before)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-repeat.test.js.html#lineNumber221"><p>repeats (discard before, no finish)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-repeat.test.js.html#lineNumber240"><p>repeat (discard after, no finish)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-repeat.test.js.html#lineNumber267"><p>repeats (discard, finish before)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-repeat.test.js.html#lineNumber286"><p>repeats (discard, finish after)</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-repeat.test.js.html#lineNumber305"><p>repeats replaced var</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-repeat.test.js.html#lineNumber319"><p>repeats 0 times direct</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-repeat.test.js.html#lineNumber332"><p>repeats 0 times with a string as length</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/corrode-terminated-buffer.test.js.html#lineNumber5"><p>Corrode#terminatedBuffer</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/index.js~Corrode.html#instance-method-terminatedBuffer">Corrode#terminatedBuffer</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-terminated-buffer.test.js.html#lineNumber12"><p>retrieves a terminated buffer</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-terminated-buffer.test.js.html#lineNumber23"><p>retrieves a terminated buffer spanned over multiple buffers</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-terminated-buffer.test.js.html#lineNumber34"><p>retrieves a terminated buffer spanned over multiple buffers with options</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-terminated-buffer.test.js.html#lineNumber49"><p>retrieves a terminated buffer in a complex parser</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/corrode-terminated-string.test.js.html#lineNumber5"><p>Corrode#terminatedString</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/index.js~Corrode.html#instance-method-terminatedString">Corrode#terminatedString</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-terminated-string.test.js.html#lineNumber12"><p>retrieves a terminated string</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-terminated-string.test.js.html#lineNumber25"><p>retrieves a terminated string spanned over multiple buffers</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-terminated-string.test.js.html#lineNumber38"><p>retrieves a terminated string with options</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/corrode-terminated-string.test.js.html#lineNumber51"><p>accepts custom encoding</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/map.test.js.html#lineNumber5"><p>Map</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/map.test.js.html#lineNumber16"><p>maps via callback</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/index.js~Corrode.html#instance-member-map">map</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/map.test.js.html#lineNumber21"><p>maps via get - array</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-get">get</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/map.test.js.html#lineNumber28"><p>maps via get - object</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-get">get</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/map.test.js.html#lineNumber34"><p>maps via findAll</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-findAll">findAll</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/map.test.js.html#lineNumber42"><p>maps via find</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-find">find</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/map.test.js.html#lineNumber49"><p>maps via abs</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="variable/index.html#static-variable-abs">abs</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/map.test.js.html#lineNumber55"><p>maps via invert</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="variable/index.html#static-variable-invert">invert</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/map.test.js.html#lineNumber61"><p>maps via trim</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="variable/index.html#static-variable-trim">trim</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/map.test.js.html#lineNumber67"><p>pushes</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/base.js~CorrodeBase.html#instance-method-push">push</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/map.test.js.html#lineNumber74"><p>maps via bitmask</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-bitmask">bitmask</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/map.test.js.html#lineNumber97"><p>maps single values via bitmask</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-bitmask">bitmask</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/utils.test.js.html#lineNumber4"><p>Utils</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target">-</td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/utils.test.js.html#lineNumber12"><p>binds object with tap</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-tapBindObject">tapBindObject</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/utils.test.js.html#lineNumber29"><p>binds object with data</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="function/index.html#static-function-bindObject">bindObject</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="0">
+  <td data-ice="testDescription" style="padding-left: 10px"><span data-ice="testInterfaceToggle" class="toggle closed"></span><span><a href="test-file/test/variable-stack.test.js.html#lineNumber5"><p>VariableStack</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/variable-stack.js~VariableStack.html">VariableStack</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/variable-stack.test.js.html#lineNumber11"><p>starts as an empty object</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/variable-stack.js~VariableStack.html">VariableStack</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/variable-stack.test.js.html#lineNumber19"><p>allows properties on layer 0</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/variable-stack.js~VariableStack.html#instance-constructor-constructor">VariableStack#constructor</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/variable-stack.test.js.html#lineNumber29"><p>allows object-descension</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-push">VariableStack#push</a></span>
+<span><a href="class/src/variable-stack.js~VariableStack.html#instance-member-top">VariableStack#top</a></span>
+<span><a href="class/src/variable-stack.js~VariableStack.html#instance-get-value">VariableStack#value</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/variable-stack.test.js.html#lineNumber38"><p>haves correct value-shortcut</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-push">VariableStack#push</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/variable-stack.test.js.html#lineNumber45"><p>allows deep-adding</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-push">VariableStack#push</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/variable-stack.test.js.html#lineNumber55"><p>allows object-popping</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-push">VariableStack#push</a></span>
+<span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-pop">VariableStack#pop</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/variable-stack.test.js.html#lineNumber67"><p>allows object-popping with values</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-push">VariableStack#push</a></span>
+<span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-pop">VariableStack#pop</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/variable-stack.test.js.html#lineNumber78"><p>allows multiple pushed objects</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-push">VariableStack#push</a></span>
+<span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-pop">VariableStack#pop</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/variable-stack.test.js.html#lineNumber100"><p>allows object-repushing</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-push">VariableStack#push</a></span>
+<span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-pop">VariableStack#pop</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/variable-stack.test.js.html#lineNumber110"><p>allows array-repushing</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-push">VariableStack#push</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/variable-stack.test.js.html#lineNumber120"><p>allows primitive-repushing</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-push">VariableStack#push</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/variable-stack.test.js.html#lineNumber132"><p>repushes the same instance</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-push">VariableStack#push</a></span>
+<span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-pop">VariableStack#pop</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/variable-stack.test.js.html#lineNumber149"><p>allows object-repushing on user-defined objects</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-push">VariableStack#push</a></span>
+<span><a href="class/src/variable-stack.js~VariableStack.html#instance-get-value">VariableStack#value</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/variable-stack.test.js.html#lineNumber161"><p>allows layer-peeking &amp; allPop</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-peek">VariableStack#peek</a></span>
+<span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-peekLayer">VariableStack#peekLayer</a></span>
+<span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-popAll">VariableStack#popAll</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/variable-stack.test.js.html#lineNumber191"><p>properly supports layer-peeking</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-peek">VariableStack#peek</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/variable-stack.test.js.html#lineNumber216"><p>prevents invalid popping</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-pop">VariableStack#pop</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/variable-stack.test.js.html#lineNumber224"><p>prevents invalid peeking</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-peek">VariableStack#peek</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/variable-stack.test.js.html#lineNumber232"><p>allows array pushing</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-push">VariableStack#push</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/variable-stack.test.js.html#lineNumber244"><p>allows full primitive value-replacing</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-push">VariableStack#push</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/variable-stack.test.js.html#lineNumber252"><p>allows full object value-replacing</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-push">VariableStack#push</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/variable-stack.test.js.html#lineNumber261"><p>allows full array value-replacing</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span><a href="class/src/variable-stack.js~VariableStack.html#instance-method-push">VariableStack#push</a></span></td>
+</tr>
+
+<tr class="test-interface" data-ice="testInterface" style="display: none;" data-test-depth="1">
+  <td data-ice="testDescription" style="padding-left: 20px"><span><a href="test-file/test/variable-stack.test.js.html#lineNumber270"><p>updates the parent-layers value</p>
+</a></span></td>
+  <td data-ice="testTarget" class="test-target"><span>VariableStack#set</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc2.org">esdoc2<span data-ice="esdocVersion">(2.1.3)</span><img src="./image/esdoc2-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

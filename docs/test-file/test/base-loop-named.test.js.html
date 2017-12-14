@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">test/base-loop-named.test.js | corrode</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="A batteries-included library for reading binary data."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="corrode"><meta property="twitter:description" content="A batteries-included library for reading binary data."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/screeny05/corrode"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base.js~CorrodeBase.html">CorrodeBase</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/index.js~Corrode.html">Corrode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/variable-stack.js~VariableStack.html">VariableStack</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#assert">assert</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-allEqual">allEqual</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-arrayLength">arrayLength</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bitmask">bitmask</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-callback">callback</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-deepEqual">deepEqual</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-equal">equal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-exists">exists</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inBounds">inBounds</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-includes">includes</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#map">map</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bitmask">bitmask</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-callback">callback</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-find">find</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-findAll">findAll</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get">get</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-push">push</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-abs">abs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-invert">invert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-trim">trim</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bindObject">bindObject</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tapBindObject">tapBindObject</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">test/base-loop-named.test.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">const { expect } = require(&apos;chai&apos;);
+const Base = require(&apos;../src/base&apos;);
+
+/** @test {CorrodeBase#loop} */
+describe(&apos;CorrodeBase#loop - named&apos;, () =&gt; {
+    beforeEach(function(){
+        this.base = new Base();
+        this.eqArray = require(&apos;./helpers/asserts&apos;).eqArray.bind(this);
+    });
+
+
+    it(&apos;named loop&apos;, function(done){
+        this.base.loop(&apos;fix&apos;, function(){
+            this.uint8(&apos;var&apos;);
+        });
+
+        this.eqArray([0, 1, 2], done, {
+            fix: [{
+                var: 0
+            }, {
+                var: 1
+            }, {
+                var: 2
+            }]
+        });
+    });
+
+    it(&apos;named loop (scope)&apos;, function(done){
+        this.base
+            .uint8(&apos;rootFix&apos;)
+            .loop(&apos;fix&apos;, function(){
+                if(typeof this.vars.fix === &apos;undefined&apos;){
+                    this.vars.fix = -1;
+                }
+                this.vars.fix++;
+                this.varStack.peek().rootFix++;
+                this.uint8(&apos;var&apos;);
+            });
+
+        this.eqArray([0, 0, 1, 2], done, {
+            rootFix: 3,
+            fix: [{
+                fix: 0,
+                var: 0
+            }, {
+                fix: 0,
+                var: 1
+            }, {
+                fix: 0,
+                var: 2
+            }]
+        });
+    });
+
+    it(&apos;named loop (no discard, finish after)&apos;, function(done){
+        this.base.loop(&apos;loop&apos;, function(finish, discard, i){
+            this.uint8(&apos;var_&apos; + i);
+            if(i &gt;= 2){
+                finish();
+            }
+        });
+
+        this.eqArray([0, 1, 2, 3, 4, 5], done, {
+            loop: [{
+                var_0: 0
+            }, {
+                var_1: 1
+            }, {
+                var_2: 2
+            }]
+        });
+    });
+
+    it(&apos;named loop (no discard, finish before)&apos;, function(done){
+        this.base.loop(&apos;loop&apos;, function(finish, discard, i){
+            if(i &gt;= 3){
+                return finish();
+            }
+            this.uint8(&apos;var_&apos; + i);
+        });
+
+        this.eqArray([0, 1, 2, 3, 4, 5], done, {
+            loop: [{
+                var_0: 0
+            }, {
+                var_1: 1
+            }, {
+                var_2: 2
+            }]
+        });
+    });
+
+    it(&apos;named loop (discard before, no finish)&apos;, function(done){
+        this.base.loop(&apos;loop&apos;, function(finish, discard, i){
+            if(i % 2 !== 0){
+                discard();
+            }
+            this.uint8(&apos;var_&apos; + i);
+        });
+
+        this.eqArray([0, 1, 2, 3, 4, 5, 6], done, {
+            loop: [{
+                var_0: 0
+            }, {
+                var_2: 2
+            }, {
+                var_4: 4
+            }, {
+                var_6: 6
+            }]
+        });
+    });
+
+    it(&apos;named loop (discard after, no finish)&apos;, function(done){
+        this.base
+            .uint8(&apos;rootFix&apos;)
+            .loop(&apos;loop&apos;, function(finish, discard, i){
+                this
+                    .uint8(&apos;var_&apos; + i)
+                    .tap(function(){
+                        if(this.vars[&apos;var_&apos; + i] % 2 !== 0){
+                            discard();
+                        }
+                    });
+                this.varStack.peek().rootFix++;
+                if(i % 3 === 0){
+                    discard();
+                }
+            });
+
+        this.eqArray([0, 0, 1, 2, 3, 4, 5, 6], done, {
+            rootFix: 7,
+            loop: [{
+                var_2: 2
+            }, {
+                var_4: 4
+            }]
+        });
+    });
+
+    it(&apos;named loop (discard, finish before)&apos;, function(done){
+        this.base.loop(&apos;loop&apos;, function(finish, discard, i){
+            if(i &gt;= 3){
+                finish(true);
+            }
+            this.uint8(&apos;var_&apos; + i);
+        });
+
+        this.eqArray([0, 1, 2, 3, 4, 5], done, {
+            loop: [{
+                var_0: 0
+            }, {
+                var_1: 1
+            }, {
+                var_2: 2
+            }]
+        });
+    });
+
+    it(&apos;named loop (discard, finish after)&apos;, function(done){
+        this.base.loop(&apos;loop&apos;, function(finish, discard, i){
+            this.uint8(&apos;var_&apos; + i);
+            if(i &gt;= 3){
+                finish(true);
+            }
+        });
+
+        this.eqArray([0, 1, 2, 3, 4, 5], done, {
+            loop: [{
+                var_0: 0
+            }, {
+                var_1: 1
+            }, {
+                var_2: 2
+            }]
+        });
+    });
+
+    it(&apos;named loops replaced var&apos;, function(done){
+        this.base.loop(&apos;loop&apos;, function(){
+            this
+                .uint8(&apos;value&apos;)
+                .tap(function(){
+                    this.vars = this.vars.value;
+                });
+        });
+
+        this.eqArray([0, 1, 2, 3, 4], done, {
+            loop: [0, 1, 2, 3, 4]
+        });
+    });
+});
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc2.org">esdoc2<span data-ice="esdocVersion">(2.1.3)</span><img src="./image/esdoc2-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

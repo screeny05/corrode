@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../">
+  <title data-ice="title">src/index.js | corrode</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  <script src="script/manual.js"></script>
+<meta name="description" content="A batteries-included library for reading binary data."><meta property="twitter:card" content="summary"><meta property="twitter:title" content="corrode"><meta property="twitter:description" content="A batteries-included library for reading binary data."></head>
+<body class="layout-container" data-ice="rootContainer">
+
+<header>
+  <a href="./">Home</a>
+  <a href="./manual/index.html" data-ice="manualHeaderLink">Manual</a>
+  <a href="identifiers.html">Reference</a>
+  <a href="source.html">Source</a>
+  <a href="test.html" data-ice="testLink">Test</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+<a style="position:relative; top:3px;" href="https://github.com/screeny05/corrode"><img width="20px" src="./image/github.png"></a></header>
+
+<nav class="navigation" data-ice="nav"><div>
+  <ul>
+    
+  <li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/base.js~CorrodeBase.html">CorrodeBase</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/index.js~Corrode.html">Corrode</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-class">C</span><span data-ice="name"><span><a href="class/src/variable-stack.js~VariableStack.html">VariableStack</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#assert">assert</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-allEqual">allEqual</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-arrayLength">arrayLength</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bitmask">bitmask</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-callback">callback</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-deepEqual">deepEqual</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-equal">equal</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-exists">exists</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-inBounds">inBounds</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-includes">includes</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#map">map</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bitmask">bitmask</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-callback">callback</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-find">find</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-findAll">findAll</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-get">get</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-push">push</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-abs">abs</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-invert">invert</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-variable">V</span><span data-ice="name"><span><a href="variable/index.html#static-variable-trim">trim</a></span></span></li>
+<li data-ice="doc"><a data-ice="dirPath" class="nav-dir-path" href="identifiers.html#utils">utils</a><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-bindObject">bindObject</a></span></span></li>
+<li data-ice="doc"><span data-ice="kind" class="kind-function">F</span><span data-ice="name"><span><a href="function/index.html#static-function-tapBindObject">tapBindObject</a></span></span></li>
+</ul>
+</div>
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/index.js</h1>
+<pre class="source-code line-number raw-source-code"><code class="prettyprint linenums" data-ice="content">import CorrodeBase from &apos;./base&apos;;
+import * as utils from &apos;./utils&apos;;
+import { isPlainObject } from &apos;lodash&apos;;
+
+import * as MAPPERS from &apos;./map&apos;;
+import * as ASSERTIONS from &apos;./assert&apos;;
+
+import { inspect } from &apos;util&apos;;
+
+/**
+ * Corrode
+ * A batteries-included library for reading your binary data.
+ * It helps you converting that blob-mess into readable data.
+ *
+ * It inherits from {@link CorrodeBase} to make the abstraction between these
+ * two components more obvious. CorrodeBase does all the dirty low-level work
+ * reading bytes, managing jobs, etc. This class however doesn&apos;t manipulate
+ * the {@link CorrodeBase#jobs}-array or messes in other ways with the {@link CorrodeBase#jobLoop}.
+ *
+ * This class builds on loop and tap to provide more complex functionality.
+ */
+export default class Corrode extends CorrodeBase {
+
+    /**
+     * object holding all the user-defined extensions.
+     * these will get bound to the corrode-instance on calling the constructor
+     * @type {Object&lt;Function&gt;}
+     */
+    static EXTENSIONS = {};
+
+    /**
+     * mappers-object
+     * @type {Object&lt;Function&gt;}
+     */
+    static MAPPERS = MAPPERS;
+
+    /**
+     * assertions-object
+     * @type {Object&lt;Function&gt;}
+     */
+    static ASSERTIONS = ASSERTIONS;
+
+    /**
+     * initializes mappers, assertions and extensions
+     * @param {object} options {@link CorrodeBase#constructor}
+     */
+    constructor(options){
+        super(...arguments);
+
+        // bind ext, map &amp; assert onto this instance
+        /** @type {Object&lt;bound Function&gt;} ext {@link Corrode.EXTENSIONS} bound to this instance */
+        this.ext = utils.bindObject(Corrode.EXTENSIONS, this);
+        /** @type {Object&lt;bound Function&gt;} map {@link Corrode.MAPPERS} bound to this instance */
+        this.map = utils.tapBindObject(Corrode.MAPPERS, this);
+        /** @type {Object&lt;bound Function&gt;} assert {@link Corrode.ASSERTIONS} bound to this instance */
+        this.assert = utils.tapBindObject(Corrode.ASSERTIONS, this);
+    }
+
+    /**
+     * pushes a repeat-job onto the job-array
+     * a repeat-job repeats itself a given number of times and then ends.
+     * it&apos;s also possible to end the job prematurely or discard it.
+     * This is nothing else than a proxy to {@link CorrodeBase#loop}
+     * @param {string} [name] name of the new variable-layer. if none is provided, the current layer will be used
+     * @param {number} length iteration-count as number or as string referencing a variable from {@link CorrodeBase#vars}
+     * @param {function(end: function, discard: function, i: number)} fn called until `end()` is called.
+     *        `end(true)` can be used to end and discard the current loop.
+     *        `discard()` can be used to reset the current layer ({@link CorrodeBase#options.anonymousLoopDiscardDeep}).
+     *        `i` is the current iteration count
+     * @return {Corrode} this
+     */
+    repeat(name, length, fn){
+        if(typeof name === &apos;number&apos; || typeof length === &apos;function&apos;){
+            fn = length;
+            length = name;
+            name = undefined;
+        }
+
+        return this.tap(function(){
+            if(typeof length === &apos;string&apos;){
+                length = this.vars[length];
+            }
+
+            if(length === 0){
+                if(name){
+                    this.vars[name] = [];
+                }
+                return this;
+            }
+
+            const loopGuard = function(end, discard, i){
+                fn.call(this, end, discard, i);
+
+                if(i &gt;= length - 1){
+                    end();
+                }
+            };
+
+            if(!name){
+                return this.loop(loopGuard);
+            }
+
+            return this.loop(name, loopGuard);
+        });
+    }
+
+    /**
+     * pushes a terminatedBuffer-job onto the job-array
+     * The returned Buffer will be a slice (not a copy) of the underlying {@link CorrodeBase#streamBuffer}
+     * internally this method uses the isSeeking-property to prevent flushing of the
+     * underlying buffer.
+     * @param {string} name name of the buffer-variable
+     * @param {number} [terminator=0] uint8-value indicating the end of the buffer
+     * @param {boolean} [discardTerminator=true] whether or not to include the terminator in the resulting buffer
+     * @return {Corrode} this
+     */
+    terminatedBuffer(name, terminator = 0, discardTerminator = true){
+        let bufferLength = null;
+        const loopVar = Symbol.for(&apos;terminatedBufferTmp&apos;);
+
+        return this
+            .tap(function(){
+                terminator = typeof terminator === &apos;string&apos; ? this.vars[terminator] : terminator;
+                /** @type {boolean} isSeeking {@link CorrodeBase#isSeeking} */
+                this.isSeeking = true;
+            })
+            .loop(function(end, discard, i){
+                this
+                    .uint8(loopVar)
+                    .tap(function(){
+                        if(this.vars[loopVar] === terminator){
+                            bufferLength = i + 1;
+                            end();
+                        }
+                    });
+            })
+            .tap(function(){
+                delete this.vars[loopVar];
+                this.vars[name] = this.streamBuffer.slice(this.chunkOffset - bufferLength, this.chunkOffset + (discardTerminator ? -1 : 0));
+                this.isSeeking = false;
+            });
+    }
+
+    /**
+     * pushes a terminatedString-job onto the job-array
+     * Returns a string ranging from the current offset until the given terminator is found
+     * @param {string} name name of the string-variable
+     * @param {number} [terminator=0] uint8-value indicating the end of the buffer
+     * @param {boolean} [discardTerminator=true] whether or not to include the terminator in the resulting buffer
+     * @param {string} [encoding=CorrodeBase#options.encoding] encoding encoding used to decode the string, defaults to &apos;utf8&apos;.
+     *                 available encodings can be found here https://nodejs.org/api/buffer.html#buffer_buffers_and_character_encodings
+     * @return {Corrode} this
+     */
+    terminatedString(name, terminator = 0, discardTerminator = true, encoding = this.options.encoding){
+        return this
+            .terminatedBuffer(name, terminator, discardTerminator)
+            .tap(function(){
+                if(!this.vars[name] || this.vars[name].length === 0){
+                    // in case nothing is found, return an empty string
+                    this.vars[name] = &apos;&apos;;
+                } else {
+                    this.vars[name] = this.vars[name].toString(encoding);
+                }
+            });
+    }
+
+    /**
+     * pushes a pointer-job onto the job-array
+     * returns an item of an accessable type (object property, array element)
+     * being given an accessable type. the offset used to access the accessable type
+     * is determined by reading a value of the given type
+     * @param {string} name name of the item-variable
+     * @param {Object|Array} obj accessable type variable
+     * @param {string} type name of the type which should be used to read the index (int8, uint32, etc)
+     * @return {Corrode} this
+     */
+    pointer(name, obj, type = &apos;int64&apos;){
+        return this
+            .tap(function(){
+                if(typeof obj === &apos;string&apos;){
+                    obj = this.vars[obj];
+                }
+
+                this
+                    [type](name)
+                    .map.abs(name)
+                    .map.get(name, obj);
+            });
+    }
+
+    /**
+     * sets {@link CorrodeBase#streamOffset} to a given absolute position
+     * like skip, but absolute
+     * If you want to set the offset to something lower than the current offset, you should
+     * enable {@link CorrodeBase#isSeeking} asap, as otherwise there&apos;s no guarantee that the buffer is still available
+     * or already flushed.
+     * @param {number|string} offset as number or as string referencing a variable from {@link CorrodeBase#vars}
+     * @return {Corrode} this
+     */
+    position(offset){
+        return this
+            .tap(function(){
+                if(typeof offset === &apos;string&apos;){
+                    this.assert.exists(offset);
+                    offset = this.vars[offset];
+                }
+
+                this.skip(offset - this.streamOffset);
+            });
+    }
+
+    /**
+     * helper utility logging the current vars
+     * @return {Corrode} this
+     */
+    debug(){
+        return this.tap(function(){
+            console.log(inspect(this.vars, {
+                showHidden: false,
+                depth: null
+            }));
+        });
+    }
+
+    /**
+     * helper utility, parsing a given buffer async
+     * @param {Buffer} buffer data
+     * @param {function(error: *, data: object)} done callback
+     * @return {Corrode} this
+     */
+    fromBuffer(buffer, done){
+        this.end(buffer);
+        this.on(&apos;finish&apos;, () =&gt; done(this.vars));
+        return this;
+    }
+
+    /**
+     * adds an extension to corrode.
+     * extensions are user-defined functions allowing you to better abstract upon corrode
+     * an extension can accept parameters and receives the current available variables.
+     * it can either directly return values or read them from the buffer with corrode&apos;s functions.
+     * @param {string} name of the extension
+     * @param {function(...args: *)} fn function receiving arguments given when calling the extension
+     * @example &lt;caption&gt;Extension reading values&lt;/caption&gt;
+     * Corrode.addExtension(&apos;foo&apos;, function(arg1){ this.uint8(arg1); });
+     * (new Corrode()).ext.foo(&apos;foo_value&apos;, &apos;arg1&apos;);
+     * @example &lt;caption&gt;Extension returning values&lt;/caption&gt;
+     * Corrode.addExtension(&apos;bar&apos;, function(arg1){ return this.vars[arg1] * this.vars[arg1] });
+     * (new Corrode()).ext.bar(&apos;bar_value&apos;, &apos;arg1&apos;)
+     */
+    static addExtension(name, fn){
+        Corrode.EXTENSIONS[name] = function(name = &apos;values&apos;, ...args){
+            return this.tap(name, function(){
+                const value = fn.apply(this, args);
+
+                if(typeof value !== &apos;undefined&apos;){
+                    if(this.options.strictObjectMode &amp;&amp; this.jobs.length &gt; 0 &amp;&amp; value !== this &amp;&amp; !isPlainObject(value)){
+                        throw new TypeError(`Can&apos;t mix immediate returns with later reads on a non-object value (${JSON.stringify(value)}) in strictObjectMode`);
+                    }
+                    /** @type {Object} vars {@link CorrodeBase#vars} */
+                    this.vars = value;
+                }
+            });
+        };
+
+        Corrode.EXTENSIONS[name].orgFn = fn;
+    }
+}
+</code></pre>
+
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc2.org">esdoc2<span data-ice="esdocVersion">(2.1.3)</span><img src="./image/esdoc2-logo-mini-black.png"></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>
