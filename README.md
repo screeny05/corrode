@@ -1,7 +1,6 @@
 <p align="center">
   <img src="https://cdn.rawgit.com/screeny05/corrode/master/corrode.svg?raw=true" alt="∆ corrode" width="330"/>
 </p>
----
 
 [![MIT license](https://img.shields.io/npm/l/corrode.svg?style=flat-square)](./LICENSE)
 [![NPM version](https://img.shields.io/npm/v/corrode.svg?style=flat-square)](https://www.npmjs.com/package/corrode)
@@ -103,7 +102,7 @@ It solves most of the major shortcomings dissolve has:
 
 Not yet included are additions like bignum-support for int64 and additional non-node-standard-encodings.
 
-corrode is currently not tested for use in browsers.
+corrode should also work in browsers. You may need a `setImmediate()` polyfill, but you're able to parse ArrayBuffers.
 
 
 ## Used dependencies (3)

@@ -1,6 +1,6 @@
 {
   "name": "corrode",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A batteries-included library for reading binary data.",
   "main": "dist/index.js",
   "module": "src/index.js",
