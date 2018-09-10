@@ -1,9 +1,8 @@
 {
   "name": "corrode",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "A batteries-included library for reading binary data.",
   "main": "dist/index.js",
-  "module": "src/index.js",
   "scripts": {
     "build": "babel src --out-dir dist --source-maps",
     "watch": "npm run build -- --watch",

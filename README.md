@@ -102,7 +102,7 @@ It solves most of the major shortcomings dissolve has:
 
 Not yet included are additions like bignum-support for int64 and additional non-node-standard-encodings.
 
-corrode should also work in browsers. You may need a `setImmediate()` polyfill, but you're able to parse ArrayBuffers.
+corrode also works in browsers. You will need a `setImmediate()` polyfill, but you're able to parse ArrayBuffers as usual.
 
 
 ## Used dependencies (3)
